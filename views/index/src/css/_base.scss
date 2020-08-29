@@ -1,0 +1,113 @@
+@use "colors";
+@use "fonts";
+@use "footer";
+@use "header";
+
+body {
+    margin: 0;
+    background-color: colors.$primary;
+    color: colors.$white;
+    font-family: "Roboto", sans-serif;
+}
+
+#root {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-link {
+    color: colors.$highlight;
+    text-decoration: none;
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.1s ease-in-out;
+
+    &:hover {
+        background-color: rgba(colors.$highlight, 0.15);
+    }
+}
+
+main {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 96px 16px 16px 16px;
+    overflow: hidden;
+    flex-grow: 1;
+
+    @media screen and (min-width: 600px) {
+        padding: 96px 32px 32px 32px;
+    }
+
+    @media screen and (min-width: 800px) {
+        padding: 96px 64px 64px 64px;
+    }
+}
+
+p,
+h1,
+h2,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+button {
+    min-width: 80px;
+    margin: 10px;
+    padding: 10px 15px;
+    border: 1px solid #404040;
+    background-color: #202020;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    outline: none;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #282828;
+    }
+}
+
+.input-wrapper {
+    display: flex;
+    position: relative;
+}
+
+label {
+    position: absolute;
+    left: 1.5em;
+    background-color: #121212;
+    padding: 0 0.5em;
+    pointer-events: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+textarea {
+    width: 100%;
+    min-width: 80px;
+    margin: 10px;
+    padding: 10px 15px;
+    border: 1px solid #323232;
+    background-color: #121212;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    outline: none;
+
+    &:focus {
+        border-color: #404040;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:active,
+    &:-webkit-autofill:focus {
+        -webkit-text-fill-color: white;
+        box-shadow: 0 0 0px 1000px #121212 inset;
+        -webkit-box-shadow: 0 0 0px 1000px #121212 inset;
+    }
+}

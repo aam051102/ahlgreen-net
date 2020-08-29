@@ -1,0 +1,32 @@
+@use "colors";
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    margin: 10px auto;
+    height: 2rem;
+    background-color: colors.$secondary;
+    border-radius: 30px;
+    overflow: hidden;
+
+    .progress-filler {
+        background-color: colors.$highlight;
+        box-sizing: border-box;
+        padding: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        user-select: none;
+        line-height: 1em;
+    }
+
+    @media screen and (min-width: 500px) {
+        width: 70%;
+    }
+
+    @media screen and (min-width: 800px) {
+        width: 300px;
+        margin: 10px 0;
+    }
+}

@@ -1,0 +1,14 @@
+.contact-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 64px - 96px - 32px);
+
+    .email {
+        font-size: 5vw;
+
+        @media screen and (min-width: 800px) {
+            font-size: 2rem;
+        }
+    }
+}

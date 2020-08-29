@@ -1,0 +1,56 @@
+@use "base";
+@use "colors";
+
+.admin-login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .admin-login-alert {
+        color: colors.$white;
+        border: 1px solid colors.$alert;
+        min-width: 80px;
+        margin: 10px 0 30px 0;
+        padding: 10px 15px;
+        background-color: rgba(colors.$alert, 0.1);
+        font-weight: 300;
+        width: 100%;
+        max-width: 50%;
+        box-sizing: border-box;
+        visibility: hidden;
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: visibility 0.25s ease, opacity 0.25s ease;
+
+        &:not(:empty) {
+            visibility: visible;
+            opacity: 1;
+            min-height: 2rem;
+        }
+
+        @media screen and (max-width: 1000px) {
+            max-width: 75%;
+        }
+
+        @media screen and (max-width: 700px) {
+            max-width: 100%;
+        }
+    }
+
+    & > section {
+        max-width: 500px;
+        width: 50%;
+
+        @media screen and (max-width: 600px) {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+
+    form {
+        text-align: center;
+    }
+}

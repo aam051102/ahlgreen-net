@@ -1,0 +1,31 @@
+{
+    "name": "ahlgreen-net-cms",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "dependencies": {
+        "concurrently": "^5.2.0",
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "cross-env": "^7.0.2",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-mysql-session": "^2.1.4",
+        "express-session": "^1.17.1",
+        "mysql": "^2.18.1",
+        "node": "^14.4.0",
+        "npm": "^6.14.5",
+        "parcel-bundler": "^1.12.4",
+        "passport": "^0.4.1"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "prod": "concurrently \"npm:build\" \"cross-env NODE_ENV=production node server.js\"",
+        "build": "parcel build views/index/src/index.html --no-source-maps",
+        "watch": "parcel watch views/index/src/index.html --no-source-maps",
+        "dev": "concurrently \"npm:watch\" \"cross-env NODE_ENV=development node server.js\""
+    },
+    "keywords": [],
+    "author": "MadCreativity",
+    "license": "ISC"
+}
