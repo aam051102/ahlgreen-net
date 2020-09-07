@@ -37,8 +37,9 @@ const Home = () => {
                         challenges my way.
                     </p>
                     <p>
-                        Currently studying web development at Roskilde Tekniske
-                        Skole in Denmark.
+                        Expected to graduate from Roskilde Tekniske Skole
+                        (Roskilde Technical College) in Denmark during late
+                        2020.
                     </p>
 
                     <section className="skills">

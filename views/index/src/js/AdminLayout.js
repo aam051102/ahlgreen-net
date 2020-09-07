@@ -9,8 +9,6 @@ import AdminNavbar from "./AdminNavbar";
 function AdminLayout(props) {
     return (
         <div className="admin-layout">
-            <Header />
-
             <div className="admin-content">
                 <AdminNavbar />
 
@@ -45,12 +43,12 @@ function AdminLayout(props) {
                             }
                         />
 
-                        <title>Ahlgreen.NET / {props.title}</title>
+                        <title>
+                            Alexander Ahlgreen | Web Developer - {props.title}
+                        </title>
                     </Helmet>
 
                     <div className="page-content">{props.children}</div>
-
-                    <Footer />
                 </main>
             </div>
         </div>

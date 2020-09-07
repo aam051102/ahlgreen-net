@@ -36,6 +36,11 @@ header {
         @media screen and (min-width: 600px) {
             display: inline;
         }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
     }
 
     .swipe-down-text {

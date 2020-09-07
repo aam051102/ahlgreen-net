@@ -49,6 +49,12 @@
                 }
             }
 
+            .info-container {
+                p {
+                    margin: 0;
+                }
+            }
+
             &:not(:first-of-type) {
                 border-top-width: 1px;
             }
