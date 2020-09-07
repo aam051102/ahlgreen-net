@@ -33,7 +33,12 @@ const Home = () => {
                         React, Node and anything in between. I mainly specialize
                         in web development, but I also enjoy developing C++
                         applications. I've been writing code since I was 10
-                        years old and I'm still going strong. Challenge me.
+                        years old and I'm still going strong. Feel free to send
+                        any challenges my way.
+                    </p>
+                    <p>
+                        Currently studying web development at Roskilde Tekniske
+                        Skole in Denmark.
                     </p>
 
                     <section className="skills">
