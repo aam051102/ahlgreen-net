@@ -5,7 +5,7 @@ import Header from "./js/Header";
 
 import Home from "./js/Home";
 import Portfolio from "./js/Portfolio";
-const PortfolioDetails = lazy(() => import("./js/PortfolioDetails"));
+import PortfolioDetails from "./js/PortfolioDetails";
 import Contact from "./js/Contact";
 
 const Admin = lazy(() => import("./js/Admin"));

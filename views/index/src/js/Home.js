@@ -34,7 +34,7 @@ const Home = () => {
                         in web development, but I also enjoy developing C++
                         applications. I've been writing code since I was 10
                         years old and I'm still going strong. Feel free to send
-                        any challenges my way.
+                        challenges my way.
                     </p>
                     <p>
                         Currently studying web development at Roskilde Tekniske

@@ -56,7 +56,17 @@ h2,
 h4,
 h5,
 h6 {
-    margin: 1em 0;
+    margin: 1rem 0;
+}
+
+address {
+    font-style: normal;
+}
+
+a.text-link {
+    color: #c0c0c0;
+    text-decoration: none;
+    border-bottom: 0.1em solid #c0c0c0;
 }
 
 button {

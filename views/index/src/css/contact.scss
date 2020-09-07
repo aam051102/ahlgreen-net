@@ -1,14 +1,38 @@
-.contact-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: calc(100vh - 64px - 96px - 32px);
+@use "colors";
 
-    .email {
-        font-size: 5vw;
+.contact-page-container {
+    flex-grow: 1;
 
-        @media screen and (min-width: 800px) {
-            font-size: 2rem;
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .contact-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 100%;
+        height: calc(100vh - 64px - 96px - 32px);
+
+        .email-link {
+            font-size: 1.5rem;
+            display: inline-block;
+            padding: 20px 25px;
+            margin: 5px;
+            text-decoration: none;
+            color: colors.$white;
+            border: 1px solid colors.$dp02;
+            background-color: transparent;
+            transition: background-color 0.5s ease-in-out,
+                border-color 0.5s ease;
+
+            &:hover {
+                background-color: colors.$dp01;
+                border-color: colors.$dp03;
+            }
         }
     }
 }

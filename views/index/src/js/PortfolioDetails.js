@@ -34,7 +34,7 @@ const PortfolioDetails = (props) => {
                     image_src={
                         creation.id
                             ? decodeURIComponent(creation.image_url)
-                            : ""
+                            : "/public/blank.png"
                     }
                     image_href={
                         creation.id ? decodeURIComponent(creation.url) : ""

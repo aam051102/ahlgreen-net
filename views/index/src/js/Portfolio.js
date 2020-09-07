@@ -21,17 +21,20 @@ const Portfolio = () => {
     return (
         <Layout title="Portfolio" slug="portfolio" description="" keywords={[]}>
             <div className="creations-page-container">
-                {creations.map((creation, i) => {
-                    return (
-                        <CreationCard
-                            key={i}
-                            src={decodeURIComponent(creation.image_url)}
-                            url_slug={creation.url_slug}
-                        >
-                            <p>{decodeURIComponent(creation.name)}</p>
-                        </CreationCard>
-                    );
-                })}
+                <h1>Portfolio</h1>
+                <div className="creations">
+                    {creations.map((creation, i) => {
+                        return (
+                            <CreationCard
+                                key={i}
+                                src={decodeURIComponent(creation.image_url)}
+                                url_slug={creation.url_slug}
+                            >
+                                <p>{decodeURIComponent(creation.name)}</p>
+                            </CreationCard>
+                        );
+                    })}
+                </div>
             </div>
         </Layout>
     );
