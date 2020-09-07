@@ -5,7 +5,7 @@ const ImageSide = (props) => {
         <div className="image-side-container">
             <section className="image-wrapper">
                 {props.image_href ? (
-                    <a href={props.image_href}>
+                    <a href={props.image_href} target="_blank">
                         <img src={props.image_src} alt={props.name} />
                     </a>
                 ) : (

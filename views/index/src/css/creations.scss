@@ -4,6 +4,8 @@
 .creations-page-container {
     display: grid;
     width: 100%;
+    flex-grow: 1;
+    padding-top: 32px;
     box-sizing: border-box;
     grid-template-columns: calc(100vw - 32px);
     grid-auto-rows: calc(100vw - 32px);
