@@ -9,6 +9,11 @@ function Layout(props) {
         <div>
             <main>
                 <Helmet>
+                    <meta
+                        property="og:url"
+                        content={`https://ahlgreen.net/${props.slug}`}
+                    />
+
                     <link
                         rel="canonical"
                         href={`https://ahlgreen.net/${props.slug}`}
