@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect } from "react";
 import ImageSide from "./ImageSide";
 import Layout from "./Layout";
 
-const CreationDetails = (props) => {
+const PortfolioDetails = (props) => {
     const [creation, setCreation] = useState({ id: undefined });
 
     useLayoutEffect(() => {
@@ -19,8 +19,10 @@ const CreationDetails = (props) => {
 
     return (
         <Layout
-            title={creation.name ? decodeURIComponent(creation.name) : ""}
-            slug={`creation/${
+            title={`Alexander Ahlgreen Portfolio - ${
+                creation.name ? decodeURIComponent(creation.name) : ""
+            }`}
+            slug={`portfolio/${
                 creation.url_slug ? decodeURIComponent(creation.url_slug) : ""
             }`}
             description={""}
@@ -77,4 +79,4 @@ const CreationDetails = (props) => {
     );
 };
 
-export default CreationDetails;
+export default PortfolioDetails;

@@ -4,7 +4,7 @@ import { Link } from "@reach/router";
 const CreationCard = (props) => {
     return (
         <article className="card">
-            <Link to={`/creation/${props.url_slug}`}></Link>
+            <Link to={`/portfolio/${props.url_slug}`}></Link>
 
             <section className="side-a">
                 <img src={props.src} alt="" />

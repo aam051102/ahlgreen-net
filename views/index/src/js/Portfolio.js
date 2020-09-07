@@ -3,7 +3,7 @@ import CreationCard from "./CreationCard";
 
 import Layout from "./Layout";
 
-const Creations = () => {
+const Portfolio = () => {
     const [creations, setCreations] = useState([]);
 
     useLayoutEffect(() => {
@@ -19,7 +19,7 @@ const Creations = () => {
     });
 
     return (
-        <Layout title="Creations" slug="creations" description="" keywords={[]}>
+        <Layout title="Portfolio" slug="portfolio" description="" keywords={[]}>
             <div className="creations-page-container">
                 {creations.map((creation, i) => {
                     return (
@@ -37,4 +37,4 @@ const Creations = () => {
     );
 };
 
-export default Creations;
+export default Portfolio;

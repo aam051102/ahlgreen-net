@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import { Router, Location } from "@reach/router";
 
 import Home from "./js/Home";
-import Creations from "./js/Creations";
-const CreationDetails = lazy(() => import("./js/CreationDetails"));
+import Portfolio from "./js/Portfolio";
+const PortfolioDetails = lazy(() => import("./js/PortfolioDetails"));
 import Contact from "./js/Contact";
 
 const Admin = lazy(() => import("./js/Admin"));
@@ -64,10 +64,8 @@ const App = () => {
                     <Suspense fallback={renderLoader()}>
                         <Router>
                             <Home path="/" />
-
-                            <Creations path="/creations" />
-
-                            <CreationDetails path="/creation/:url_slug" />
+                            <PortfolioDetails path="/portfolio/:url_slug" />
+                            <Portfolio path="/portfolio" />
                             <Contact path="/contact" />
 
                             <Admin path="/admin" />

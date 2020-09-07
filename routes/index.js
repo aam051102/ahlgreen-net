@@ -7,8 +7,8 @@ router.get(
     [
         "/",
         "/index",
-        "/creations",
-        "/creation/:url_slug",
+        "/portfolio/:url_slug",
+        "/portfolio",
         "/contact",
         "/admin",
         "/admin/creations",
