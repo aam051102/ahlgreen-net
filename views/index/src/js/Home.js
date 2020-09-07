@@ -24,15 +24,16 @@ const Home = () => {
         <Layout title="Home" slug="" description="" keywords={[]}>
             <div className="home-container">
                 <ImageSide
-                    name="MadCreativity"
+                    name="Alexander Ahlgreen"
                     image_src={require("../assets/images/logo.png")}
                 >
-                    <h1>MadCreativity</h1>
+                    <h1>Alexander Ahlgreen</h1>
                     <p>
-                        I have been programming since 2013, starting at age 10.
-                        Since then, I have mainly focused on web development and
-                        desktop applications. I'm always interested in a
-                        challenge.
+                        I'm a full-stack web developer with experience in React,
+                        Node and anything in between. I mainly specialize in web
+                        development, but I also enjoy developing C++
+                        applications. I've been writing code since I was 10
+                        years old and I'm still going strong. Challenge me.
                     </p>
 
                     <section className="skills">

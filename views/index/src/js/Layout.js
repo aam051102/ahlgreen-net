@@ -30,19 +30,19 @@ function Layout(props) {
                     <meta
                         name="keywords"
                         content={
-                            "web,programmer,developer,css,html,javascript,js,madcreativity,mad,ahlgreen,python,c++,cpp,c#,csharp,node" +
+                            "website portfolio,pwa,progressive web app,portfolio,web developer,website creator,responsive,responsive web design,responsive website,web application,application development,web application development,programmer,developer,css,html,javascript,js,madcreativity,alexander,ahlgreen,madsen,python,c++,cpp,c#,csharp,node,react,reactjs,react.js,full stack,fullstack,front-end,frontend,frontend developer,front-end developer,back-end,backend,backend developer,back-end developer,website developer,website" +
                             (props.keywords && props.keywords.length > 0
                                 ? "," + props.keywords.join(",")
                                 : "")
                         }
                     />
 
-                    <title>Ahlgreen - {props.title}</title>
+                    <title>Alexander Ahlgreen - {props.title}</title>
                 </Helmet>
                 {props.children}
             </main>
 
-            <Footer />
+            {/*<Footer />*/}
         </div>
     );
 }
