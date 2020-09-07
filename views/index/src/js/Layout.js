@@ -30,7 +30,7 @@ function Layout(props) {
                     <meta
                         name="keywords"
                         content={
-                            "website portfolio,pwa,progressive web app,portfolio,web developer,website creator,responsive,responsive web design,responsive website,web application,application development,web application development,programmer,developer,css,html,gulp,parcel,babel,node,npm,express,ejs,javascript,js,madcreativity,alexander,ahlgreen,madsen,python,c++,cpp,c#,csharp,node,react,reactjs,react.js,full stack,fullstack,front-end,frontend,frontend developer,front-end developer,back-end,backend,backend developer,back-end developer,website developer,website" +
+                            "website portfolio,pwa,progressive web app,portfolio,web developer,website creator,responsive,responsive web design,responsive website,web application,application development,web application development,programmer,developer,css,html,gulp,parcel,babel,node,npm,express,ejs,git,github,mysql,semantics,semantic html,seo,denmark,danmark,frameworks,react framework,javascript,js,madcreativity,alexander,ahlgreen,madsen,python,c++,cpp,c#,csharp,node,react,reactjs,react.js,full stack,fullstack,front-end,frontend,frontend developer,front-end developer,back-end,backend,backend developer,back-end developer,website developer,website" +
                             (props.keywords && props.keywords.length > 0
                                 ? "," + props.keywords.join(",")
                                 : "")
