@@ -52,6 +52,10 @@
             .info-container {
                 display: flex;
 
+                p {
+                    margin: 0;
+                }
+
                 .creation-card-icon {
                     width: 1.5em;
                     height: 1.5em;
