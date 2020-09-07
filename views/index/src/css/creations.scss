@@ -5,19 +5,24 @@
     display: grid;
     width: 100%;
     box-sizing: border-box;
-    grid-template-columns: repeat(2, calc((100vw - 32px) / 2 - 20px));
-    grid-auto-rows: calc((100vw - 32px) / 2 - 20px);
-    grid-gap: 20px;
+    grid-template-columns: calc(100vw - 32px);
+    grid-auto-rows: calc(100vw - 32px);
+
+    @media screen and (min-width: 400px) {
+        grid-template-columns: repeat(2, calc((100vw - 32px) / 2 - 10px));
+        grid-auto-rows: calc((100vw - 32px) / 2 - 10px);
+        grid-gap: 20px;
+    }
 
     @media screen and (min-width: 600px) {
-        grid-template-columns: repeat(3, calc((100vw - 64px) / 3 - 30px));
-        grid-auto-rows: calc((100vw - 64px) / 3 - 30px);
+        grid-template-columns: repeat(3, calc((100vw - 64px) / 3 - 20px));
+        grid-auto-rows: calc((100vw - 64px) / 3 - 20px);
         grid-gap: 30px;
     }
 
     @media screen and (min-width: 800px) {
-        grid-template-columns: repeat(4, calc((100vw - 128px) / 4 - 40px));
-        grid-auto-rows: calc((100vw - 128px) / 4 - 40px);
+        grid-template-columns: repeat(4, calc((100vw - 128px) / 4 - 30px));
+        grid-auto-rows: calc((100vw - 128px) / 4 - 30px);
         grid-gap: 40px;
     }
 }
