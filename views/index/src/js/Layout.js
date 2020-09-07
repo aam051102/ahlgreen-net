@@ -7,8 +7,6 @@ import { Helmet } from "react-helmet-async";
 function Layout(props) {
     return (
         <div>
-            <Header />
-
             <main>
                 <Helmet>
                     <link

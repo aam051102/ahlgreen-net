@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { Router, Location } from "@reach/router";
+import Header from "./js/Header";
 
 import Home from "./js/Home";
 import Portfolio from "./js/Portfolio";
@@ -60,6 +61,8 @@ const App = () => {
     return (
         <React.StrictMode>
             <HelmetProvider>
+                <Header />
+
                 <ErrorBoundary>
                     <Suspense fallback={renderLoader()}>
                         <Router>
