@@ -2,18 +2,6 @@
 
 .image-side-container {
     margin: 1rem;
-    animation: page-in 0.5s ease-out forwards;
-
-    @keyframes page-in {
-        from {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
 
     .image-wrapper {
         width: 50vw;
