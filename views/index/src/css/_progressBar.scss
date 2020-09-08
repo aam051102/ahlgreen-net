@@ -7,6 +7,17 @@
     background-color: colors.$secondary;
     border-radius: 30px;
     overflow: hidden;
+    opacity: 0;
+    animation: progress-bar-appear 0.5s ease 0.1s forwards;
+
+    @keyframes progress-bar-appear {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 
     .progress-filler-wrapper {
         height: 100%;

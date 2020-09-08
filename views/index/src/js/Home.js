@@ -15,11 +15,11 @@ const Home = () => {
             fetch("/api/get/knowledge")
                 .then((response) => response.json())
                 .then((data) => {
-                    setKnowledge(
-                        data.filter((value, i) => {
-                            return i < 4;
-                        })
-                    );
+                    if (data.length > 4) {
+                        data.splice(4, data.length - 4);
+                    }
+
+                    setKnowledge(data);
                 });
         }
     }, []);
@@ -49,7 +49,7 @@ const Home = () => {
                     <section className="skills">
                         <h2>Knowledge/Skillset</h2>
 
-                        <div>
+                        <div className="progress-bars">
                             {knowledge
                                 .sort(
                                     (a, b) =>
