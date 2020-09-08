@@ -125,7 +125,7 @@ const AdminCreations = () => {
 
                     <button
                         onClick={handleAddCreationBtnClick}
-                        className="add-creation-button"
+                        className="add-creation-button button-link"
                     >
                         Add Creation
                     </button>

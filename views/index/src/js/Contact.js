@@ -10,7 +10,7 @@ const Contact = () => {
                 <div className="contact-container">
                     <address>
                         <a
-                            className="email-link"
+                            className="email-link button-link"
                             target="_blank"
                             href="mailto:ahlgreenmadsen@gmail.com"
                         >

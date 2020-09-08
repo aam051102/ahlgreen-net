@@ -1,4 +1,5 @@
 import React, { useState, useLayoutEffect } from "react";
+import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faHackerrank } from "@fortawesome/free-brands-svg-icons";
 
@@ -15,10 +16,6 @@ const Home = () => {
             fetch("/api/get/knowledge")
                 .then((response) => response.json())
                 .then((data) => {
-                    if (data.length > 4) {
-                        data.splice(4, data.length - 4);
-                    }
-
                     setKnowledge(data);
                 });
         }
@@ -57,7 +54,7 @@ const Home = () => {
                                         parseInt(a.percentage)
                                 )
                                 .map((element, i) => {
-                                    return (
+                                    /*return (
                                         <ProgressBar
                                             key={i}
                                             title={decodeURIComponent(
@@ -65,6 +62,15 @@ const Home = () => {
                                             )}
                                             percentage={element.percentage}
                                         />
+                                    );*/
+                                    return (
+                                        <Link
+                                            className="button-link"
+                                            to={`/knowledge/${element.name}`}
+                                            key={i}
+                                        >
+                                            {decodeURIComponent(element.name)}
+                                        </Link>
                                     );
                                 })}
                         </div>

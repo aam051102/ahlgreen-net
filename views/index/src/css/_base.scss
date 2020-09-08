@@ -17,19 +17,6 @@ body {
     flex-direction: column;
 }
 
-.button-link {
-    color: colors.$highlight;
-    text-decoration: none;
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 4px;
-    transition: background-color 0.1s ease-in-out;
-
-    &:hover {
-        background-color: rgba(colors.$highlight, 0.15);
-    }
-}
-
 main {
     box-sizing: border-box;
     width: 100%;
@@ -49,7 +36,7 @@ main {
         }
         to {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
     }
 
@@ -59,6 +46,23 @@ main {
 
     @media screen and (min-width: 800px) {
         padding: 56px 64px 0 64px;
+    }
+}
+
+.button-link {
+    font-size: 1rem;
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 5px;
+    text-decoration: none;
+    color: colors.$white;
+    border: 1px solid colors.$dp02;
+    background-color: transparent;
+    transition: background-color 0.5s ease-in-out, border-color 0.5s ease;
+
+    &:hover {
+        background-color: colors.$dp01;
+        border-color: colors.$dp03;
     }
 }
 

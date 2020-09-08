@@ -114,7 +114,7 @@ const Admin = () => {
 
                     <button
                         onClick={handleAddKnowledgeBtnClick}
-                        className="add-knowledge-button"
+                        className="add-knowledge-button button-link"
                     >
                         Add Knowledge
                     </button>
@@ -133,6 +133,7 @@ const Admin = () => {
 
                                 <div className="button-container">
                                     <button
+                                        className="button-link"
                                         onClick={() => {
                                             fetch(
                                                 "/api/delete/knowledge/" +
@@ -154,6 +155,7 @@ const Admin = () => {
                                         Yes
                                     </button>
                                     <button
+                                        className="button-link"
                                         onClick={() => {
                                             resetPopupMessage();
                                         }}
@@ -196,6 +198,7 @@ const Admin = () => {
 
                                 <div className="button-container">
                                     <button
+                                        className="button-link"
                                         onClick={() => {
                                             fetch(
                                                 "/api/update/knowledge/" +
@@ -230,6 +233,7 @@ const Admin = () => {
                                         Save
                                     </button>
                                     <button
+                                        className="button-link"
                                         onClick={() => {
                                             resetPopupMessage();
                                         }}
@@ -266,6 +270,7 @@ const Admin = () => {
 
                                 <div className="button-container">
                                     <button
+                                        className="button-link"
                                         onClick={() => {
                                             fetch("/api/insert/knowledge", {
                                                 method: "POST",
@@ -296,6 +301,7 @@ const Admin = () => {
                                         Add
                                     </button>
                                     <button
+                                        className="button-link"
                                         onClick={() => {
                                             resetPopupMessage();
                                         }}
