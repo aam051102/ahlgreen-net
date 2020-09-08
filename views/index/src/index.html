@@ -52,6 +52,7 @@
                 right: 5px;
                 width: 100px;
                 height: 100px;
+                transform: scale(0.5);
                 background-image: url("./assets/images/spinner.png");
                 background-position: center;
                 background-size: contain;
@@ -68,10 +69,10 @@
 
             @keyframes spinner-infinite {
                 from {
-                    transform: rotate(0deg);
+                    transform: scale(0.5) rotate(0deg);
                 }
                 to {
-                    transform: rotate(360deg);
+                    transform: scale(0.5) rotate(360deg);
                 }
             }
         </style>

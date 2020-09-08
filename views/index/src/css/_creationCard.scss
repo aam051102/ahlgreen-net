@@ -19,7 +19,13 @@
         flex-direction: column;
         pointer-events: none;
         justify-content: center;
+        visibility: visible;
         align-items: center;
+        transition: visibility 0.5s linear;
+
+        img {
+            animation: spinner-infinite 0.75s linear infinite;
+        }
 
         p {
             margin: 0;
@@ -44,6 +50,10 @@
             opacity: 1;
             pointer-events: all;
             animation: creation-card-in 0.5s ease-in-out forwards;
+
+            & + .loading-card {
+                visibility: hidden;
+            }
         }
 
         @keyframes creation-card-in {

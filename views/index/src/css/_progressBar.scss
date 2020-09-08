@@ -5,8 +5,8 @@
     margin: 10px auto;
     height: 2rem;
     background-color: colors.$secondary;
-    border-radius: 30px;
-    overflow: hidden;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
     opacity: 0;
     animation: progress-bar-appear 0.5s ease 0.1s forwards;
 
@@ -38,8 +38,8 @@
             border-bottom-right-radius: 30px;
             line-height: 1em;
             transition: width 0.5s ease;
-            animation: progress-fill 0.75s cubic-bezier(0.75, 0.25, 0.75, 1.25)
-                0.2s forwards;
+            animation: progress-fill 0.75s cubic-bezier(0.2, 0.5, 0.5, 1.2) 0.2s
+                forwards;
         }
 
         .progress-title {

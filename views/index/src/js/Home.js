@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faHackerrank } from "@fortawesome/free-brands-svg-icons";
 
 import ProgressBar from "./ProgressBar";
 
@@ -73,11 +73,19 @@ const Home = () => {
                     <section className="socials">
                         <a
                             href="https://github.com/aam051102"
-                            target="blank"
+                            target="_blank"
                             alt="GitHub"
                             title="GitHub"
                         >
                             <FontAwesomeIcon icon={faGithub} />
+                        </a>
+                        <a
+                            href="https://www.hackerrank.com/ahlgreenmadsen"
+                            target="_blank"
+                            alt="Hackerrank"
+                            title="Hackerrank"
+                        >
+                            <FontAwesomeIcon icon={faHackerrank} />
                         </a>
                     </section>
                 </ImageSide>

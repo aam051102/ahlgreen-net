@@ -23,7 +23,10 @@ const CreationCard = (props) => {
                 </section>
             </article>
             <article className="loading-card">
-                <p>Loading content...</p>
+                <img
+                    src={require("../assets/images/spinner.png")}
+                    alt="Loading..."
+                />
             </article>
         </div>
     );
