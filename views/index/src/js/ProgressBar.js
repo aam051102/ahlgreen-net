@@ -7,7 +7,8 @@ const ProgressBar = (props) => {
                 className="progress-filler-wrapper"
                 style={{ width: props.percentage + "%" }}
             >
-                <div className="progress-filler">{props.title}</div>
+                <span className="progress-title">{props.title}</span>
+                <div className="progress-filler"></div>
             </div>
         </article>
     );

@@ -10,13 +10,14 @@
 
     .progress-filler-wrapper {
         height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
 
         .progress-filler {
             background-color: colors.$highlight;
-            box-sizing: border-box;
-            padding-left: 8px;
-            display: flex;
-            align-items: center;
+            position: absolute;
+            z-index: 5;
             top: 0;
             left: 0;
             height: 100%;
@@ -28,6 +29,12 @@
             transition: width 0.5s ease;
             animation: progress-fill 0.75s cubic-bezier(0.75, 0.25, 0.75, 1.25)
                 0.2s forwards;
+        }
+
+        .progress-title {
+            left: 8px;
+            position: relative;
+            z-index: 10;
         }
     }
 
