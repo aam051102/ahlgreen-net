@@ -15,10 +15,14 @@ const Home = () => {
             fetch("/api/get/knowledge")
                 .then((response) => response.json())
                 .then((data) => {
-                    setKnowledge(data);
+                    setKnowledge(
+                        data.filter((value, i) => {
+                            return i < 4;
+                        })
+                    );
                 });
         }
-    });
+    }, []);
 
     return (
         <Layout title="Home" slug="" description="" keywords={[]}>

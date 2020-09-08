@@ -23,9 +23,9 @@ header {
     @media screen and (min-width: 600px) {
         height: 56px;
         flex-direction: row;
-        transform: none;
         transition: none;
         padding: 0 32px;
+        transform: none;
     }
 
     .header-title {

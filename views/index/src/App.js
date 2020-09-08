@@ -57,35 +57,37 @@ class ErrorBoundary extends React.Component {
     }
 }
 
-const App = () => {
-    return (
-        <React.StrictMode>
-            <HelmetProvider>
-                <Header />
+class App extends React.Component {
+    render() {
+        return (
+            <React.StrictMode>
+                <HelmetProvider>
+                    <Header />
 
-                <ErrorBoundary>
-                    <Suspense fallback={renderLoader()}>
-                        <Router>
-                            <Home path="/" />
-                            <PortfolioDetails path="/portfolio/:url_slug" />
-                            <Portfolio path="/portfolio" />
-                            <Contact path="/contact" />
+                    <ErrorBoundary>
+                        <Suspense fallback={renderLoader()}>
+                            <Router>
+                                <Home path="/" />
+                                <PortfolioDetails path="/portfolio/:url_slug" />
+                                <Portfolio path="/portfolio" />
+                                <Contact path="/contact" />
 
-                            <Admin path="/admin" />
-                            <AdminCreations path="/admin/creations" />
-                            <AdminLogin path="/admin/login" />
-                        </Router>
-                    </Suspense>
-                </ErrorBoundary>
+                                <Admin path="/admin" />
+                                <AdminCreations path="/admin/creations" />
+                                <AdminLogin path="/admin/login" />
+                            </Router>
+                        </Suspense>
+                    </ErrorBoundary>
 
-                <OnRouteChange
-                    action={() => {
-                        window.scrollTo(0, 0);
-                    }}
-                />
-            </HelmetProvider>
-        </React.StrictMode>
-    );
-};
+                    <OnRouteChange
+                        action={() => {
+                            window.scrollTo(0, 0);
+                        }}
+                    />
+                </HelmetProvider>
+            </React.StrictMode>
+        );
+    }
+}
 
 ReactDOM.render(<App />, document.getElementById("root"));

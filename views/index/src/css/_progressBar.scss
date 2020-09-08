@@ -1,7 +1,6 @@
 @use "colors";
 
 .progress-bar {
-    position: relative;
     width: 100%;
     margin: 10px auto;
     height: 2rem;
@@ -9,22 +8,36 @@
     border-radius: 30px;
     overflow: hidden;
 
-    .progress-filler {
-        background-color: colors.$highlight;
-        box-sizing: border-box;
-        padding-left: 8px;
-        display: flex;
-        align-items: center;
-        position: absolute;
-        top: 0;
-        left: 0;
+    .progress-filler-wrapper {
         height: 100%;
-        width: 0;
-        user-select: none;
-        border-top-right-radius: 30px;
-        border-bottom-right-radius: 30px;
-        line-height: 1em;
-        transition: width 0.5s ease;
+
+        .progress-filler {
+            background-color: colors.$highlight;
+            box-sizing: border-box;
+            padding-left: 8px;
+            display: flex;
+            align-items: center;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            user-select: none;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            line-height: 1em;
+            transition: width 0.5s ease;
+            animation: progress-fill 0.75s cubic-bezier(0.75, 0.25, 0.75, 1.25)
+                0.2s forwards;
+        }
+    }
+
+    @keyframes progress-fill {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
     }
 
     @media screen and (min-width: 500px) {

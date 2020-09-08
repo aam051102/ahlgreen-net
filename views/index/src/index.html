@@ -25,6 +25,56 @@
         <link rel="icon" type="image/png" href="./assets/images/icon.png" />
 
         <title>Alexander Ahlgreen | Web Developer</title>
+
+        <style>
+            #root::before {
+                content: "";
+                pointer-events: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+                z-index: 200;
+                transition: background-color 0.25s ease;
+            }
+
+            #root:empty::before {
+                pointer-events: all;
+                background-color: #050505;
+            }
+
+            #root::after {
+                content: "";
+                position: fixed;
+                bottom: 5px;
+                right: 5px;
+                width: 100px;
+                height: 100px;
+                background-image: url("./assets/images/spinner.png");
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.25s ease;
+            }
+
+            #root:empty::after {
+                opacity: 1;
+                animation: spinner-infinite 0.75s linear infinite;
+            }
+
+            @keyframes spinner-infinite {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
     </head>
     <body>
         <div id="root"></div>

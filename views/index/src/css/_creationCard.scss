@@ -7,6 +7,16 @@
     background-color: colors.$primary;
     color: colors.$white;
     perspective: 800px;
+    opacity: 0;
+    transform: translateX(-10%);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    pointer-events: none;
+
+    &.loaded {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateX(0);
+    }
 
     .side-a {
         top: 0;

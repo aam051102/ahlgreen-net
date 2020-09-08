@@ -1,6 +1,7 @@
 @use "base";
 @use "progressBar";
 @use "imageSide";
+@use "colors";
 
 .home-container {
     .image-side-container {
@@ -35,13 +36,18 @@
             margin-top: 3rem;
 
             a {
-                color: white;
+                color: colors.$dp04;
                 font-size: 3rem;
                 display: inline-block;
                 height: 1em;
+                transition: color 0.25s ease;
 
                 svg {
                     vertical-align: baseline;
+                }
+
+                &:hover {
+                    color: colors.$white;
                 }
             }
 
