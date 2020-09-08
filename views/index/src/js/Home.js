@@ -41,9 +41,9 @@ const Home = () => {
                         challenges my way.
                     </p>
                     <p>
-                        Expected to graduate from Roskilde Tekniske Skole
-                        (Roskilde Technical College) in Denmark during late
-                        2020.
+                        Expected to graduate as a web developer from Roskilde
+                        Tekniske Skole (Roskilde Technical College) in Denmark
+                        during late 2020.
                     </p>
 
                     <section className="skills">
