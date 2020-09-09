@@ -196,6 +196,22 @@ const Admin = () => {
                                     />
                                 </div>
 
+                                <div className="input-wrapper">
+                                    <label htmlFor="knowledge-experience">
+                                        Experience
+                                    </label>
+                                    <input
+                                        type="number"
+                                        id="knowledge-experience"
+                                        name="knowledge-experience"
+                                        min="1"
+                                        max="100"
+                                        defaultValue={
+                                            popupMessage.parameters.experience
+                                        }
+                                    />
+                                </div>
+
                                 <div className="button-container">
                                     <button
                                         className="button-link"
@@ -215,6 +231,9 @@ const Admin = () => {
                                                         ).value,
                                                         percentage: document.querySelector(
                                                             "#knowledge-percentage"
+                                                        ).value,
+                                                        experience: document.querySelector(
+                                                            "#knowledge-experience"
                                                         ).value,
                                                     }),
                                                 }
@@ -268,6 +287,19 @@ const Admin = () => {
                                     />
                                 </div>
 
+                                <div className="input-wrapper">
+                                    <label htmlFor="knowledge-experience">
+                                        Experience
+                                    </label>
+                                    <input
+                                        type="number"
+                                        id="knowledge-experience"
+                                        name="knowledge-experience"
+                                        min="1"
+                                        max="100"
+                                    />
+                                </div>
+
                                 <div className="button-container">
                                     <button
                                         className="button-link"
@@ -284,6 +316,9 @@ const Admin = () => {
                                                     ).value,
                                                     percentage: document.querySelector(
                                                         "#knowledge-percentage"
+                                                    ).value,
+                                                    experience: document.querySelector(
+                                                        "#knowledge-experience"
                                                     ).value,
                                                 }),
                                             })

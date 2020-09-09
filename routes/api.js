@@ -237,9 +237,10 @@ router.post("/insert/:type", (req, res) => {
     } else if (req.params.type == "knowledge") {
         query = `INSERT INTO \`${
             req.params.type
-        }\` (\`name\`, \`percentage\`) VALUES (
+        }\` (\`name\`, \`percentage\`, \`experience\`) VALUES (
             '${encodeURIComponent(req.body.name)}',
-            '${req.body.percentage}'
+            '${req.body.percentage}',
+            '${req.body.experience}'
             )`;
     } else {
         res.status(400).json({ error: "Invalid type." });
@@ -276,7 +277,8 @@ router.post("/update/:type/:selector", (req, res) => {
     } else if (req.params.type == "knowledge") {
         query = `UPDATE \`${req.params.type}\` SET 
         \`name\`='${encodeURIComponent(req.body.name)}',
-        \`percentage\`='${req.body.percentage}'
+        \`percentage\`='${req.body.percentage}',
+        \`experience\`='${req.body.experience}'
         WHERE id='${encodeURIComponent(req.params.selector)}'`;
     } else {
         res.status(400).json({ error: "Invalid type." });

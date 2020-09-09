@@ -55,13 +55,22 @@ const Home = () => {
                                 )
                                 .map((element, i) => {
                                     return (
-                                        <Link
+                                        <div
                                             className="skillset-button button-link"
-                                            to={`/skillset/${element.name}`}
                                             key={i}
                                         >
-                                            {decodeURIComponent(element.name)}
-                                        </Link>
+                                            <span className="skillset-name">
+                                                {decodeURIComponent(
+                                                    element.name
+                                                )}
+                                            </span>
+                                            <span className="skillset-years">
+                                                {element.experience}{" "}
+                                                {element.experience == 1
+                                                    ? "year"
+                                                    : "years"}
+                                            </span>
+                                        </div>
                                     );
                                 })}
                         </div>
