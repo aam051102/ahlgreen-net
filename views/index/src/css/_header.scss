@@ -13,8 +13,8 @@ header {
     left: 0;
     z-index: 500;
     flex-direction: column-reverse;
+    background-color: colors.$secondary;
     transform: translateY(calc(-100% + 56px));
-    background-color: #282828;
 
     &[style] {
         transition: transform 0.5s ease-in-out;
@@ -55,6 +55,7 @@ header {
     .header-main {
         line-height: 56px;
         width: 100%;
+        background-color: #282828;
         text-align: center;
 
         @media screen and (min-width: 600px) {
@@ -94,13 +95,13 @@ header {
             box-sizing: border-box;
             justify-content: center;
             padding: 24px 32px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid colors.$dp02;
             letter-spacing: 1px;
             text-transform: uppercase;
             transition: background-color 0.25s ease, color 0.25s ease;
 
             &:first-child {
-                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                border-top: 1px solid colors.$dp02;
             }
 
             @media screen and (min-width: 600px) {
@@ -111,6 +112,7 @@ header {
                 width: auto;
                 border: 1px solid #fff;
                 margin-left: 16px;
+                background-color: rgba(colors.$secondary, 0.75);
 
                 &:first-child {
                     border-top: 1px solid #fff;

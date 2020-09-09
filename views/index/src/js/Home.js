@@ -44,7 +44,7 @@ const Home = () => {
                     </p>
 
                     <section className="skills">
-                        <h2>Knowledge/Skillset</h2>
+                        <h2>Skillset</h2>
 
                         <div className="progress-bars">
                             {knowledge
@@ -54,19 +54,10 @@ const Home = () => {
                                         parseInt(a.percentage)
                                 )
                                 .map((element, i) => {
-                                    /*return (
-                                        <ProgressBar
-                                            key={i}
-                                            title={decodeURIComponent(
-                                                element.name
-                                            )}
-                                            percentage={element.percentage}
-                                        />
-                                    );*/
                                     return (
                                         <Link
-                                            className="button-link"
-                                            to={`/knowledge/${element.name}`}
+                                            className="skillset-button button-link"
+                                            to={`/skillset/${element.name}`}
                                             key={i}
                                         >
                                             {decodeURIComponent(element.name)}
@@ -88,8 +79,8 @@ const Home = () => {
                         <a
                             href="https://www.hackerrank.com/ahlgreenmadsen"
                             target="_blank"
-                            alt="Hackerrank"
-                            title="Hackerrank"
+                            alt="HackerRank"
+                            title="HackerRank"
                         >
                             <FontAwesomeIcon icon={faHackerrank} />
                         </a>
