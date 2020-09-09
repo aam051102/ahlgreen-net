@@ -75,10 +75,24 @@
                     transform: scale(0.5) rotate(360deg);
                 }
             }
+
+            #noscript {
+                display: flex;
+                width: 100vw;
+                height: 100vh;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+            }
         </style>
     </head>
     <body>
-        <div id="root"></div>
+        <div id="root">
+            <noscript id="noscript"
+                >This website can not be viewed when JavaScript is disabled in
+                your browser. Please enable it to see this website.</noscript
+            >
+        </div>
 
         <script src="./App.js"></script>
     </body>

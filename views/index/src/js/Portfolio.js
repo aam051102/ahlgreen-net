@@ -23,17 +23,23 @@ const Portfolio = () => {
             <div className="creations-page-container">
                 <h1>Portfolio</h1>
                 <div className="creations">
-                    {creations.map((creation, i) => {
-                        return (
-                            <CreationCard
-                                key={i}
-                                src={decodeURIComponent(creation.image_url)}
-                                url_slug={creation.url_slug}
-                            >
-                                <p>{decodeURIComponent(creation.name)}</p>
-                            </CreationCard>
-                        );
-                    })}
+                    {creations.length > 0 ? (
+                        creations.map((creation, i) => {
+                            return (
+                                <CreationCard
+                                    key={i}
+                                    src={decodeURIComponent(creation.image_url)}
+                                    url_slug={creation.url_slug}
+                                >
+                                    <p>{decodeURIComponent(creation.name)}</p>
+                                </CreationCard>
+                            );
+                        })
+                    ) : (
+                        <p className="portfolio-loading">
+                            Loading portfolio...
+                        </p>
+                    )}
                 </div>
             </div>
         </Layout>
