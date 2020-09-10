@@ -15,6 +15,7 @@ header {
     flex-direction: column-reverse;
     background-color: colors.$secondary;
     transform: translateY(calc(-100% + 56px));
+    user-select: none;
 
     &[style] {
         transition: transform 0.5s ease-in-out;
@@ -41,6 +42,7 @@ header {
         a {
             text-decoration: none;
             color: inherit;
+            padding: 0.75em;
         }
     }
 
