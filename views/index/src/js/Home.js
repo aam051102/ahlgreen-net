@@ -1,7 +1,11 @@
 import React, { useState, useLayoutEffect } from "react";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faHackerrank } from "@fortawesome/free-brands-svg-icons";
+import {
+    faGithub,
+    faHackerrank,
+    faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 
 import ProgressBar from "./ProgressBar";
 
@@ -92,6 +96,14 @@ const Home = () => {
                             title="HackerRank"
                         >
                             <FontAwesomeIcon icon={faHackerrank} />
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/ahlgreenmadsen/"
+                            target="_blank"
+                            alt="LinkedIn"
+                            title="LinkedIn"
+                        >
+                            <FontAwesomeIcon icon={faLinkedin} />
                         </a>
                     </section>
                 </ImageSide>
