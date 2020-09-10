@@ -8,6 +8,23 @@ body {
     background-color: colors.$primary;
     color: colors.$white;
     font-family: "Roboto", sans-serif;
+
+    scrollbar-width: thin;
+    scrollbar-color: colors.$dp01 colors.$dp03;
+
+    &::-webkit-scrollbar {
+        width: 12px;
+        position: fixed;
+        right: 0;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: colors.$secondary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: colors.$dp03;
+    }
 }
 
 #root {
