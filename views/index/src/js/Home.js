@@ -86,6 +86,7 @@ const Home = () => {
                             target="_blank"
                             alt="GitHub"
                             title="GitHub"
+                            rel="noreferrer"
                         >
                             <FontAwesomeIcon icon={faGithub} />
                         </a>
@@ -94,6 +95,7 @@ const Home = () => {
                             target="_blank"
                             alt="HackerRank"
                             title="HackerRank"
+                            rel="noreferrer"
                         >
                             <FontAwesomeIcon icon={faHackerrank} />
                         </a>
@@ -102,6 +104,7 @@ const Home = () => {
                             target="_blank"
                             alt="LinkedIn"
                             title="LinkedIn"
+                            rel="noreferrer"
                         >
                             <FontAwesomeIcon icon={faLinkedin} />
                         </a>

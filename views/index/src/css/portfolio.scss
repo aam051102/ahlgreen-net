@@ -17,6 +17,8 @@
         box-sizing: border-box;
         grid-template-columns: calc(100vw - 32px);
         grid-auto-rows: calc(100vw - 32px);
+        grid-gap: 1rem;
+        margin-bottom: 1rem;
 
         @media screen and (min-width: 400px) {
             grid-template-columns: repeat(2, calc((100vw - 32px) / 2 - 10px));
