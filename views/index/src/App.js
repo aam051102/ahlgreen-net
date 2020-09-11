@@ -58,6 +58,16 @@ class ErrorBoundary extends React.Component {
 }
 
 class App extends React.Component {
+    componentDidMount() {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 30) {
+                document.body.classList.add("scrolled");
+            } else {
+                document.body.classList.remove("scrolled");
+            }
+        });
+    }
+
     render() {
         return (
             <React.StrictMode>
