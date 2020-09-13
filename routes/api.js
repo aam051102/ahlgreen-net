@@ -1,57 +1,20 @@
-let {
+const {
     getDatabaseConnection,
     connectToDatabase,
     sessionStore,
 } = require("../database");
 const express = require("express");
-const { session } = require("passport");
-const { ESRCH } = require("constants");
 const router = express.Router();
 
 let databaseConnection = getDatabaseConnection();
 
-// Credentials and generated keys
-const generatedKeys = [];
+// Credentials
 const credentials = [
     {
         username: process.env.ADMIN_USERNAME,
         password: process.env.ADMIN_PASSWORD,
     },
 ];
-
-// Generates an API key
-const generateKey = (username) => {
-    let key = generatedKeys.find((key) => {
-        return key.username == username;
-    });
-
-    if (!key) {
-        // TODO: Come up with a method to create keys randomly
-        key = (
-            parseInt(new Buffer.from(username).join("")) *
-            (Math.random() * 10)
-        ).toString(16);
-
-        generatedKeys.push({ username, key });
-    } else {
-        key = key.key;
-    }
-
-    return key;
-};
-
-// Check if key is valid
-const validateKey = (key) => {
-    if (
-        generatedKeys.find((generatedKey) => {
-            return generatedKey.key == key;
-        }) == undefined
-    ) {
-        return false;
-    } else {
-        return true;
-    }
-};
 
 // Check if database connection is valid
 const validateDatabase = () => {
@@ -136,6 +99,7 @@ router.post("/validate", (req, res) => {
     }
 });
 
+// Get all
 router.get("/get/:type", (req, res) => {
     let query = "";
 
@@ -156,6 +120,7 @@ router.get("/get/:type", (req, res) => {
     });
 });
 
+// Get single
 router.get("/get/:type/:selector", (req, res) => {
     let query = "";
     if (req.params.type == "creations") {
@@ -177,6 +142,7 @@ router.get("/get/:type/:selector", (req, res) => {
     });
 });
 
+// Delete
 router.post("/delete/:type/:selector", (req, res) => {
     if (!req.session.adminKey) {
         res.status(400).json({
@@ -215,6 +181,7 @@ router.post("/delete/:type/:selector", (req, res) => {
     });
 });
 
+// Insert
 router.post("/insert/:type", (req, res) => {
     if (!req.session.adminKey) {
         res.status(400).json({
@@ -257,6 +224,7 @@ router.post("/insert/:type", (req, res) => {
     });
 });
 
+// Update
 router.post("/update/:type/:selector", (req, res) => {
     if (!req.session.adminKey) {
         res.status(400).json({
