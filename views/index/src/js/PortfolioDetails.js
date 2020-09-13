@@ -43,6 +43,7 @@ const PortfolioDetails = (props) => {
                     <h1>
                         <a
                             target="_blank"
+                            className="link"
                             href={
                                 creation.id
                                     ? decodeURIComponent(creation.url)

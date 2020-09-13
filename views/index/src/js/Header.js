@@ -18,7 +18,7 @@ const Header = () => {
         <header onClick={handleClick}>
             <div className="header-main">
                 <span className="header-title">
-                    <Link to="/">Alexander Ahlgreen</Link>
+                    <Link to="/">Alexander Ahlgreen Madsen</Link>
                 </span>
                 <span className="swipe-down-text">Tap For Menu</span>
             </div>

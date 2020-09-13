@@ -5,8 +5,17 @@ const {
 } = require("../database");
 const express = require("express");
 const router = express.Router();
+const nodemailer = require("nodemailer");
 
 let databaseConnection = getDatabaseConnection();
+
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+    },
+});
 
 // Credentials
 const credentials = [
@@ -35,6 +44,7 @@ const validateDatabase = () => {
 setInterval(validateDatabase, 1000 * 60 * 60 * 24 * 14);
 
 // Routes
+// Admin login
 router.post("/login", (req, res) => {
     let sess = req.session;
 
@@ -85,18 +95,43 @@ router.post("/login", (req, res) => {
     }
 });
 
+// Admin logout
 router.get("/logout", (req, res) => {
     req.session.adminKey = false;
 
     res.redirect("/admin/login");
 });
 
+// Admin validation
 router.post("/validate", (req, res) => {
     if (req.session.adminKey) {
         res.json({ valid: true });
     } else {
         res.json({ valid: false });
     }
+});
+
+// Email
+router.post("/email", async (req, res) => {
+    const data = await new Promise((resolve, reject) => {
+        transporter.sendMail(
+            {
+                from: process.env.EMAIL_USERNAME,
+                to: "ahlgreenmadsen@gmail.com",
+                subject: req.body.subject,
+                text: req.body.text,
+            },
+            (error, info) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(info.response);
+                }
+            }
+        );
+    });
+
+    res.status(200).json({ data: data });
 });
 
 // Get all

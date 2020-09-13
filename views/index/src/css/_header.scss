@@ -68,6 +68,9 @@ header {
         width: 100%;
         background-color: #282828;
         text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
         @media screen and (min-width: 600px) {
             width: auto;

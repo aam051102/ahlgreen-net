@@ -34,6 +34,30 @@ body {
     flex-direction: column;
 }
 
+a.link {
+    color: colors.$highlight;
+    text-decoration: none;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        transform: translateY(100%);
+        left: 0;
+        width: 0%;
+        height: 1px;
+        background-color: colors.$highlight;
+        transition: width 0.5s ease-in-out;
+    }
+
+    &:hover {
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
 main {
     box-sizing: border-box;
     width: 100%;
@@ -120,16 +144,22 @@ input[type="number"],
 textarea {
     width: 100%;
     min-width: 80px;
-    margin: 10px;
+    margin: 10px 0;
     padding: 10px 15px;
     border: 1px solid #323232;
     background-color: #121212;
     color: white;
     font-family: "Roboto", sans-serif;
     outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.5s ease;
 
     &:focus {
         border-color: #404040;
+    }
+
+    &.error {
+        border-color: colors.$alert;
     }
 
     &:-webkit-autofill,
@@ -139,6 +169,31 @@ textarea {
         -webkit-text-fill-color: white;
         box-shadow: 0 0 0px 1000px #121212 inset;
         -webkit-box-shadow: 0 0 0px 1000px #121212 inset;
+    }
+}
+
+textarea {
+    scrollbar-width: thin;
+    scrollbar-color: colors.$dp01 colors.$dp03;
+    min-height: 8rem;
+    max-height: 16rem;
+
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    &::-webkit-resizer {
+        background-color: colors.$secondary;
+        border-top: 1px solid colors.$dp03;
+        border-left: 1px solid colors.$dp03;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: colors.$secondary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: colors.$dp03;
     }
 }
 
