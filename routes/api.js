@@ -4,18 +4,26 @@ const {
     sessionStore,
 } = require("../database");
 const express = require("express");
-const router = express.Router();
+const { fstat } = require("fs");
 const nodemailer = require("nodemailer");
+const router = express.Router();
 
 let databaseConnection = getDatabaseConnection();
 
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD,
-    },
-});
+let testAccount, transporter;
+(async () => {
+    testAccount = await nodemailer.createTestAccount();
+
+    transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user: testAccount.user,
+            pass: testAccount.pass,
+        },
+    });
+})();
 
 // Credentials
 const credentials = [
@@ -113,25 +121,21 @@ router.post("/validate", (req, res) => {
 
 // Email
 router.post("/email", async (req, res) => {
-    const data = await new Promise((resolve, reject) => {
-        transporter.sendMail(
-            {
-                from: process.env.EMAIL_USERNAME,
-                to: "ahlgreenmadsen@gmail.com",
-                subject: req.body.subject,
-                text: req.body.text,
-            },
-            (error, info) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(info.response);
-                }
-            }
-        );
+    let info = await transporter.sendMail({
+        from: `"${req.body.email}" <${req.body.email}>`,
+        to: "ahlgreenmadsen@gmail.com",
+        subject: req.body.subject,
+        text: req.body.message,
+        html: req.body.message,
     });
 
-    res.status(200).json({ data: data });
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+    res.status(200).json({
+        data:
+            "This service is not fully functional. It may take a while to get a reply.",
+    });
 });
 
 // Get all
