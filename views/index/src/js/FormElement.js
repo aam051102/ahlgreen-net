@@ -24,6 +24,7 @@ const FormElement = (props) => {
                         <div className="input-wrapper">
                             <label htmlFor={props.id}>{props.label}</label>
                             <textarea
+                                name={props.id}
                                 id={props.id}
                                 className="input-element"
                                 pattern={props.pattern}

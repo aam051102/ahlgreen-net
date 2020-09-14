@@ -1,6 +1,6 @@
-import { callbackPromise } from "nodemailer/lib/shared";
 import React from "react";
 import FormElement from "./FormElement";
+import ReactDOM from "react-dom";
 
 const Form = (props) => {
     return (
@@ -12,6 +12,7 @@ const Form = (props) => {
                 label="Send"
                 onClick={(e) => {
                     e.preventDefault();
+                    e.target.setAttribute("disabled", "");
 
                     let valid = true;
                     let data = {};
@@ -50,39 +51,7 @@ const Form = (props) => {
                         props.onValid(data);
                     }
 
-                    // MAKE A BETTER FORM SYSTEM - PROBABLY IN COMPONENT FORM
-                    /*
-                    const emailDOM = document.querySelector("#email");
-                    const subjectDOM = document.querySelector("#subject");
-                    const messageDOM = document.querySelector("#message");
-
-                    if (subjectDOM.value == "") {
-                        subjectDOM.classList.add("error");
-                        messageDOM.classList.remove("error");
-                    } else if (messageDOM.value == "") {
-                        subjectDOM.classList.remove("error");
-                        messageDOM.classList.add("error");
-                    } else {
-                        fetch("/api/email", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                email: emailDOM.value,
-                                subject: subjectDOM.value,
-                                message: messageDOM.value,
-                            }),
-                        });
-
-                        subjectDOM.classList.remove("error");
-                        messageDOM.classList.remove("error");
-                        subjectDOM.value = "";
-                        messageDOM.value = "";
-                        document
-                            .querySelector(".contact-container")
-                            .classList.add("visible");
-                    }*/
+                    e.target.removeAttribute("disabled");
                 }}
             />
         </form>

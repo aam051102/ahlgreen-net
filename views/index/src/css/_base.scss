@@ -119,10 +119,15 @@ button {
     color: white;
     font-family: "Roboto", sans-serif;
     outline: none;
+    transition: opacity 0.25s ease;
 
-    &:hover {
+    &:not(:disabled):hover {
         cursor: pointer;
         background-color: #282828;
+    }
+
+    &:disabled {
+        opacity: 0.75;
     }
 }
 
