@@ -132,6 +132,12 @@ router.post("/email", async (req, res) => {
     console.log("Message sent: %s", info.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
+    // TEMPORARY
+    require("fs").writeFileSync(
+        "./messages.test",
+        nodemailer.getTestMessageUrl(info) + "\n"
+    );
+
     res.status(200).json({
         data:
             "This service is not fully functional. It may take a while to get a reply.",
