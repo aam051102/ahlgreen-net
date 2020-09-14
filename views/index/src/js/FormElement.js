@@ -7,7 +7,11 @@ const FormElement = (props) => {
             {(() => {
                 if (props.type == "text") {
                     return (
-                        <div className="input-wrapper">
+                        <div
+                            className={`input-wrapper ${
+                                props.required ? "required-input" : ""
+                            }`}
+                        >
                             <label htmlFor={props.id}>{props.label}</label>
                             <input
                                 name={props.id}
@@ -21,7 +25,11 @@ const FormElement = (props) => {
                     );
                 } else if (props.type == "textarea") {
                     return (
-                        <div className="input-wrapper">
+                        <div
+                            className={`input-wrapper ${
+                                props.required ? "required-input" : ""
+                            }`}
+                        >
                             <label htmlFor={props.id}>{props.label}</label>
                             <textarea
                                 name={props.id}

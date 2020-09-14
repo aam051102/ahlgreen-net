@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import FormElement from "./FormElement";
-import ReactDOM from "react-dom";
 
 const Form = (props) => {
+    const [alerts, setAlerts] = useState([]);
+
     return (
         <form>
+            <section className="form-alert">
+                {alerts.length > 0 ? (
+                    <ol className="form-alert-list">
+                        {alerts.map((alert, i) => {
+                            return <li key={i}>{alert}</li>;
+                        })}
+                    </ol>
+                ) : null}
+            </section>
+
             {props.children}
 
             <FormElement
@@ -14,8 +25,9 @@ const Form = (props) => {
                     e.preventDefault();
                     e.target.setAttribute("disabled", "");
 
-                    let valid = true;
                     let data = {};
+                    let valid = true;
+                    let newAlerts = [];
 
                     props.children.forEach((child) => {
                         const childDOM = document.querySelector(
@@ -34,6 +46,9 @@ const Form = (props) => {
                             ) {
                                 childDOM.classList.add("error");
                                 valid = false;
+                                newAlerts.push(
+                                    `${child.props.label} field must be filled and valid.`
+                                );
                             }
                         }
                     });
@@ -49,6 +64,8 @@ const Form = (props) => {
                         });
 
                         props.onValid(data);
+                    } else {
+                        setAlerts(newAlerts);
                     }
 
                     e.target.removeAttribute("disabled");

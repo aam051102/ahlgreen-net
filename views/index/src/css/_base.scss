@@ -134,6 +134,36 @@ button {
 .input-wrapper {
     display: flex;
     position: relative;
+
+    &.required-input {
+        label {
+            &::after {
+                content: " *";
+            }
+        }
+    }
+}
+
+.form-alert {
+    color: colors.$white;
+    border: 1px solid colors.$alert;
+    min-width: 80px;
+    margin: 10px 0 30px 0;
+    padding: 10px 15px;
+    background-color: rgba(colors.$alert, 0.1);
+    font-weight: 300;
+    width: 100%;
+    box-sizing: border-box;
+    visibility: hidden;
+    opacity: 0;
+    text-align: left;
+    transition: visibility 0.25s ease, opacity 0.25s ease;
+
+    &:not(:empty) {
+        visibility: visible;
+        opacity: 1;
+        min-height: 2rem;
+    }
 }
 
 label {
@@ -164,9 +194,9 @@ textarea {
         border-color: #404040;
     }
 
-    &.error {
+    /*&.error {
         border-color: colors.$alert;
-    }
+    }*/
 
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
