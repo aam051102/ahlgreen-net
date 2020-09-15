@@ -159,7 +159,8 @@ button {
     opacity: 0;
     text-align: left;
     transform: translateY(-25%);
-    transition: visibility 0.25s ease, opacity 0.25s ease, transform 0.5s ease-in-out;
+    transition: visibility 0.25s ease, opacity 0.25s ease,
+        transform 0.5s ease-in-out;
 
     &:not(:empty) {
         visibility: visible;
@@ -265,7 +266,7 @@ textarea {
         transition: padding 0.25s ease, opacity 0.25s ease;
     }
 
-    &:hover {
+    &:not(:disabled):hover {
         background-color: transparent;
         border-color: colors.$dp02;
 
