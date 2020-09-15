@@ -3,6 +3,8 @@ import React, { useState, useLayoutEffect } from "react";
 import AdminLayout from "./AdminLayout";
 import ValidateAdmin from "./ValidateAdmin";
 import Popup from "./Popup";
+import Form from "./Form";
+import FormElement from "./FormElement";
 
 const AdminCreations = () => {
     const [creations, setCreations] = useState([]);
@@ -137,41 +139,33 @@ const AdminCreations = () => {
                     if (popupMessage.type == "delete") {
                         return (
                             <div>
-                                <p>
-                                    Are you sure you want to delete this
-                                    element?
-                                </p>
+                                <Form
+                                    onValid={() => {
+                                        fetch(
+                                            "/api/delete/creations/" +
+                                                popupMessage.parameters,
+                                            {
+                                                method: "POST",
+                                            }
+                                        )
+                                            .then((response) => response.json())
+                                            .then((data) => {
+                                                fetchCreations();
+                                            });
 
-                                <div className="button-container">
-                                    <button
-                                        onClick={() => {
-                                            fetch(
-                                                "/api/delete/creations/" +
-                                                    popupMessage.parameters,
-                                                {
-                                                    method: "POST",
-                                                }
-                                            )
-                                                .then((response) =>
-                                                    response.json()
-                                                )
-                                                .then((data) => {
-                                                    fetchCreations();
-                                                });
-
-                                            resetPopupMessage();
-                                        }}
-                                    >
-                                        Yes
-                                    </button>
-                                    <button
-                                        onClick={() => {
-                                            resetPopupMessage();
-                                        }}
-                                    >
-                                        No
-                                    </button>
-                                </div>
+                                        resetPopupMessage();
+                                    }}
+                                    onCancel={() => {
+                                        resetPopupMessage();
+                                    }}
+                                    submitLabel="Yes"
+                                    cancelLabel="No"
+                                >
+                                    <p>
+                                        Are you sure you want to delete this
+                                        element?
+                                    </p>
+                                </Form>
                             </div>
                         );
                     } else if (popupMessage.type == "edit") {

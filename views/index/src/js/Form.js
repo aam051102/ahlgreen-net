@@ -5,7 +5,7 @@ const Form = (props) => {
     const [alerts, setAlerts] = useState([]);
 
     return (
-        <form>
+        <form className="form">
             <section className="form-alert">
                 {alerts.length > 0 ? (
                     <ol className="form-alert-list">
@@ -29,40 +29,48 @@ const Form = (props) => {
                         let data = {};
                         let valid = true;
                         let newAlerts = [];
+                        let children = props.children;
+                        if (children.length == undefined) {
+                            children = [children];
+                        }
 
-                        props.children.forEach((child) => {
+                        children.forEach((child) => {
                             const childDOM = document.querySelector(
                                 "#" + child.props.id
                             );
 
-                            const childValid = child.props.pattern
-                                ? child.props.pattern.test(childDOM.value)
-                                : childDOM.value != "";
+                            if (childDOM) {
+                                const childValid = child.props.pattern
+                                    ? child.props.pattern.test(childDOM.value)
+                                    : childDOM.value != "";
 
-                            childDOM.classList.remove("error");
+                                childDOM.classList.remove("error");
 
-                            if (!childValid) {
-                                if (
-                                    childDOM.getAttribute("required") !=
-                                    undefined
-                                ) {
-                                    childDOM.classList.add("error");
-                                    valid = false;
-                                    newAlerts.push(
-                                        `${child.props.label} field must be filled and valid.`
-                                    );
+                                if (!childValid) {
+                                    if (
+                                        childDOM.getAttribute("required") !=
+                                        undefined
+                                    ) {
+                                        childDOM.classList.add("error");
+                                        valid = false;
+                                        newAlerts.push(
+                                            `${child.props.label} field must be filled and valid.`
+                                        );
+                                    }
                                 }
                             }
                         });
 
                         if (valid) {
-                            props.children.forEach((child) => {
+                            children.forEach((child) => {
                                 const childDOM = document.querySelector(
                                     "#" + child.props.id
                                 );
 
-                                data[child.props.id] = childDOM.value;
-                                childDOM.value = "";
+                                if (childDOM) {
+                                    data[child.props.id] = childDOM.value;
+                                    childDOM.value = "";
+                                }
                             });
 
                             props.onValid(data);

@@ -1,0 +1,33 @@
+@use "colors";
+
+.form {
+    position: relative;
+    text-align: center;
+
+    .form-alert {
+        color: colors.$white;
+        border: 1px solid colors.$alert;
+        min-width: 80px;
+        margin: 1rem 0;
+        padding: 10px 15px;
+        background-color: rgba(colors.$alert, 0.1);
+        font-weight: 400;
+        width: 100%;
+        box-sizing: border-box;
+        visibility: hidden;
+        position: absolute;
+        opacity: 0;
+        text-align: left;
+        transform: translateY(-25%);
+        transition: visibility 0.25s ease, opacity 0.25s ease,
+            transform 0.5s ease-in-out;
+
+        &:not(:empty) {
+            visibility: visible;
+            opacity: 1;
+            position: static;
+            min-height: 2rem;
+            transform: translateY(0);
+        }
+    }
+}
