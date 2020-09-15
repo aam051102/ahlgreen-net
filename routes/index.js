@@ -11,6 +11,7 @@ router.get(
         "/portfolio",
         "/contact",
         "/admin",
+        "/admin/knowledge",
         "/admin/creations",
         "/admin/login",
         "/admin/logout",

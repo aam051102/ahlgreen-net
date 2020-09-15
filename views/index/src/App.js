@@ -8,7 +8,7 @@ import Portfolio from "./js/Portfolio";
 import PortfolioDetails from "./js/PortfolioDetails";
 import Contact from "./js/Contact";
 
-const Admin = lazy(() => import("./js/Admin"));
+const AdminKnowledge = lazy(() => import("./js/AdminKnowledge"));
 const AdminCreations = lazy(() => import("./js/AdminCreations"));
 const AdminLogin = lazy(() => import("./js/AdminLogin"));
 
@@ -82,7 +82,8 @@ class App extends React.Component {
                                 <Portfolio path="/portfolio" />
                                 <Contact path="/contact" />
 
-                                <Admin path="/admin" />
+                                <AdminKnowledge path="/admin" />
+                                <AdminKnowledge path="/admin/knowledge" />
                                 <AdminCreations path="/admin/creations" />
                                 <AdminLogin path="/admin/login" />
                             </Router>

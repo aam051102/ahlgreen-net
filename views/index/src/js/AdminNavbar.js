@@ -11,7 +11,7 @@ function AdminNavbar() {
                     <li>
                         <ul>
                             <li>
-                                <Link to="/admin">Dashboard</Link>
+                                <Link to="/admin/knowledge">Knowledge</Link>
                             </li>
 
                             <li>

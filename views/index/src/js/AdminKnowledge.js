@@ -2,13 +2,14 @@ import React, { useState, useLayoutEffect } from "react";
 
 import AdminLayout from "./AdminLayout";
 import ValidateAdmin from "./ValidateAdmin";
+
 import Popup from "./Popup";
 import Form from "./Form";
 import FormElement from "./FormElement";
 
-const AdminCreations = () => {
+const AdminKnowledge = () => {
     // States
-    const [creations, setCreations] = useState([]);
+    const [knowledge, setKnowledge] = useState([]);
     const [popupMessage, setPopupMessage] = useState({
         visible: false,
         title: "",
@@ -18,16 +19,16 @@ const AdminCreations = () => {
 
     // Fetch API data
     useLayoutEffect(() => {
-        if (creations.length == 0) {
-            fetchCreations();
+        if (knowledge.length == 0) {
+            fetchKnowledge();
         }
     });
 
-    const fetchCreations = () => {
-        fetch("/api/get/creations")
+    const fetchKnowledge = () => {
+        fetch("/api/get/knowledge")
             .then((response) => response.json())
             .then((data) => {
-                setCreations(data);
+                setKnowledge(data);
             });
     };
 
@@ -42,27 +43,27 @@ const AdminCreations = () => {
     };
 
     // Click handlers
-    const handleAddCreationBtnClick = (e) => {
+    const handleAddKnowledgeBtnClick = (e) => {
         setPopupMessage({
             visible: true,
-            title: "Add Creation",
+            title: "Add Knowledge",
             type: "add",
         });
     };
 
-    const handleDeleteBtnClick = (e, url_slug) => {
+    const handleDeleteBtnClick = (e, selector) => {
         setPopupMessage({
             visible: true,
-            title: "Delete Creation",
+            title: "Delete Knowledge",
             type: "delete",
-            parameters: url_slug,
+            parameters: selector,
         });
     };
 
     const handleEditBtnClick = (e, creation) => {
         setPopupMessage({
             visible: true,
-            title: "Edit Creation",
+            title: "Edit Knowledge",
             type: "edit",
             parameters: creation,
         });
@@ -71,31 +72,24 @@ const AdminCreations = () => {
     // Layout
     return (
         <AdminLayout
-            title="Admin / Creations"
-            slug="admin/creations"
+            title="Admin / Knowledge"
+            slug="admin/knowledge"
             description=""
             keywords={[]}
         >
             <ValidateAdmin>
-                <div className="admin-creations-container">
-                    <h1>Admin / Creations</h1>
+                <div className="admin-dashboard-container">
+                    <h1>Admin / Knowledge</h1>
 
-                    <section className="creations-container">
-                        {creations.length > 0
-                            ? creations.map((creation, i) => {
+                    <section className="knowledge-container">
+                        {knowledge.length > 0
+                            ? knowledge.map((element, i) => {
                                   return (
-                                      <div key={i} className="creation-card">
+                                      <div key={i} className="knowledge-card">
                                           <div className="info-container">
-                                              <div className="creation-card-icon">
-                                                  <img
-                                                      src={decodeURIComponent(
-                                                          creation.image_url
-                                                      )}
-                                                  />
-                                              </div>
                                               <p>
                                                   {decodeURIComponent(
-                                                      creation.name
+                                                      element.name
                                                   )}
                                               </p>
                                           </div>
@@ -105,7 +99,7 @@ const AdminCreations = () => {
                                                   onClick={(e) => {
                                                       handleEditBtnClick(
                                                           e,
-                                                          creation
+                                                          element
                                                       );
                                                   }}
                                                   className="edit-button"
@@ -116,7 +110,7 @@ const AdminCreations = () => {
                                                   onClick={(e) => {
                                                       handleDeleteBtnClick(
                                                           e,
-                                                          creation.url_slug
+                                                          element.id
                                                       );
                                                   }}
                                                   className="delete-button"
@@ -131,10 +125,10 @@ const AdminCreations = () => {
                     </section>
 
                     <button
-                        onClick={handleAddCreationBtnClick}
-                        className="add-creation-button"
+                        onClick={handleAddKnowledgeBtnClick}
+                        className="add-knowledge-button"
                     >
-                        Add Creation
+                        Add Knowledge
                     </button>
                 </div>
             </ValidateAdmin>
@@ -147,7 +141,7 @@ const AdminCreations = () => {
                                 <Form
                                     onValid={() => {
                                         fetch(
-                                            "/api/delete/creations/" +
+                                            "/api/delete/knowledge/" +
                                                 popupMessage.parameters,
                                             {
                                                 method: "POST",
@@ -155,7 +149,7 @@ const AdminCreations = () => {
                                         )
                                             .then((response) => response.json())
                                             .then((data) => {
-                                                fetchCreations();
+                                                fetchKnowledge();
                                             });
 
                                         resetPopupMessage();
@@ -179,9 +173,8 @@ const AdminCreations = () => {
                                 <Form
                                     onValid={(data) => {
                                         fetch(
-                                            "/api/update/creations/" +
-                                                popupMessage.parameters
-                                                    .url_slug,
+                                            "/api/update/knowledge/" +
+                                                popupMessage.parameters.id,
                                             {
                                                 method: "POST",
                                                 headers: {
@@ -193,7 +186,7 @@ const AdminCreations = () => {
                                         )
                                             .then((response) => response.json())
                                             .then((data) => {
-                                                fetchCreations();
+                                                fetchKnowledge();
                                             });
 
                                         resetPopupMessage();
@@ -213,39 +206,24 @@ const AdminCreations = () => {
                                         required
                                     />
                                     <FormElement
-                                        type="text"
-                                        id="url_slug"
-                                        label="Slug"
-                                        default={decodeURIComponent(
-                                            popupMessage.parameters.url_slug
-                                        )}
+                                        type="number"
+                                        id="percentage"
+                                        label="Percentage"
+                                        min={0}
+                                        max={100}
+                                        default={
+                                            popupMessage.parameters.percentage
+                                        }
                                         required
                                     />
                                     <FormElement
-                                        type="text"
-                                        id="image_url"
-                                        label="Image URL"
-                                        default={decodeURIComponent(
-                                            popupMessage.parameters.image_url
-                                        )}
-                                        required
-                                    />
-                                    <FormElement
-                                        type="text"
-                                        id="url"
-                                        label="URL"
-                                        default={decodeURIComponent(
-                                            popupMessage.parameters.url
-                                        )}
-                                        required
-                                    />
-                                    <FormElement
-                                        type="textarea"
-                                        id="description"
-                                        label="Description"
-                                        default={decodeURIComponent(
-                                            popupMessage.parameters.description
-                                        )}
+                                        type="number"
+                                        id="experience"
+                                        label="Experience"
+                                        min={1}
+                                        default={
+                                            popupMessage.parameters.experience
+                                        }
                                         required
                                     />
                                 </Form>
@@ -256,7 +234,7 @@ const AdminCreations = () => {
                             <div>
                                 <Form
                                     onValid={(data) => {
-                                        fetch("/api/insert/creations", {
+                                        fetch("/api/insert/knowledge", {
                                             method: "POST",
                                             headers: {
                                                 "Content-Type":
@@ -266,7 +244,7 @@ const AdminCreations = () => {
                                         })
                                             .then((response) => response.json())
                                             .then((data) => {
-                                                fetchCreations();
+                                                fetchKnowledge();
                                             });
 
                                         resetPopupMessage();
@@ -274,7 +252,7 @@ const AdminCreations = () => {
                                     onCancel={() => {
                                         resetPopupMessage();
                                     }}
-                                    submitLabel="Add"
+                                    submitLabel="Save"
                                 >
                                     <FormElement
                                         type="text"
@@ -283,27 +261,20 @@ const AdminCreations = () => {
                                         required
                                     />
                                     <FormElement
-                                        type="text"
-                                        id="url_slug"
-                                        label="Slug"
+                                        type="number"
+                                        id="percentage"
+                                        label="Percentage"
+                                        min={0}
+                                        max={100}
+                                        default={1}
                                         required
                                     />
                                     <FormElement
-                                        type="text"
-                                        id="image_url"
-                                        label="Image URL"
-                                        required
-                                    />
-                                    <FormElement
-                                        type="text"
-                                        id="url"
-                                        label="URL"
-                                        required
-                                    />
-                                    <FormElement
-                                        type="textarea"
-                                        id="description"
-                                        label="Description"
+                                        type="number"
+                                        id="experience"
+                                        label="Experience"
+                                        min={1}
+                                        default={1}
                                         required
                                     />
                                 </Form>
@@ -316,4 +287,4 @@ const AdminCreations = () => {
     );
 };
 
-export default AdminCreations;
+export default AdminKnowledge;
