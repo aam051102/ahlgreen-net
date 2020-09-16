@@ -6,21 +6,18 @@ const {
 const express = require("express");
 const { fstat } = require("fs");
 const nodemailer = require("nodemailer");
+const { rejects } = require("assert");
 const router = express.Router();
 
 let databaseConnection = getDatabaseConnection();
 
-let testAccount, transporter;
+let transporter;
 (async () => {
-    testAccount = await nodemailer.createTestAccount();
-
     transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false, // true for 465, false for other ports
+        service: "gmail",
         auth: {
-            user: testAccount.user,
-            pass: testAccount.pass,
+            user: process.env.EMAIL_USERNAME,
+            pass: process.env.EMAIL_PASSWORD,
         },
     });
 })();
@@ -121,27 +118,26 @@ router.post("/validate", (req, res) => {
 
 // Email
 router.post("/email", async (req, res) => {
-    let info = await transporter.sendMail({
-        from: `"${req.body.email}" <${req.body.email}>`,
-        to: "ahlgreenmadsen@gmail.com",
-        subject: req.body.subject,
-        text: req.body.message,
-        html: req.body.message,
-    });
-
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-
-    // TEMPORARY
-    require("fs").writeFileSync(
-        "./messages.test",
-        nodemailer.getTestMessageUrl(info) + "\n"
+    res.json(
+        new Promise((resolve, reject) => {
+            transporter.sendMail(
+                {
+                    from: `${process.env.EMAIL_USERNAME}`,
+                    to: `${process.env.EMAIL_PRIVATE}`,
+                    subject: req.body.subject,
+                    text: `${req.body.email}:\n\n${req.body.message}`,
+                },
+                (err, info) => {
+                    if (err) {
+                        console.log(err);
+                        rejects(err);
+                    } else {
+                        resolve(info);
+                    }
+                }
+            );
+        })
     );
-
-    res.status(200).json({
-        data:
-            "This service is not fully functional. It may take a while to get a reply.",
-    });
 });
 
 // Get all
