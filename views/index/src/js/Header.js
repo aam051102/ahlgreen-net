@@ -5,12 +5,17 @@ const Header = () => {
     const [menuUp, setMenuUp] = useState(true);
 
     const handleClick = (e) => {
-        if (e.target.tagName == "A" || e.target.className == "header-main") {
-            setMenuUp(!menuUp);
+        if (document.body.clientWidth < 600) {
+            if (
+                e.target.tagName == "A" ||
+                e.target.className == "header-main"
+            ) {
+                setMenuUp(!menuUp);
 
-            document.querySelector("header").style = !menuUp
-                ? "transform: translateY(calc(-100% + 56px))"
-                : "transform: none";
+                document.querySelector("header").style = !menuUp
+                    ? "transform: translateY(calc(-100% + 56px))"
+                    : "transform: none";
+            }
         }
     };
 
