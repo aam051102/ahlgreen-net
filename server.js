@@ -55,8 +55,8 @@ app.use(express.static(path.join(__dirname, "build")));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 // Routes
-app.use("/", require("./routes/index"));
 app.use("/api", require("./routes/api"));
+app.use("/", require("./routes/index"));
 
 // Clear session store
 sessionStore.clear((err) => {
