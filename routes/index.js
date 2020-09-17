@@ -7,7 +7,7 @@ const fs = require("fs");
 router.get(
     [
         "/",
-        "/404/:file",
+        "/404",
         "/index",
         "/portfolio/:url_slug",
         "/portfolio",
@@ -24,13 +24,13 @@ router.get(
 );
 
 // File access fallback
-router.get("/:file", (req, res) => {
-    const filePath = path.join(__dirname, "..", "dist", req.params.file);
+router.get("/*", (req, res) => {
+    const filePath = path.join(__dirname, "..", "dist", req.originalUrl);
 
     if (fs.existsSync(filePath)) {
         res.status(200).sendFile(filePath);
     } else {
-        res.status(404).redirect(`/404/${encodeURIComponent(req.params.file)}`);
+        res.status(404).redirect(`/404`);
     }
 });
 

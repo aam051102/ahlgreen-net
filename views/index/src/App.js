@@ -101,7 +101,7 @@ class App extends React.Component {
                                 <AdminCreations path="/admin/creations" />
                                 <AdminLogin path="/admin/login" />
 
-                                <Error404 path="/404/:file" />
+                                <Error404 path="/404" />
                             </Router>
                         </Suspense>
                     </ErrorBoundary>
