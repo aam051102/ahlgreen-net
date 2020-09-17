@@ -19,12 +19,15 @@
         "parcel-bundler": "^1.12.4",
         "passport": "^0.4.1"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "jest": "^26.4.2"
+    },
     "scripts": {
         "prod": "concurrently \"npm:build\" \"cross-env NODE_ENV=production node server.js\"",
         "build": "parcel build views/index/src/index.html --no-source-maps",
         "watch": "parcel watch views/index/src/index.html --no-source-maps",
-        "dev": "concurrently \"npm:watch\" \"cross-env NODE_ENV=development node server.js\""
+        "dev": "concurrently \"npm:watch\" \"cross-env NODE_ENV=development node server.js\"",
+        "test": "concurrently \"jest --testPathPattern=tests_node\" \"cd views/index && npm run-script test\" --loglevel verbose"
     },
     "keywords": [],
     "author": "MadCreativity",
