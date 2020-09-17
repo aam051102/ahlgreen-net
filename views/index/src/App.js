@@ -12,6 +12,8 @@ const AdminKnowledge = lazy(() => import("./js/AdminKnowledge"));
 const AdminCreations = lazy(() => import("./js/AdminCreations"));
 const AdminLogin = lazy(() => import("./js/AdminLogin"));
 
+const Error404 = lazy(() => import("./js/Error404"));
+
 import { HelmetProvider } from "react-helmet-async";
 
 import "./css/app.scss";
@@ -98,6 +100,8 @@ class App extends React.Component {
                                 <AdminKnowledge path="/admin/knowledge" />
                                 <AdminCreations path="/admin/creations" />
                                 <AdminLogin path="/admin/login" />
+
+                                <Error404 path="/404/:file" />
                             </Router>
                         </Suspense>
                     </ErrorBoundary>

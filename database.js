@@ -4,17 +4,19 @@ const MySQLStore = require("express-mysql-session")(session);
 const { connect } = require("http2");
 
 // MySQL database connection
-const connectionSettings = {
-    host: "localhost",
-    user: "root",
-    password: process.env.MYSQL_PASSWORD,
-    database: "ahlgreen_net"
+let databaseConnection;
+
+const getDatabaseConnection = () => {
+    return databaseConnection;
 };
 
-let databaseConnection = mysql.createConnection(connectionSettings);
-
 const connectToDatabase = () => {
-    databaseConnection = mysql.createConnection(connectionSettings);
+    databaseConnection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: process.env.MYSQL_PASSWORD,
+        database: "ahlgreen_net",
+    });
 
     databaseConnection.connect((err) => {
         if (err) {
@@ -26,14 +28,7 @@ const connectToDatabase = () => {
 
     return databaseConnection;
 };
-
-const getDatabaseConnection = () => {
-    return databaseConnection;
-}
-
-
 connectToDatabase();
-
 
 // Session store
 const sessionStore = new MySQLStore({
@@ -47,5 +42,5 @@ const sessionStore = new MySQLStore({
 module.exports = {
     getDatabaseConnection,
     connectToDatabase,
-    sessionStore
+    sessionStore,
 };

@@ -6,6 +6,8 @@ import Popup from "./Popup";
 import Form from "./Form";
 import FormElement from "./FormElement";
 
+import "../css/adminCreations.scss";
+
 const AdminCreations = () => {
     // States
     const [creations, setCreations] = useState([]);

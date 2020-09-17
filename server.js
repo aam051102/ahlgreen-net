@@ -9,7 +9,6 @@ const session = require("express-session");
 const passport = require("passport");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const MySQLStore = require("express-mysql-session")(session);
 const fs = require("fs");
 const http = require("http");
 const https = require("https");
@@ -31,9 +30,6 @@ app.use(cookieParser());
 app.use(cors());
 
 // Express-Session
-app.set("trust proxy", 1);
-
-
 let { sessionStore } = require("./database");
 
 if (process.env.NODE_ENV == "production") app.set("trust proxy", true);
@@ -61,9 +57,6 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/api", require("./routes/api"));
-app.get("/404", (req, res) => {
-    res.status(404).end("Error: 404.");
-});
 
 // Clear session store
 sessionStore.clear((err) => {

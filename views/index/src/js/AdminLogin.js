@@ -1,7 +1,9 @@
 import React from "react";
 
 import Layout from "./Layout";
-import { redirectTo, navigate } from "@reach/router";
+import { navigate } from "@reach/router";
+
+import "../css/adminLogin.scss";
 
 const AdminLogin = () => {
     return (

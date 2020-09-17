@@ -1,11 +1,7 @@
 @use "home.scss";
-@use "contact.scss";
 @use "portfolioDetails.scss";
 @use "portfolio.scss";
+@use "contact.scss";
 
-@use "admin.scss";
-@use "adminCreations.scss";
-@use "adminLogin.scss";
-
-@use "./popup";
-@use "./form";
+@use "popup";
+@use "form";

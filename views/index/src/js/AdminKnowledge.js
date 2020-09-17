@@ -7,6 +7,8 @@ import Popup from "./Popup";
 import Form from "./Form";
 import FormElement from "./FormElement";
 
+import "../css/admin.scss";
+
 const AdminKnowledge = () => {
     // States
     const [knowledge, setKnowledge] = useState([]);

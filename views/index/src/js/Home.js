@@ -1,13 +1,10 @@
 import React, { useState, useLayoutEffect } from "react";
-import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faGithub,
     faHackerrank,
     faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-
-import ProgressBar from "./ProgressBar";
 
 import ImageSide from "./ImageSide";
 import Layout from "./Layout";
