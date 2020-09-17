@@ -17,8 +17,6 @@ router.get(
         "/admin/logout",
     ],
     (req, res) => {
-        let sess = req.session;
-
         res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
     }
 );

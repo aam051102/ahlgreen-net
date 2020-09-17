@@ -4,9 +4,7 @@ const {
     sessionStore,
 } = require("../database");
 const express = require("express");
-const { fstat } = require("fs");
 const nodemailer = require("nodemailer");
-const { rejects } = require("assert");
 const router = express.Router();
 
 let databaseConnection = getDatabaseConnection();
@@ -130,7 +128,7 @@ router.post("/email", async (req, res) => {
                 (err, info) => {
                     if (err) {
                         console.log(err);
-                        rejects(err);
+                        reject(err);
                     } else {
                         resolve(info);
                     }
@@ -183,7 +181,7 @@ router.get("/get/:type/:selector", (req, res) => {
     });
 });
 
-// Delete
+// Delete single
 router.post("/delete/:type/:selector", (req, res) => {
     if (!req.session.adminKey) {
         res.status(400).json({
