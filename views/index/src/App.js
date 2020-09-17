@@ -38,11 +38,23 @@ const OnRouteChange = ({ action }) => (
     </Location>
 );
 
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => (
+    <div
+        style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+        }}
+    >
+        Loading
+    </div>
+);
 
 class ErrorBoundary extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = { hasError: false };
     }
 
