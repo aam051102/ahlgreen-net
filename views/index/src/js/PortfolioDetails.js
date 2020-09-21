@@ -27,6 +27,7 @@ const PortfolioDetails = (props) => {
             }`}
             description={""}
             keywords={[]}
+            animate={creation.id !== undefined}
         >
             <div className="creation-details-container">
                 <ImageSide

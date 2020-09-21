@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
 
 import { Helmet } from "react-helmet-async";
 
@@ -12,7 +10,13 @@ function AdminLayout(props) {
             <div className="admin-content">
                 <AdminNavbar />
 
-                <main>
+                <main
+                    className={`${
+                        props.animate == undefined || props.animate
+                            ? "animate"
+                            : ""
+                    }`}
+                >
                     <Helmet>
                         <link
                             rel="canonical"

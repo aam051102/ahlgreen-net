@@ -59,6 +59,9 @@ const Home = () => {
                                         <div
                                             className="skillset-button button-link"
                                             key={i}
+                                            style={{
+                                                animationDelay: `0.${i}s`,
+                                            }}
                                         >
                                             <span className="skillset-name">
                                                 {decodeURIComponent(

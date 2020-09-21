@@ -8,7 +8,11 @@ const websiteDescription =
 function Layout(props) {
     return (
         <div>
-            <main>
+            <main
+                className={`${
+                    props.animate == undefined || props.animate ? "animate" : ""
+                }`}
+            >
                 <Helmet>
                     <meta
                         property="og:url"
