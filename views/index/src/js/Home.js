@@ -60,7 +60,7 @@ const Home = () => {
                                             className="skillset-button button-link"
                                             key={i}
                                             style={{
-                                                animationDelay: `0.${i}s`,
+                                                animationDelay: `${i / 10}s`,
                                             }}
                                         >
                                             <span className="skillset-name">
