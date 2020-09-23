@@ -19,7 +19,10 @@ const CreationCard = (props) => {
                     />
                 </section>
                 <section className="side-b">
-                    <div className="content">{props.children}</div>
+                    <div className="content">
+                        {props.children}
+                        <p className="read-more">Click to read more.</p>
+                    </div>
                 </section>
             </article>
             <article className="loading-card">

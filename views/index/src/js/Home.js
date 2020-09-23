@@ -5,6 +5,7 @@ import {
     faHackerrank,
     faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import { faMousePointer } from "@fortawesome/free-solid-svg-icons";
 
 import ImageSide from "./ImageSide";
 import Layout from "./Layout";
@@ -74,6 +75,12 @@ const Home = () => {
                                                     ? "year"
                                                     : "years"}
                                             </span>
+                                            {i == 0 ? (
+                                                <FontAwesomeIcon
+                                                    className="mouse-pointer"
+                                                    icon={faMousePointer}
+                                                />
+                                            ) : null}
                                         </div>
                                     );
                                 })}

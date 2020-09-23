@@ -13,7 +13,6 @@
         left: 0;
         height: 100%;
         background-color: colors.$secondary;
-        border-radius: 10px;
         color: colors.$dp03;
         display: flex;
         flex-direction: column;
@@ -41,9 +40,9 @@
         height: 100%;
         background-color: colors.$primary;
         color: colors.$white;
+        backface-visibility: hidden;
         perspective: 800px;
         opacity: 0;
-        transition: opacity 0.5s ease-in-out;
         pointer-events: none;
 
         &.loaded {
@@ -73,10 +72,10 @@
             position: absolute;
             z-index: 10;
             backface-visibility: hidden;
-            transition: transform 0.5s ease;
             background-color: inherit;
-            border-radius: 10px;
-            overflow: hidden;
+            pointer-events: none;
+            transform-origin: right;
+            transition: transform 0.5s cubic-bezier(0.5, 0.75, 0.5, 1);
 
             img {
                 width: 100%;
@@ -87,22 +86,41 @@
             top: 0;
             left: 0;
             bottom: 0;
-            right: 0;
+            width: 100%;
+            pointer-events: none;
             position: absolute;
+            transform: translateX(100%) rotateY(90deg);
+            transform-origin: left;
+            backface-visibility: hidden;
             z-index: 5;
             background-color: colors.$secondary;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s cubic-bezier(0.5, 0.75, 0.5, 1);
 
             .content {
-                transform: scaleX(-1);
-                display: flex;
-                justify-content: center;
-                align-items: center;
                 height: 100%;
+                padding: 10px 20px;
                 letter-spacing: 1px;
+                box-sizing: border-box;
+                text-align: left;
+                word-break: normal;
+                display: flex;
+                align-items: center;
                 text-align: center;
+                justify-content: center;
+                flex-direction: column;
+
+                p {
+                    margin: 0;
+                }
+
+                .read-more {
+                    font-weight: 100;
+                    display: none;
+
+                    @media screen and (min-width: 400px) {
+                        display: block;
+                    }
+                }
             }
         }
 
@@ -120,9 +138,12 @@
         &:hover {
             cursor: pointer;
 
-            .side-a,
+            .side-a {
+                transform: translateX(-100%) rotateY(-90deg);
+            }
+
             .side-b {
-                transform: rotateY(180deg);
+                transform: translateX(0px) rotateY(0deg);
             }
 
             a {
