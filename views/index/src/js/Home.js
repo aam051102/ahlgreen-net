@@ -5,7 +5,6 @@ import {
     faHackerrank,
     faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { faMousePointer } from "@fortawesome/free-solid-svg-icons";
 
 import ImageSide from "./ImageSide";
 import Layout from "./Layout";
@@ -46,7 +45,12 @@ const Home = () => {
                     </p>
 
                     <section className="skills">
-                        <h2>Skillset</h2>
+                        <div className="skills-title">
+                            <h2>Skillset</h2>
+                            <p className="skills-subtitle">
+                                (Hover over items to see more)
+                            </p>
+                        </div>
 
                         <div className="progress-bars">
                             {knowledge
@@ -75,12 +79,6 @@ const Home = () => {
                                                     ? "year"
                                                     : "years"}
                                             </span>
-                                            {i == 0 ? (
-                                                <FontAwesomeIcon
-                                                    className="mouse-pointer"
-                                                    icon={faMousePointer}
-                                                />
-                                            ) : null}
                                         </div>
                                     );
                                 })}
