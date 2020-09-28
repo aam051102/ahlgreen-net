@@ -1,3 +1,5 @@
+@use "colors";
+
 .popup-container {
     position: fixed;
     top: 0;
@@ -14,8 +16,8 @@
     .popup {
         max-width: 500px;
         width: 100%;
-        border: 1px solid #404040;
-        background-color: #121212;
+        border: 1px solid colors.$dp07;
+        background-color: colors.$primary;
 
         .popup-title {
             width: 100%;
@@ -23,7 +25,7 @@
             box-sizing: border-box;
             padding: 10px 20px;
             margin: 0;
-            background-color: #323232;
+            background-color: colors.$dp02;
         }
 
         .popup-content {
