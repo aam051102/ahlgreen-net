@@ -145,7 +145,7 @@ const Home = () => {
                             rel="noreferrer"
                         >
                             <svg
-                                viewBox="0 0 131 129.6"
+                                viewBox="0 0 128.5 129.6"
                                 focusable="false"
                                 role="img"
                                 xmlns="http://www.w3.org/2000/svg"
