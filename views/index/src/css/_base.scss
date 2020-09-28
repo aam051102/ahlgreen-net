@@ -108,26 +108,20 @@ address {
     font-style: normal;
 }
 
-a.text-link {
-    color: #c0c0c0;
-    text-decoration: none;
-    border-bottom: 0.1em solid #c0c0c0;
-}
-
 button {
     min-width: 80px;
     margin: 10px;
     padding: 10px 15px;
-    border: 1px solid #404040;
-    background-color: #202020;
-    color: white;
+    border: 1px solid colors.$dp07;
+    background-color: colors.$dp05;
+    color: colors.$white;
     font-family: "Roboto", sans-serif;
     outline: none;
     transition: opacity 0.25s ease;
 
     &:not(:disabled):hover {
         cursor: pointer;
-        background-color: #282828;
+        background-color: colors.$dp06;
     }
 
     &:disabled {
@@ -151,7 +145,7 @@ button {
 label {
     position: absolute;
     left: 1.5em;
-    background-color: #121212;
+    background-color: colors.$primary;
     padding: 0 0.5em;
     pointer-events: none;
 }
@@ -164,25 +158,25 @@ textarea {
     min-width: 80px;
     margin: 1rem 0;
     padding: 10px 15px;
-    border: 1px solid #323232;
-    background-color: #121212;
-    color: white;
+    border: 1px solid colors.$dp02;
+    background-color: colors.$primary;
+    color: colors.$white;
     font-family: "Roboto", sans-serif;
     outline: none;
     box-sizing: border-box;
     transition: border-color 0.5s ease;
 
     &:focus {
-        border-color: #404040;
+        border-color: colors.$dp07;
     }
 
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:active,
     &:-webkit-autofill:focus {
-        -webkit-text-fill-color: white;
-        box-shadow: 0 0 0px 1000px #121212 inset;
-        -webkit-box-shadow: 0 0 0px 1000px #121212 inset;
+        -webkit-text-fill-color: colors.$white;
+        box-shadow: 0 0 0px 1000px colors.$primary inset;
+        -webkit-box-shadow: 0 0 0px 1000px colors.$primary inset;
     }
 }
 
@@ -221,7 +215,7 @@ textarea {
     border: 1px solid colors.$dp02;
     position: relative;
     background-color: transparent;
-    box-shadow: 0px 2px 0px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 0px 1px colors.$shadow;
 
     &::after {
         content: "";
