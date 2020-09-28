@@ -50,6 +50,9 @@ const Home = () => {
                             <p className="skills-subtitle">
                                 (Hover over items to see more)
                             </p>
+                            <p className="mobile skills-subtitle">
+                                (Tap items)
+                            </p>
                         </div>
 
                         <div className="progress-bars">

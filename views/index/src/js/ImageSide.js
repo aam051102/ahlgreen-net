@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 
+const ImageLink = (props) => {
+    return props.image_href ? (
+        <a
+            href={props.image_href}
+            target="_blank"
+            rel="noreferrer"
+            className={isImageLoaded ? "loaded" : ""}
+        >
+            {props.children}
+        </a>
+    ) : (
+        props.children
+    );
+};
+
 const ImageSide = (props) => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
     return (
         <div className="image-side-container">
             <section className="image-wrapper">
-                <a
-                    href={props.image_href}
-                    target="_blank"
-                    className={isImageLoaded ? "loaded" : ""}
-                >
+                <ImageLink>
                     <img
                         src={props.image_src}
                         alt={props.name}
@@ -19,7 +30,7 @@ const ImageSide = (props) => {
                         }}
                     />
                     <div className="image-loader"></div>
-                </a>
+                </ImageLink>
             </section>
             <section className="info-wrapper">{props.children}</section>
         </div>

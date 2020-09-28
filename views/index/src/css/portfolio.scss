@@ -20,6 +20,13 @@
         grid-gap: 32px;
         margin: 0 20px 32px 20px;
 
+        .portfolio-loading {
+            grid-column: 1/2;
+            text-align: center;
+            font-size: 1.5rem;
+            color: colors.$dp03;
+        }
+
         @media screen and (min-width: 350px) {
             grid-template-columns: repeat(2, calc((100vw - 32px) / 2 - 10px));
             grid-auto-rows: calc((100vw - 32px) / 2 - 10px);
@@ -27,31 +34,40 @@
             margin-left: 0;
             margin-right: 0;
             margin-bottom: 1rem;
+
+            .portfolio-loading {
+                grid-column: 1/3;
+            }
         }
 
         @media screen and (min-width: 600px) {
             grid-template-columns: repeat(3, calc((100vw - 64px) / 3 - 20px));
             grid-auto-rows: calc((100vw - 64px) / 3 - 20px);
             grid-gap: 30px;
+
+            .portfolio-loading {
+                grid-column: 1/4;
+            }
         }
 
         @media screen and (min-width: 800px) {
-            grid-template-columns: repeat(4, calc((100vw - 128px) / 3 - 30px));
-            grid-auto-rows: calc((100vw - 128px) / 3 - 30px);
+            grid-template-columns: repeat(4, calc((100vw - 128px) / 4 - 30px));
+            grid-auto-rows: calc((100vw - 128px) / 4 - 30px);
             grid-gap: 40px;
+
+            .portfolio-loading {
+                grid-column: 1/5;
+            }
         }
 
         @media screen and (min-width: 950px) {
             grid-template-columns: repeat(4, calc((100vw - 128px) / 4 - 30px));
             grid-auto-rows: calc((100vw - 128px) / 4 - 30px);
             grid-gap: 40px;
-        }
 
-        .portfolio-loading {
-            grid-column: 1/5;
-            text-align: center;
-            font-size: 1.5rem;
-            color: colors.$dp03;
+            .portfolio-loading {
+                grid-column: 1/5;
+            }
         }
     }
 }

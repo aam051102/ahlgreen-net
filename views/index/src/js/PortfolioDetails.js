@@ -44,6 +44,7 @@ const PortfolioDetails = (props) => {
                     <h1>
                         <a
                             target="_blank"
+                            rel="noreferrer"
                             href={
                                 creation.id
                                     ? decodeURIComponent(creation.url)

@@ -34,8 +34,21 @@
                     }
 
                     .skills-subtitle {
-                        color: colors.$dp03;
+                        color: colors.$dp04;
                         margin-left: 0.5em;
+                        display: none;
+
+                        &.mobile {
+                            display: block;
+                        }
+
+                        @media screen and (min-width: 350px) {
+                            display: block;
+
+                            &.mobile {
+                                display: none;
+                            }
+                        }
                     }
                 }
 
@@ -44,8 +57,14 @@
                     position: relative;
                     min-width: 5em;
                     opacity: 0;
-                    text-align: center;
+                    display: block;
+                    text-align: left;
                     animation: skill-in 0.5s ease-in-out forwards;
+
+                    @media screen and (min-width: 350px) {
+                        text-align: center;
+                        display: inline-block;
+                    }
 
                     @keyframes skill-in {
                         from {
@@ -72,15 +91,21 @@
                         z-index: 10;
                         display: flex;
                         align-items: center;
-                        justify-content: center;
+                        justify-content: flex-start;
                         width: 100%;
                         height: 100%;
                         opacity: 0;
                         background-color: colors.$primary;
                         border: inherit;
                         box-shadow: inherit;
+                        padding-left: inherit;
                         pointer-events: none;
                         transition: opacity 0.25s ease-in-out;
+
+                        @media screen and (min-width: 350px) {
+                            justify-content: center;
+                            padding-left: 0;
+                        }
                     }
 
                     &:hover {
