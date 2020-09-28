@@ -9,16 +9,13 @@ const router = express.Router();
 
 let databaseConnection = getDatabaseConnection();
 
-let transporter;
-(async () => {
-    transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: process.env.EMAIL_USERNAME,
-            pass: process.env.EMAIL_PASSWORD,
-        },
-    });
-})();
+let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+    },
+});
 
 // Credentials
 const credentials = [

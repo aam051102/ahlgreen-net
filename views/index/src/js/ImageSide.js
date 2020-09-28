@@ -6,7 +6,7 @@ const ImageLink = (props) => {
             href={props.image_href}
             target="_blank"
             rel="noreferrer"
-            className={isImageLoaded ? "loaded" : ""}
+            className={props.isImageLoaded ? "loaded" : ""}
         >
             {props.children}
         </a>
@@ -21,7 +21,10 @@ const ImageSide = (props) => {
     return (
         <div className="image-side-container">
             <section className="image-wrapper">
-                <ImageLink>
+                <ImageLink
+                    isImageLoaded={isImageLoaded}
+                    image_href={props.image_href}
+                >
                     <img
                         src={props.image_src}
                         alt={props.name}

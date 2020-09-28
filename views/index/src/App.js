@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import { Router, Location } from "@reach/router";
 import Header from "./js/Header";
 
-import Home from "./js/Home";
-import Portfolio from "./js/Portfolio";
-import PortfolioDetails from "./js/PortfolioDetails";
-import Contact from "./js/Contact";
+const Home = lazy(() => import("./js/Home"));
+const Portfolio = lazy(() => import("./js/Portfolio"));
+const PortfolioDetails = lazy(() => import("./js/PortfolioDetails"));
+const Contact = lazy(() => import("./js/Contact"));
 
 const AdminKnowledge = lazy(() => import("./js/AdminKnowledge"));
 const AdminCreations = lazy(() => import("./js/AdminCreations"));
@@ -42,7 +42,7 @@ const renderLoader = () => (
     <div
         style={{
             width: "100%",
-            height: "100%",
+            height: "100vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -68,7 +68,7 @@ class ErrorBoundary extends React.Component {
                 <div
                     style={{
                         width: "100%",
-                        height: "100%",
+                        height: "100vh",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
