@@ -6,12 +6,20 @@ const ImageLink = (props) => {
             href={props.image_href}
             target="_blank"
             rel="noreferrer"
-            className={props.isImageLoaded ? "loaded" : ""}
+            className={`image-load-wrapper${
+                props.isImageLoaded ? " loaded" : ""
+            }`}
         >
             {props.children}
         </a>
     ) : (
-        props.children
+        <div
+            className={`image-load-wrapper${
+                props.isImageLoaded ? " loaded" : ""
+            }`}
+        >
+            {props.children}
+        </div>
     );
 };
 
