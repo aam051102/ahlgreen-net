@@ -21,7 +21,7 @@ const Home = () => {
             <div className="home-container">
                 <ImageSide
                     name="Alexander Ahlgreen"
-                    image_src={require("../assets/images/logo.png")}
+                    image_src={"https://ahlgreen.net/public/images/logo.jpg"}
                 >
                     <h1>Alexander Ahlgreen Madsen</h1>
                     <p>
