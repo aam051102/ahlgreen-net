@@ -1,7 +1,8 @@
 import React, { useState, useLayoutEffect } from "react";
-
 import ImageSide from "./ImageSide";
 import Layout from "./Layout";
+
+import "../css/home.scss";
 
 const Home = () => {
     const [knowledge, setKnowledge] = useState([]);

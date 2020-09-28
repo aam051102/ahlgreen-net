@@ -2,6 +2,8 @@ import React, { useState, useLayoutEffect } from "react";
 import ImageSide from "./ImageSide";
 import Layout from "./Layout";
 
+import "../css/portfolioDetails.scss";
+
 const PortfolioDetails = (props) => {
     const [creation, setCreation] = useState({ id: undefined });
 

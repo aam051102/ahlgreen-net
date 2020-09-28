@@ -1,7 +1,8 @@
 import React, { useState, useLayoutEffect } from "react";
 import CreationCard from "./CreationCard";
-
 import Layout from "./Layout";
+
+import "../css/portfolio.scss";
 
 const Portfolio = () => {
     const [creations, setCreations] = useState([]);
