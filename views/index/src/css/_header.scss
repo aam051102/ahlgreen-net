@@ -43,6 +43,8 @@ header {
         display: none;
         font-weight: 400;
         letter-spacing: 0.1rem;
+        font-family: monospace;
+        text-transform: uppercase;
 
         @media screen and (min-width: 600px) {
             display: inline;
@@ -53,6 +55,7 @@ header {
             color: inherit;
             padding: 0.75em;
             display: inline-block;
+            font-size: 1rem;
         }
     }
 
