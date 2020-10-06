@@ -7,21 +7,14 @@
     main {
         height: 100vh;
         overflow-y: auto;
-        padding-top: 56px;
+        padding-top: 4rem;
         margin-top: 0;
         padding-bottom: 0;
-
-        .page-content {
-            min-height: calc(100% - 32px);
-        }
     }
 
     .admin-content {
-        display: flex;
-        transform: translateX(-100%);
-
-        &[style] {
-            transition: transform 0.5s ease;
+        @media screen and (min-width: 800px) {
+            display: flex;
         }
 
         .admin-navbar {
@@ -29,11 +22,11 @@
             flex-shrink: 0;
 
             @media screen and (min-width: 800px) {
-                width: 300px;
+                width: 20rem;
             }
 
             @media screen and (min-width: 1000px) {
-                width: 400px;
+                width: 20rem;
             }
         }
 
@@ -43,11 +36,6 @@
             @media screen and (min-width: 800px) {
                 width: auto;
             }
-        }
-
-        @media screen and (min-width: 800px) {
-            transform: none;
-            transition: none;
         }
     }
 

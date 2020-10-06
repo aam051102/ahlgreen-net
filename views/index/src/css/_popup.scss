@@ -7,35 +7,41 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 600;
+    z-index: 2000;
     align-items: center;
     justify-content: center;
     background-color: rgba(#090909, 0.5);
     box-sizing: border-box;
-    padding: 20px;
+    padding: 1.5rem;
 
     .popup {
-        max-width: 500px;
+        max-width: 40rem;
+        max-height: 100%;
         width: 100%;
-        border: 1px solid colors.$dp07;
+        border: 0.1rem solid colors.$dp07;
         background-color: colors.$primary;
+        display: flex;
+        flex-direction: column;
 
         .popup-title {
             width: 100%;
             display: inline-block;
             box-sizing: border-box;
-            padding: 10px 20px;
+            padding: 0.75rem 1.5rem;
             margin: 0;
             background-color: colors.$dp02;
+            flex-shrink: 0;
         }
 
         .popup-content {
-            padding: 25px;
+            padding: 2rem;
+            overflow: auto;
+            flex-grow: 1;
 
             .button-container {
                 display: flex;
                 justify-content: center;
-                margin: 15px 0 0 0;
+                margin: 1rem 0 0 0;
             }
         }
     }

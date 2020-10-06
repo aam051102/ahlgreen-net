@@ -3,6 +3,24 @@
 .image-side-container {
     margin: 1rem;
 
+    .info-wrapper {
+        .info-inner {
+            position: absolute;
+            box-sizing: border-box;
+            padding-bottom: 2rem;
+            padding-right: 1rem;
+            margin-right: 1rem;
+
+            @media screen and (min-width: 600px) {
+                padding-right: 2rem;
+            }
+
+            @media screen and (min-width: 800px) {
+                padding-right: 4rem;
+            }
+        }
+    }
+
     .image-wrapper {
         width: 50vw;
         height: 50vw;

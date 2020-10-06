@@ -13,7 +13,7 @@ const Header = () => {
                 setMenuUp(!menuUp);
 
                 document.querySelector("header").style = !menuUp
-                    ? "transform: translateY(calc(-100% + 56px))"
+                    ? "transform: translateY(calc(-100% + 4rem))"
                     : "transform: none";
             }
         }

@@ -8,10 +8,10 @@
 
     .admin-login-alert {
         color: colors.$white;
-        border: 1px solid colors.$alert;
-        min-width: 80px;
-        margin: 10px 0 30px 0;
-        padding: 10px 15px;
+        border: 0.1rem solid colors.$alert;
+        min-width: 8rem;
+        margin: 0.75rem 0 2rem 0;
+        padding: 0.75rem 1rem;
         background-color: rgba(colors.$alert, 0.1);
         font-weight: 300;
         width: 100%;
@@ -40,7 +40,7 @@
     }
 
     & > section {
-        max-width: 500px;
+        max-width: 40rem;
         width: 50%;
 
         @media screen and (max-width: 600px) {

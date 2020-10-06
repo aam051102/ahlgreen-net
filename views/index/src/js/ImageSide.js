@@ -43,7 +43,9 @@ const ImageSide = (props) => {
                     <div className="image-loader"></div>
                 </ImageLink>
             </section>
-            <section className="info-wrapper">{props.children}</section>
+            <section className="info-wrapper">
+                <div className="info-inner">{props.children}</div>
+            </section>
         </div>
     );
 };

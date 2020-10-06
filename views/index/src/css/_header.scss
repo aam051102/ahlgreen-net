@@ -22,7 +22,7 @@ header {
     z-index: 500;
     flex-direction: column-reverse;
     background-color: colors.$secondary;
-    transform: translateY(calc(-100% + 56px));
+    transform: translateY(calc(-100% + 4rem));
     user-select: none;
     transition: background-color 0.5s ease;
 
@@ -31,10 +31,10 @@ header {
     }
 
     @media screen and (min-width: 600px) {
-        height: 56px;
+        height: 4rem;
         flex-direction: row;
         transition: background-color 0.5s ease;
-        padding: 0 32px;
+        padding: 0 2rem;
         transform: none;
         background-color: transparent;
     }
@@ -42,7 +42,7 @@ header {
     .header-title {
         display: none;
         font-weight: 400;
-        letter-spacing: 1px;
+        letter-spacing: 0.1rem;
 
         @media screen and (min-width: 600px) {
             display: inline;
@@ -65,7 +65,7 @@ header {
     }
 
     .header-main {
-        line-height: 56px;
+        line-height: 4rem;
         width: 100%;
         background-color: colors.$dp06;
         text-align: center;
@@ -87,9 +87,9 @@ header {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding-top: 56px;
+        padding-top: 4rem;
         text-align: center;
-        padding: 56px 32px 0 32px;
+        padding: 4rem 2rem 0 2rem;
         box-sizing: border-box;
 
         @media screen and (min-width: 600px) {
@@ -110,28 +110,29 @@ header {
             width: 100%;
             box-sizing: border-box;
             justify-content: center;
-            padding: 24px 32px;
-            border-bottom: 1px solid colors.$dp02;
-            letter-spacing: 1px;
+            padding: 1.5rem 2rem;
+            border-bottom: 0.1rem solid colors.$dp02;
+            letter-spacing: 0.1rm;
             text-transform: uppercase;
             transition: background-color 0.25s ease, color 0.25s ease;
 
             &:first-child {
-                border-top: 1px solid colors.$dp02;
+                border-top: 0.1rem solid colors.$dp02;
             }
 
             @media screen and (min-width: 600px) {
+                border-top: 0;
                 justify-content: unset;
                 box-sizing: content-box;
-                padding: 8px 16px;
+                padding: 0.5rem 1rem;
                 border-bottom: 0;
                 width: auto;
-                border: 1px solid colors.$white;
-                margin-left: 16px;
+                border: 0.1rem solid colors.$white;
+                margin-left: 1rem;
                 background-color: rgba(colors.$secondary, 0.75);
 
                 &:first-child {
-                    border-top: 1px solid colors.$white;
+                    border-top: 0.1rem solid colors.$white;
                 }
 
                 &:hover {
