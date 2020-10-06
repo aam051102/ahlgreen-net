@@ -13,7 +13,12 @@ body {
     background-color: colors.$primary;
     color: colors.$white;
     font-family: "Roboto", sans-serif;
+    overflow-y: scroll;
+}
 
+body,
+.popup-container *,
+textarea {
     scrollbar-width: thin;
     scrollbar-color: colors.$dp01 colors.$dp03;
 
@@ -185,22 +190,10 @@ textarea {
     min-height: 8rem;
     max-height: 16rem;
 
-    &::-webkit-scrollbar {
-        width: 0.8rem;
-    }
-
     &::-webkit-resizer {
         background-color: colors.$secondary;
         border-top: 0.1rem solid colors.$dp03;
         border-left: 0.1rem solid colors.$dp03;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: colors.$secondary;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: colors.$dp03;
     }
 }
 
