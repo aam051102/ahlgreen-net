@@ -2,67 +2,29 @@
     "name": "ahlgreen-net",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
-    "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.28",
-        "@fortawesome/free-brands-svg-icons": "^5.13.0",
-        "@fortawesome/free-solid-svg-icons": "^5.13.0",
-        "@fortawesome/react-fontawesome": "^0.1.9",
-        "@reach/router": "^1.3.3",
-        "@testing-library/react": "^10.0.3",
-        "babel-jest": "^26.3.0",
-        "enzyme": "^3.11.0",
-        "enzyme-adapter-react-16": "^1.15.4",
-        "jest-css-modules-transform": "^4.0.1",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "react-helmet-async": "^1.0.6"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.10.2",
-        "@babel/preset-env": "^7.9.5",
-        "@babel/preset-react": "^7.10.1",
-        "babel-eslint": "^10.1.0",
-        "cross-env": "^7.0.2",
-        "eslint": "^6.8.0",
-        "eslint-config-prettier": "^6.10.1",
-        "eslint-plugin-import": "^2.20.2",
-        "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-react": "^7.19.0",
-        "eslint-plugin-react-hooks": "^3.0.0",
-        "jest": "^25.5.4",
-        "sass": "^1.26.8"
-    },
+    "main": "gulpfile.js",
     "scripts": {
-        "test": "jest",
-        "test:update": "jest -u",
-        "test:watch": "jest --watch",
-        "test:coverage": "jest --coverage",
-        "format": "prettier \"src/**/*.{js,html}\" --write",
-        "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+        "dev": "gulp dev",
+        "build": "gulp build"
     },
+    "keywords": [],
     "author": "MadCreativity",
     "license": "ISC",
-    "browserslist": [
-        "last 2 Chrome versions"
-    ],
-    "jest": {
-        "verbose": true,
-        "transform": {
-            "^.+\\.js$": "babel-jest",
-            ".+\\.(css|sass|scss)$": "jest-css-modules-transform"
-        },
-        "globals": {
-            "NODE_ENV": "test"
-        },
-        "moduleFileExtensions": [
-            "js"
-        ],
-        "moduleDirectories": [
-            "node_modules"
-        ],
-        "moduleNameMapper": {
-            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/assetsTransformer.js"
-        }
+    "devDependencies": {
+        "@babel/core": "^7.8.6",
+        "@babel/preset-env": "^7.8.6",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^7.0.1",
+        "gulp-babel": "^8.0.0",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-connect": "^5.7.0",
+        "gulp-ejs": "^5.0.0",
+        "gulp-htmlmin": "^5.0.1",
+        "gulp-minify": "^3.1.0",
+        "gulp-rename": "^2.0.0",
+        "gulp-sass": "^4.0.2",
+        "gulp-util": "^3.0.8",
+        "gulp-zip": "^5.0.2",
+        "node-sass": "^4.13.1"
     }
 }

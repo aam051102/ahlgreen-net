@@ -24,8 +24,8 @@
     },
     "scripts": {
         "prod": "concurrently \"npm:build\" \"cross-env NODE_ENV=production node server.js\"",
-        "build": "parcel build views/index/src/index.html --no-source-maps",
-        "watch": "parcel watch views/index/src/index.html --no-source-maps",
+        "build": "cd views/index && npm run build",
+        "watch": "cd views/index && npm run dev",
         "dev": "concurrently \"npm:watch\" \"cross-env NODE_ENV=development node server.js\"",
         "test": "concurrently \"jest --testPathPattern=tests_node\" \"cd views/index && npm run-script test\" --loglevel verbose"
     },

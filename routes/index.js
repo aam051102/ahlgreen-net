@@ -7,7 +7,7 @@ const fs = require("fs");
 router.get(
     [
         "/",
-        "/404",
+        /*"/404",
         "/index",
         "/portfolio/:url_slug",
         "/portfolio",
@@ -16,16 +16,23 @@ router.get(
         "/admin/knowledge",
         "/admin/creations",
         "/admin/login",
-        "/admin/logout",
+        "/admin/logout",*/
     ],
     (req, res) => {
-        res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
+        res.sendFile(
+            path.join(__dirname, "..", "views/index/dist", "index.html")
+        );
     }
 );
 
 // File access fallback
 router.get("/*", (req, res) => {
-    const filePath = path.join(__dirname, "..", "dist", req.originalUrl);
+    const filePath = path.join(
+        __dirname,
+        "..",
+        "views/index/dist",
+        req.originalUrl
+    );
 
     if (fs.existsSync(filePath)) {
         res.status(200).sendFile(filePath);

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://ahlgreen.net/</loc>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://ahlgreen.net/public/content/dessertdesigner/</loc>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://ahlgreen.net/public/content/css-illustrator/</loc>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://ahlgreen.net/app/hsse/</loc>
+        <priority>0.8</priority>
+    </url>
+</urlset> 
