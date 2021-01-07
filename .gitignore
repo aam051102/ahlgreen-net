@@ -5,3 +5,4 @@ node_modules/
 sslcert/
 public/
 *.test
+package-lock.json
