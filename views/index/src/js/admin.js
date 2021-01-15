@@ -34,6 +34,15 @@ const processText = (text) => {
     return code;
 };
 
+const getCookie = (name) => {
+    let cookie = document.cookie.split("; ");
+    cookie =
+        cookie.length > 0 ? cookie.find((row) => row.startsWith(name)) : "";
+    cookie = cookie ? cookie.split("=")[1] : "";
+
+    return cookie;
+};
+
 const login = () => {
     fetch(`${ENDPOINT}/api/login`, {
         method: "POST",
@@ -49,6 +58,10 @@ const login = () => {
         .then((data) => {
             if (data.valid) {
                 loginDialog_DOM.classList.remove("visible");
+
+                document.cookie = `token=${data.token}; expires=${new Date(
+                    data.expires
+                )}`;
             } else {
                 usernameInput_DOM.classList.add("invalid");
                 passwordInput_DOM.classList.add("invalid");
@@ -64,6 +77,22 @@ const createElement = (element) => {
 
     const clone_element = templateProject.content.cloneNode(true);
 
+    const projectTitle_element = clone_element.querySelector(
+        ".template-project-title"
+    );
+    const projectStack_element = clone_element.querySelector(
+        ".template-project-stack"
+    );
+    const projectDescription_element = clone_element.querySelector(
+        ".template-project-description"
+    );
+    const projectImageUrl_element = clone_element.querySelector(
+        ".template-project-image-url"
+    );
+    const projectUrl_element = clone_element.querySelector(
+        ".template-project-url"
+    );
+
     // Save button
     clone_element
         .querySelector(".template-project-save-btn")
@@ -71,7 +100,16 @@ const createElement = (element) => {
             e.preventDefault();
 
             if (await validate()) {
-                save(element);
+                const element_this = {
+                    name: projectTitle_element.value,
+                    stack: projectStack_element.value,
+                    description: projectDescription_element.value,
+                    image_url: projectImageUrl_element.value,
+                    url: projectUrl_element.value,
+                    id: element.id,
+                };
+
+                save(element_this);
             } else {
                 loginDialog_DOM.classList.add("visible");
             }
@@ -93,58 +131,40 @@ const createElement = (element) => {
     clone_element.querySelector(".template-project-image").alt = name;
 
     // Title
-    clone_element.querySelector(".template-project-title").value = name;
-    clone_element.querySelector(
-        ".template-project-title"
-    ).id = `project-${name}-title`;
+    projectTitle_element.value = name;
+    projectTitle_element.id = `project-${name}-title`;
 
     clone_element.querySelector(
         ".template-project-title-label"
     ).for = `project-${name}-title`;
 
     // Stack
-    clone_element.querySelector(".template-project-stack").value = testText(
-        element.stack || ""
-    );
-    clone_element.querySelector(
-        ".template-project-stack"
-    ).id = `project-${name}-stack`;
+    projectStack_element.value = testText(element.stack || "");
+    projectStack_element.id = `project-${name}-stack`;
 
     clone_element.querySelector(
         ".template-project-stack-label"
     ).for = `project-${name}-stack`;
 
     // Description
-    clone_element.querySelector(
-        ".template-project-description"
-    ).value = testText(element.description || "");
-    clone_element.querySelector(
-        ".template-project-description"
-    ).id = `project-${name}-description`;
+    projectDescription_element.value = testText(element.description || "");
+    projectDescription_element.id = `project-${name}-description`;
 
     clone_element.querySelector(
         ".template-project-description-label"
     ).for = `project-${name}-description`;
 
     // Image URL
-    clone_element.querySelector(".template-project-image-url").value = testText(
-        element.image_url || ""
-    );
-    clone_element.querySelector(
-        ".template-project-image-url"
-    ).id = `project-${name}-image-url`;
+    projectImageUrl_element.value = testText(element.image_url || "");
+    projectImageUrl_element.id = `project-${name}-image-url`;
 
     clone_element.querySelector(
         ".template-project-image-url-label"
     ).for = `project-${name}-image-url`;
 
     // URL
-    clone_element.querySelector(".template-project-url").value = testText(
-        element.url || ""
-    );
-    clone_element.querySelector(
-        ".template-project-url"
-    ).id = `project-${name}-url`;
+    projectUrl_element.value = testText(element.url || "");
+    projectUrl_element.id = `project-${name}-url`;
 
     clone_element.querySelector(
         ".template-project-url-label"
@@ -155,34 +175,72 @@ const createElement = (element) => {
 
 const remove = async (element) => {
     if (await validate()) {
-        fetch(`${ENDPOINT}/api/delete/creations/${element.url_slug}`, {
+        fetch(`${ENDPOINT}/api/delete/creations/${element.id}`, {
             method: "POST",
+            headers: {
+                Authorization: `Bearer ${getCookie("token")}`,
+            },
         })
             .then((e) => e.json())
-            .then((data) => {
-                console.log(data);
-            });
+            .then((data) => {});
     } else {
         loginDialog_DOM.classList.add("visible");
     }
 };
 
+const insert = async (element) => {
+    element = element || {};
+
+    if (await validate()) {
+        return await fetch(`${ENDPOINT}/api/insert/creations`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${getCookie("token")}`,
+            },
+            body: JSON.stringify({
+                name: element.name || "",
+                description: element.description || "",
+                image_url: element.image_url || "",
+                url: element.url || "",
+                url_slug: element.url_slug || "",
+            }),
+        })
+            .then((e) => e.json())
+            .then((data) => {
+                if (data) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+    } else {
+        loginDialog_DOM.classList.add("visible");
+        return false;
+    }
+};
+
 const validate = async () => {
-    return await fetch(`${ENDPOINT}/api/validate`, { method: "POST" })
-        .then((e) => e.json())
-        .then((data) => {
-            if (data) {
-                return data.valid;
-            }
-        });
+    return await fetch(`${ENDPOINT}/api/validate`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${getCookie("token")}`,
+        },
+    }).then((e) => {
+        if (e.status == 200) {
+            return true;
+        } else {
+            return false;
+        }
+    });
 };
 
 const save = async (element) => {
     if (await validate()) {
-        fetch(`${ENDPOINT}/api/update/creations/${element.url_slug}`, {
+        fetch(`${ENDPOINT}/api/update/creations/${element.id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${getCookie("token")}`,
             },
             body: JSON.stringify({
                 name: element.name,
@@ -199,6 +257,7 @@ const save = async (element) => {
     }
 };
 
+///--- Load portfolio ---///
 fetch(`${ENDPOINT}/api/get/creations`)
     .then((e) => e.json())
     .then((data) => {
@@ -211,12 +270,13 @@ fetch(`${ENDPOINT}/api/get/creations`)
 
 ///--- Event Listeners ---///
 // Admin
-adminPortfolioAddBtn_DOM.addEventListener("click", (e) => {
+adminPortfolioAddBtn_DOM.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    const clone_element = templateProject.content.cloneNode(true);
-
-    creationsContainer_DOM.appendChild(clone_element);
+    if (await insert()) {
+        const clone_element = templateProject.content.cloneNode(true);
+        creationsContainer_DOM.appendChild(clone_element);
+    }
 });
 
 // Login

@@ -6,6 +6,7 @@ const {
 const express = require("express");
 const nodemailer = require("nodemailer");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 
 let databaseConnection = getDatabaseConnection();
 
@@ -24,6 +25,27 @@ const credentials = [
         password: process.env.ADMIN_PASSWORD,
     },
 ];
+
+// Authenticate token
+const authenticateToken = (req, res, next) => {
+    // Gather the jwt access token from the request header
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+
+    if (token == null) {
+        return res.sendStatus(401);
+    }
+
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+        if (err) {
+            console.log(err);
+            return res.sendStatus(403);
+        }
+
+        req.user = user;
+        next();
+    });
+};
 
 // Check if database connection is valid
 const validateDatabase = () => {
@@ -62,9 +84,16 @@ router.post("/login", (req, res) => {
                     req.body.username == credentials[i].username &&
                     req.body.password == credentials[i].password
                 ) {
-                    req.session.adminKey = true;
-
-                    res.status(200).json({ valid: req.session.adminKey });
+                    // Generate token
+                    res.status(200).json({
+                        valid: true,
+                        token: jwt.sign(
+                            { date: req.body.username },
+                            process.env.TOKEN_SECRET,
+                            { expiresIn: "1h" }
+                        ),
+                        expires: new Date().getTime() + 1000 * 60 * 60,
+                    });
                     return;
                 }
             }
@@ -95,20 +124,9 @@ router.post("/login", (req, res) => {
     }
 });
 
-// Admin logout
-router.get("/logout", (req, res) => {
-    req.session.adminKey = false;
-
-    res.redirect("/admin/login");
-});
-
-// Admin validation
-router.post("/validate", (req, res) => {
-    if (req.session.adminKey) {
-        res.json({ valid: true });
-    } else {
-        res.json({ valid: false });
-    }
+// Validation check
+router.post("/validate", authenticateToken, (req, res) => {
+    res.sendStatus(200);
 });
 
 // Email
@@ -179,20 +197,13 @@ router.get("/get/:type/:selector", (req, res) => {
 });
 
 // Delete single
-router.post("/delete/:type/:selector", (req, res) => {
-    if (!req.session.adminKey) {
-        res.status(400).json({
-            error: "You need to be an administrator to perform this action.",
-        });
-        return;
-    }
-
+router.post("/delete/:type/:selector", authenticateToken, (req, res) => {
     let query = "";
     if (req.params.type == "creations") {
         query =
             "DELETE FROM `" +
             req.params.type +
-            '` WHERE url_slug="' +
+            '` WHERE id="' +
             req.params.selector +
             '"';
     } else if (req.params.type == "knowledge") {
@@ -218,14 +229,7 @@ router.post("/delete/:type/:selector", (req, res) => {
 });
 
 // Insert
-router.post("/insert/:type", (req, res) => {
-    if (!req.session.adminKey) {
-        res.status(400).json({
-            error: "You need to be an administrator to perform this action.",
-        });
-        return;
-    }
-
+router.post("/insert/:type", authenticateToken, (req, res) => {
     let query = ``;
     if (req.params.type == "creations") {
         query = `INSERT INTO \`${
@@ -261,14 +265,7 @@ router.post("/insert/:type", (req, res) => {
 });
 
 // Update
-router.post("/update/:type/:selector", (req, res) => {
-    if (!req.session.adminKey) {
-        res.status(400).json({
-            error: "You need to be an administrator to perform this action.",
-        });
-        return;
-    }
-
+router.post("/update/:type/:selector", authenticateToken, (req, res) => {
     let query = "";
     if (req.params.type == "creations") {
         query = `UPDATE \`${req.params.type}\` SET 
@@ -277,7 +274,7 @@ router.post("/update/:type/:selector", (req, res) => {
         \`image_url\`='${encodeURIComponent(req.body.image_url)}',
         \`url\`='${encodeURIComponent(req.body.url)}',
         \`description\`='${encodeURIComponent(req.body.description)}' 
-        WHERE url_slug='${req.params.selector}'`;
+        WHERE id='${req.params.selector}'`;
     } else if (req.params.type == "knowledge") {
         query = `UPDATE \`${req.params.type}\` SET 
         \`name\`='${encodeURIComponent(req.body.name)}',

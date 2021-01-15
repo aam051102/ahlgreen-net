@@ -3,6 +3,10 @@ require("dotenv").config({
     path: `.env.${process.env.NODE_ENV}`,
 });
 
+// Token secret
+process.env.TOKEN_SECRET = require("crypto").randomBytes(64).toString("hex");
+
+// Server setup
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
