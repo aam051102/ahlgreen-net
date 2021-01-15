@@ -4,26 +4,13 @@ const path = require("path");
 const fs = require("fs");
 
 // Routes
-router.get(
-    [
-        "/",
-        /*"/404",
-        "/index",
-        "/portfolio/:url_slug",
-        "/portfolio",
-        "/contact",
-        "/admin",
-        "/admin/knowledge",
-        "/admin/creations",
-        "/admin/login",
-        "/admin/logout",*/
-    ],
-    (req, res) => {
-        res.sendFile(
-            path.join(__dirname, "..", "views/index/dist", "index.html")
-        );
-    }
-);
+router.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "views/index/dist", "index.html"));
+});
+
+router.get("/admin", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "views/index/dist", "admin"));
+});
 
 // File access fallback
 router.get("/*", (req, res) => {

@@ -1,0 +1,333 @@
+@import "reset";
+@import "variables";
+
+html,
+body {
+    font-size: 16px;
+    font-family: $body-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $title-font;
+}
+
+a {
+    color: #2b70d8;
+    border-bottom: 1px solid transparent;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+
+    &:hover {
+        cursor: pointer;
+        border-bottom-color: #2b70d8;
+    }
+}
+
+h1 {
+    font-weight: normal;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    margin: 0;
+    margin-right: -0.5em;
+    max-width: 100%;
+    font-size: 6vw;
+
+    @media screen and (max-width: 90rem) {
+        font-size: 9vw;
+    }
+
+    @media screen and (max-width: 45rem) {
+        font-size: 11vw;
+    }
+
+    @media screen and (max-width: 35rem) {
+        font-size: 14vw;
+        letter-spacing: 0.25em;
+        margin-right: -0.25em;
+    }
+
+    @media screen and (max-width: 25rem) {
+        font-size: 19vw;
+        letter-spacing: 0em;
+        margin-right: 0;
+    }
+}
+
+h2 {
+    font-family: $body-font;
+    font-weight: normal;
+    font-size: 1.75rem;
+    margin: 0;
+
+    @media screen and (max-width: 35rem) {
+        font-size: 8vw;
+    }
+}
+
+h4 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+h5 {
+    font-size: 1rem;
+    margin: 0;
+    color: #999;
+}
+
+label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: $title-font;
+    color: #999;
+    line-height: 1.5;
+    pointer-events: none;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 3px solid transparent;
+    user-select: none;
+}
+
+.forced-width {
+    margin: 0 auto;
+    max-width: 95ch;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.tight-forced-width {
+    margin: 0 auto;
+    max-width: 60ch;
+    width: 100%;
+}
+
+.form-container {
+    position: relative;
+
+    form {
+        text-align: right;
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out,
+            visibility 0.5s ease-in-out;
+
+        .input-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        input,
+        textarea {
+            background-color: transparent;
+            border: 1px solid #999;
+            border-radius: 5px;
+            padding: 0.5rem 2rem 0.5rem 1rem;
+            outline: none;
+            width: 100%;
+            color: $dark;
+            font-family: $title-font;
+            transition: border-color 0.25s ease;
+
+            &.invalid {
+                border-color: $red;
+            }
+
+            &[required] + label::after {
+                content: "*";
+                color: #db5e3f;
+                height: 1ch;
+                margin-top: 0.5em;
+                line-height: 100%;
+                transform: translateY(-0.25ch);
+            }
+
+            &:focus {
+                border-color: $dark;
+            }
+
+            &:focus + label,
+            &:valid + label {
+                font-size: 0;
+
+                &::after {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 10em;
+        }
+
+        button {
+            background-color: $medium;
+            font-family: $title-font;
+            border-radius: 5px;
+            color: #fff;
+            padding: 0.25rem 1rem;
+            outline: none;
+            border: 0;
+            border: 3px solid $medium;
+            transition: background-color 0.25s ease, color 0.25s ease;
+
+            &:hover {
+                background-color: transparent;
+                color: $medium;
+                cursor: pointer;
+            }
+        }
+
+        .flex {
+            .input-container {
+                width: 100%;
+
+                &:first-child {
+                    margin-right: 0.5rem;
+                }
+
+                &:last-child {
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+    }
+
+    .form-submitted {
+        position: absolute;
+        left: 0;
+        background-color: $medium;
+        border: 3px solid $medium;
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        outline: 0;
+        width: 100%;
+        color: #fff;
+        font-family: $title-font;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 100%;
+        top: 0;
+        background: transparent;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(3rem);
+    }
+
+    &.submitted {
+        form {
+            transform: translateY(3rem);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .form-submitted {
+            transition: transform 0.5s ease-in-out 0.5s,
+                opacity 0.5s ease-in-out 0.5s, visibility 0.5s ease-in-out 0.5s;
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.section-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    text-align: center;
+
+    h3 {
+        font-weight: normal;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+        max-width: 100%;
+        letter-spacing: 0.5em;
+        margin-right: -0.5em;
+    }
+
+    &::before {
+        content: "";
+        border-top: 1px solid $light-gray;
+        width: 100%;
+        margin-right: 2em;
+    }
+
+    &::after {
+        content: "";
+        border-top: 1px solid $light-gray;
+        width: 100%;
+        margin-left: 2em;
+    }
+
+    &.inverted {
+        color: #fff;
+
+        &::before {
+            border-color: rgba($light-gray, 0.25);
+        }
+
+        &::after {
+            border-color: rgba($light-gray, 0.25);
+        }
+    }
+}
+
+.skewed-list {
+    .skewed {
+        &:not(:last-child) {
+            margin-bottom: -2.5rem;
+        }
+
+        &:nth-of-type(even) {
+            background: #e1f2f9;
+
+            .project-wrapper {
+                flex-direction: row-reverse;
+
+                .project-section {
+                    margin-left: 0;
+                    margin-right: 2rem;
+                }
+            }
+        }
+    }
+}
+
+.navpoint {
+    position: absolute;
+    pointer-events: none;
+    margin-top: -$navbar-height;
+
+    @media screen and (max-width: 26rem) {
+        margin-top: 0;
+    }
+}
+
+.skewed {
+    position: relative;
+    padding: 8rem 0;
+    clip-path: polygon(0% 2.5rem, 100% 0%, 100% calc(100% - 2.5rem), 0% 100%);
+
+    @media screen and (max-width: 35rem) {
+        padding: 6rem 0;
+    }
+}
+
+.flex {
+    display: flex;
+}

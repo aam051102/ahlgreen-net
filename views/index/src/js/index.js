@@ -49,7 +49,7 @@ window.addEventListener("resize", () => {
     }, 250);
 });
 
-///--- Load Creations ---///
+///--- Load Portfolio ---///
 const testText = (text) => {
     return decodeURIComponent(text).replace(/>/g, "&gt;").replace(/</g, "&lt;");
 };
@@ -67,7 +67,7 @@ const processText = (text) => {
     return code;
 };
 
-fetch("https://ahlgreen.net/api/get/creations")
+fetch(`${ENDPOINT}/api/get/creations`)
     .then((e) => e.json())
     .then((data) => {
         creationsContainer_DOM.innerHTML = "";

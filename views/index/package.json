@@ -26,5 +26,6 @@
         "gulp-util": "^3.0.8",
         "gulp-zip": "^5.0.2",
         "node-sass": "^4.13.1"
-    }
+    },
+    "dependencies": {}
 }

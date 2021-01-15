@@ -1,0 +1,171 @@
+@import "variables";
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: transparent;
+    height: $navbar-height;
+    transition: background-color 0.25s ease;
+
+    nav {
+        padding: 0 1.5em;
+        color: #fff;
+        height: 100%;
+        transition: color 0.25s ease;
+
+        ul {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            font-family: $title-font;
+            font-weight: 400;
+            height: 100%;
+            transition: transform 0.3s ease-in-out;
+
+            li {
+                a {
+                    color: inherit;
+                    border: 0;
+                    padding: 1em 2em;
+                    pointer-events: all;
+                    line-height: 1;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    transition: background-color 0.25s ease;
+
+                    &:hover {
+                        background-color: #e1f2f922;
+                    }
+                }
+            }
+        }
+    }
+
+    &.inverse {
+        background: #fff;
+        box-shadow: 0 4px 20px 2px #0002;
+
+        @supports (filter: drop-shadow(0 0 0 #000)) {
+            filter: drop-shadow(0 4px 20px #0002);
+            box-shadow: none;
+        }
+
+        nav {
+            color: #000;
+
+            ul {
+                li {
+                    a {
+                        &:hover {
+                            background-color: #e1f2f9aa;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .mobile-nav {
+        display: none;
+    }
+
+    #mobile-nav-checkbox {
+        display: none;
+    }
+
+    .page-cover {
+        background: rgba($dark, 0.5);
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 70;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    @media screen and (max-width: 26rem) {
+        background: transparent !important;
+        min-height: auto;
+        height: auto;
+
+        &.inverse {
+            nav {
+                .mobile-nav {
+                    color: #000;
+                }
+            }
+        }
+
+        nav {
+            .mobile-nav {
+                display: inline-block;
+                position: fixed;
+                top: 0;
+                right: 0;
+                z-index: 150;
+                pointer-events: all;
+                color: #fff;
+                font-weight: 900;
+                font-size: 1.5rem;
+                line-height: 1;
+                vertical-align: bottom;
+                text-align: center;
+                box-sizing: content-box;
+                width: 2rem;
+                height: 2rem;
+                margin-top: 1rem;
+                margin-right: 1rem;
+                transition: color 0.25s ease;
+            }
+
+            #mobile-nav-checkbox {
+                &:checked {
+                    & + .mobile-nav {
+                        color: #000;
+
+                        & + ul {
+                            transform: translateX(0);
+                            pointer-events: all;
+
+                            & + .page-cover {
+                                opacity: 1;
+                                visibility: visible;
+                                pointer-events: all;
+                            }
+                        }
+                    }
+                }
+            }
+
+            ul {
+                position: fixed;
+                right: 0;
+                width: 10rem;
+                background-color: #fff;
+                height: 100vh;
+                z-index: 100;
+                color: $dark;
+                transform: translateX(100%);
+                display: block;
+                padding-top: $navbar-height;
+
+                li {
+                    a {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

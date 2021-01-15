@@ -1,0 +1,43 @@
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #7777;
+    z-index: 999999;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.25s ease, opacity 0.25s ease;
+
+    .dialog {
+        box-shadow: 0 4px 20px 2px #0002;
+        background-color: #fff;
+        max-height: 100%;
+        padding: 1em;
+        border-radius: 5px;
+        max-width: 100%;
+        width: 30rem;
+        min-height: 10rem;
+        overflow: auto;
+        transform: translateY(-10rem);
+        transition: transform 0.25s ease;
+
+        .dialog-title {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+
+        .dialog {
+            transform: translateY(0);
+        }
+    }
+}

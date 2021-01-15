@@ -68,7 +68,18 @@ function js(next) {
     gulp.src("./src/js/**/*.js")
         .pipe(
             babel({
-                presets: ["@babel/env"],
+                presets: [
+                    [
+                        "@babel/env",
+                        {
+                            targets: [
+                                "last 2 versions",
+                                "not dead",
+                                "not < 2%",
+                            ],
+                        },
+                    ],
+                ],
             }).on("error", (err) => console.log(err))
         )
         .pipe(
