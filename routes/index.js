@@ -9,7 +9,9 @@ router.get("/", (req, res) => {
 });
 
 router.get("/admin", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "views/index/dist", "admin"));
+    res.sendFile(
+        path.join(__dirname, "..", "views/index/dist", "admin", "index.html")
+    );
 });
 
 // File access fallback

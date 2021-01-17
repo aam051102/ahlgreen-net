@@ -47,6 +47,11 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
+// Sanitize MySQL input
+const sanitize = (text) => {
+    return encodeURIComponent(text).replace(/'|"|`/g, "\\$&");
+};
+
 // Check if database connection is valid
 const validateDatabase = () => {
     databaseConnection.query("SELECT test FROM system", (err, resp) => {
@@ -158,7 +163,7 @@ router.get("/get/:type", (req, res) => {
     let query = "";
 
     if (req.params.type == "creations" || req.params.type == "knowledge") {
-        query = `SELECT * FROM \`${req.params.type}\``;
+        query = `SELECT * FROM \`${sanitize(req.params.type)}\``;
     } else {
         res.status(400).json({ error: "Invalid type." });
         return;
@@ -178,9 +183,13 @@ router.get("/get/:type", (req, res) => {
 router.get("/get/:type/:selector", (req, res) => {
     let query = "";
     if (req.params.type == "creations") {
-        query = `SELECT * FROM \`${req.params.type}\` WHERE url_slug='${req.params.selector}'`;
+        query = `SELECT * FROM \`${sanitize(
+            req.params.type
+        )}\` WHERE id='${sanitize(req.params.selector)}'`;
     } else if (req.params.type == "knowledge") {
-        query = `SELECT * FROM \`${req.params.type}\` WHERE id='${req.params.selector}'`;
+        query = `SELECT * FROM \`${sanitize(
+            req.params.type
+        )}\` WHERE id='${sanitize(req.params.selector)}'`;
     } else {
         res.status(400).json({ error: "Invalid type." });
         return;
@@ -200,19 +209,13 @@ router.get("/get/:type/:selector", (req, res) => {
 router.post("/delete/:type/:selector", authenticateToken, (req, res) => {
     let query = "";
     if (req.params.type == "creations") {
-        query =
-            "DELETE FROM `" +
-            req.params.type +
-            '` WHERE id="' +
-            req.params.selector +
-            '"';
+        query = `DELETE FROM \`${sanitize(
+            req.params.type
+        )}\` WHERE id="${sanitize(req.params.selector)}";`;
     } else if (req.params.type == "knowledge") {
-        query =
-            "DELETE FROM `" +
-            req.params.type +
-            "` WHERE id=" +
-            req.params.selector +
-            "";
+        query = `DELETE FROM \`${sanitize(
+            req.params.type
+        )}\` WHERE id="${sanitize(req.params.selector)}";`;
     } else {
         res.status(400).json({ error: "Invalid type." });
         return;
@@ -232,29 +235,28 @@ router.post("/delete/:type/:selector", authenticateToken, (req, res) => {
 router.post("/insert/:type", authenticateToken, (req, res) => {
     let query = ``;
     if (req.params.type == "creations") {
-        query = `INSERT INTO \`${
+        query = `INSERT INTO \`${sanitize(
             req.params.type
-        }\` (\`name\`, \`url_slug\`, \`image_url\`, \`url\`, \`description\`) VALUES (
-            '${encodeURIComponent(req.body.name)}',
-            '${encodeURIComponent(req.body.url_slug)}',
-            '${encodeURIComponent(req.body.image_url)}',
-            '${encodeURIComponent(req.body.url)}',
-            '${encodeURIComponent(req.body.description)}'
+        )}\` (\`name\`, \`image_url\`, \`url\`, \`description\`) VALUES (
+            '${sanitize(req.body.name)}',
+            '${sanitize(req.body.image_url)}',
+            '${sanitize(req.body.url)}',
+            '${sanitize(req.body.description)}'
             )`;
     } else if (req.params.type == "knowledge") {
-        query = `INSERT INTO \`${
+        query = `INSERT INTO \`${sanitize(
             req.params.type
-        }\` (\`name\`, \`percentage\`, \`experience\`) VALUES (
-            '${encodeURIComponent(req.body.name)}',
-            '${req.body.percentage}',
-            '${req.body.experience}'
+        )}\` (\`name\`, \`percentage\`, \`experience\`) VALUES (
+            '${sanitize(req.body.name)}',
+            '${sanitize(req.body.percentage)}',
+            '${sanitize(req.body.experience)}'
             )`;
     } else {
         res.status(400).json({ error: "Invalid type." });
         return;
     }
 
-    databaseConnection.query(query, (err, resp, fields) => {
+    databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
             return;
@@ -268,19 +270,18 @@ router.post("/insert/:type", authenticateToken, (req, res) => {
 router.post("/update/:type/:selector", authenticateToken, (req, res) => {
     let query = "";
     if (req.params.type == "creations") {
-        query = `UPDATE \`${req.params.type}\` SET 
-        \`name\`='${encodeURIComponent(req.body.name)}',
-        \`url_slug\`='${encodeURIComponent(req.body.url_slug)}',
-        \`image_url\`='${encodeURIComponent(req.body.image_url)}',
-        \`url\`='${encodeURIComponent(req.body.url)}',
-        \`description\`='${encodeURIComponent(req.body.description)}' 
-        WHERE id='${req.params.selector}'`;
+        query = `UPDATE \`${sanitize(req.params.type)}\` SET 
+        \`name\`='${sanitize(req.body.name)}',
+        \`image_url\`='${sanitize(req.body.image_url)}',
+        \`url\`='${sanitize(req.body.url)}',
+        \`description\`='${sanitize(req.body.description)}' 
+        WHERE id="${sanitize(req.params.selector)}";`;
     } else if (req.params.type == "knowledge") {
-        query = `UPDATE \`${req.params.type}\` SET 
-        \`name\`='${encodeURIComponent(req.body.name)}',
-        \`percentage\`='${req.body.percentage}',
-        \`experience\`='${req.body.experience}'
-        WHERE id='${encodeURIComponent(req.params.selector)}'`;
+        query = `UPDATE \`${sanitize(req.params.type)}\` SET 
+        \`name\`='${sanitize(req.body.name)}',
+        \`percentage\`='${sanitize(req.body.percentage)}',
+        \`experience\`='${sanitize(req.body.experience)}'
+        WHERE id="${sanitize(req.params.selector)}";`;
     } else {
         res.status(400).json({ error: "Invalid type." });
         return;

@@ -98,23 +98,19 @@ const createElement = (element) => {
     // Save button
     clone_element
         .querySelector(".template-project-save-btn")
-        .addEventListener("click", async (e) => {
+        .addEventListener("click", (e) => {
             e.preventDefault();
 
-            if (await validate()) {
-                const element_this = {
-                    name: projectTitle_element.value,
-                    stack: projectStack_element.value,
-                    description: projectDescription_element.value,
-                    image_url: projectImageUrl_element.value,
-                    url: projectUrl_element.value,
-                    id: element.id,
-                };
+            const element_this = {
+                name: projectTitle_element.value,
+                stack: projectStack_element.value,
+                description: projectDescription_element.value,
+                image_url: projectImageUrl_element.value,
+                url: projectUrl_element.value,
+                id: element.id,
+            };
 
-                save(element_this);
-            } else {
-                loginDialog_DOM.classList.add("visible");
-            }
+            save(element_this);
         });
 
     // Remove button
@@ -175,95 +171,101 @@ const createElement = (element) => {
     creationsContainer_DOM.appendChild(clone_element);
 };
 
-const remove = async (element) => {
-    if (await validate()) {
-        fetch(`${ENDPOINT}/api/delete/creations/${element.id}`, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${getCookie("token")}`,
-            },
-        })
-            .then((e) => e.json())
-            .then((data) => {
-                document.querySelector(`#project-${element.id}`).remove();
-            });
-    } else {
-        loginDialog_DOM.classList.add("visible");
-    }
-};
-
-const insert = async (element) => {
-    element = element || {};
-
-    if (await validate()) {
-        fetch(`${ENDPOINT}/api/insert/creations`, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${getCookie("token")}`,
-            },
-            body: JSON.stringify({
-                name: element.name || "",
-                description: element.description || "",
-                image_url: element.image_url || "",
-                url: element.url || "",
-                url_slug: element.url_slug || "",
-            }),
-        })
-            .then((e) => e.json())
-            .then((data) => {
-                if (data) {
-                    const clone_element = templateProject.content.cloneNode(
-                        true
-                    );
-                    clone_element.querySelector(
-                        ".skewed"
-                    ).id = `project-${data.id}`;
-
-                    creationsContainer_DOM.appendChild(clone_element);
-                }
-            });
-    } else {
-        loginDialog_DOM.classList.add("visible");
-        return false;
-    }
-};
-
-const validate = async () => {
-    return await fetch(`${ENDPOINT}/api/validate`, {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${getCookie("token")}`,
-        },
-    }).then((e) => {
-        if (e.status == 200) {
-            return true;
+const remove = (element) => {
+    validate().then((res) => {
+        if (res) {
+            fetch(`${ENDPOINT}/api/delete/creations/${element.id}`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${getCookie("token")}`,
+                },
+            })
+                .then((e) => e.json())
+                .then((data) => {
+                    document.querySelector(`#project-${element.id}`).remove();
+                });
         } else {
-            return false;
+            loginDialog_DOM.classList.add("visible");
         }
     });
 };
 
-const save = async (element) => {
-    if (await validate()) {
-        fetch(`${ENDPOINT}/api/update/creations/${element.id}`, {
+const insert = (element) => {
+    element = element || {};
+
+    validate().then((res) => {
+        if (res) {
+            fetch(`${ENDPOINT}/api/insert/creations`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: JSON.stringify({
+                    name: element.name || "",
+                    description: element.description || "",
+                    image_url: element.image_url || "",
+                    url: element.url || "",
+                }),
+            })
+                .then((e) => e.json())
+                .then((data) => {
+                    if (data) {
+                        createElement({
+                            name: "none",
+                            description: "none",
+                            image_url: "none",
+                            url: "none",
+                            id: data.id,
+                        });
+                    }
+                });
+        } else {
+            loginDialog_DOM.classList.add("visible");
+        }
+    });
+};
+
+const validate = () => {
+    return new Promise((resolve, reject) =>
+        fetch(`${ENDPOINT}/api/validate`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: `Bearer ${getCookie("token")}`,
             },
-            body: JSON.stringify({
-                name: element.name,
-                description: element.description,
-                image_url: element.image_url,
-                url: element.url,
-                url_slug: element.url_slug,
-            }),
+        }).then((e) => {
+            if (e.status == 200) {
+                resolve(true);
+                return true;
+            } else {
+                resolve(false);
+                return false;
+            }
         })
-            .then((e) => e.json())
-            .then((data) => {});
-    } else {
-        loginDialog_DOM.classList.add("visible");
-    }
+    );
+};
+
+const save = (element) => {
+    validate().then((res) => {
+        if (res) {
+            fetch(`${ENDPOINT}/api/update/creations/${element.id}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getCookie("token")}`,
+                },
+                body: JSON.stringify({
+                    name: element.name,
+                    description: element.description,
+                    image_url: element.image_url,
+                    url: element.url,
+                }),
+            })
+                .then((e) => e.json())
+                .then((data) => {});
+        } else {
+            loginDialog_DOM.classList.add("visible");
+        }
+    });
 };
 
 ///--- Load portfolio ---///
