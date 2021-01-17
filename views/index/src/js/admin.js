@@ -74,8 +74,10 @@ const login = () => {
 
 const createElement = (element) => {
     const name = testText(element.name || "");
+    const id = testText(element.id || 0);
 
     const clone_element = templateProject.content.cloneNode(true);
+    clone_element.querySelector(".skewed").id = `project-${element.id}`;
 
     const projectTitle_element = clone_element.querySelector(
         ".template-project-title"
@@ -132,43 +134,43 @@ const createElement = (element) => {
 
     // Title
     projectTitle_element.value = name;
-    projectTitle_element.id = `project-${name}-title`;
+    projectTitle_element.id = `project-${id}-title`;
 
     clone_element.querySelector(
         ".template-project-title-label"
-    ).for = `project-${name}-title`;
+    ).for = `project-${id}-title`;
 
     // Stack
     projectStack_element.value = testText(element.stack || "");
-    projectStack_element.id = `project-${name}-stack`;
+    projectStack_element.id = `project-${id}-stack`;
 
     clone_element.querySelector(
         ".template-project-stack-label"
-    ).for = `project-${name}-stack`;
+    ).for = `project-${id}-stack`;
 
     // Description
     projectDescription_element.value = testText(element.description || "");
-    projectDescription_element.id = `project-${name}-description`;
+    projectDescription_element.id = `project-${id}-description`;
 
     clone_element.querySelector(
         ".template-project-description-label"
-    ).for = `project-${name}-description`;
+    ).for = `project-${id}-description`;
 
     // Image URL
     projectImageUrl_element.value = testText(element.image_url || "");
-    projectImageUrl_element.id = `project-${name}-image-url`;
+    projectImageUrl_element.id = `project-${id}-image-url`;
 
     clone_element.querySelector(
         ".template-project-image-url-label"
-    ).for = `project-${name}-image-url`;
+    ).for = `project-${id}-image-url`;
 
     // URL
     projectUrl_element.value = testText(element.url || "");
-    projectUrl_element.id = `project-${name}-url`;
+    projectUrl_element.id = `project-${id}-url`;
 
     clone_element.querySelector(
         ".template-project-url-label"
-    ).for = `project-${name}-url`;
+    ).for = `project-${id}-url`;
 
     creationsContainer_DOM.appendChild(clone_element);
 };
@@ -182,7 +184,9 @@ const remove = async (element) => {
             },
         })
             .then((e) => e.json())
-            .then((data) => {});
+            .then((data) => {
+                document.querySelector(`#project-${element.id}`).remove();
+            });
     } else {
         loginDialog_DOM.classList.add("visible");
     }
@@ -192,7 +196,7 @@ const insert = async (element) => {
     element = element || {};
 
     if (await validate()) {
-        return await fetch(`${ENDPOINT}/api/insert/creations`, {
+        fetch(`${ENDPOINT}/api/insert/creations`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${getCookie("token")}`,
@@ -208,9 +212,14 @@ const insert = async (element) => {
             .then((e) => e.json())
             .then((data) => {
                 if (data) {
-                    return true;
-                } else {
-                    return false;
+                    const clone_element = templateProject.content.cloneNode(
+                        true
+                    );
+                    clone_element.querySelector(
+                        ".skewed"
+                    ).id = `project-${data.id}`;
+
+                    creationsContainer_DOM.appendChild(clone_element);
                 }
             });
     } else {
@@ -270,13 +279,10 @@ fetch(`${ENDPOINT}/api/get/creations`)
 
 ///--- Event Listeners ---///
 // Admin
-adminPortfolioAddBtn_DOM.addEventListener("click", async (e) => {
+adminPortfolioAddBtn_DOM.addEventListener("click", (e) => {
     e.preventDefault();
 
-    if (await insert()) {
-        const clone_element = templateProject.content.cloneNode(true);
-        creationsContainer_DOM.appendChild(clone_element);
-    }
+    insert();
 });
 
 // Login

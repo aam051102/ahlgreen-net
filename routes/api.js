@@ -254,13 +254,13 @@ router.post("/insert/:type", authenticateToken, (req, res) => {
         return;
     }
 
-    databaseConnection.query(query, (err, resp) => {
+    databaseConnection.query(query, (err, resp, fields) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
             return;
         }
 
-        res.status(200).json(resp);
+        res.status(200).json({ id: resp.insertId });
     });
 });
 
