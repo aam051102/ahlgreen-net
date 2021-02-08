@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(cors());
 
 // Express-Session
-let { sessionStore } = require("./database");
+let { sessionStore, mongoClient } = require("./database");
 
 if (process.env.NODE_ENV == "production") app.set("trust proxy", true);
 app.use(
@@ -66,6 +66,10 @@ app.use("/", require("./routes/index"));
 sessionStore.clear((err) => {
     if (err) console.error(err);
     console.log("Cleared session storage.");
+});
+
+process.on("exit", () => {
+    mongoClient.close();
 });
 
 // Listen on port

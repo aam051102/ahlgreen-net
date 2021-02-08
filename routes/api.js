@@ -2,6 +2,7 @@ const {
     getDatabaseConnection,
     connectToDatabase,
     sessionStore,
+    mongoClient,
 } = require("../database");
 const express = require("express");
 const nodemailer = require("nodemailer");
@@ -295,6 +296,38 @@ router.post("/update/:type/:selector", authenticateToken, (req, res) => {
 
         res.status(200).json(resp);
     });
+});
+
+/// Apps
+// 1 - Homestuck Search Engine
+router.get("/app/1/tags", async (req, res) => {
+    try {
+        //await mongoClient.connect();
+
+        const db = await mongoClient.db("homestuck");
+        const collection = await db.collection("tag");
+        res.status(200).json(await collection.find({}).toArray());
+    } catch (e) {
+        res.status(500).json({ error: e });
+    } finally {
+        //await mongoClient.close();
+    }
+});
+
+router.post("/app/1/search", async (req, res) => {
+    try {
+        //await mongoClient.connect();
+
+        const db = await mongoClient.db("homestuck");
+        const collection = await db.collection("asset");
+        res.status(200).json(
+            await collection.find({ tags: { $all: req.body.tags } }).toArray()
+        );
+    } catch (e) {
+        res.status(500).json({ error: e });
+    } finally {
+        //await mongoClient.close();
+    }
 });
 
 module.exports = router;

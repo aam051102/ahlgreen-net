@@ -8,6 +8,12 @@ router.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "views/index/dist", "index.html"));
 });
 
+router.get("/app/hsse", (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "..", "views/app/hsse/build", "index.html")
+    );
+});
+
 router.get("/admin", (req, res) => {
     res.sendFile(
         path.join(__dirname, "..", "views/index/dist", "admin", "index.html")
@@ -15,6 +21,21 @@ router.get("/admin", (req, res) => {
 });
 
 // File access fallback
+router.get("/app/hsse/*", (req, res) => {
+    const filePath = path.join(
+        __dirname,
+        "..",
+        "views",
+        req.originalUrl.replace("app/hsse", "app/hsse/build")
+    );
+
+    if (fs.existsSync(filePath)) {
+        res.status(200).sendFile(filePath);
+    } else {
+        res.status(404).redirect(`/404`);
+    }
+});
+
 router.get("/*", (req, res) => {
     const filePath = path.join(
         __dirname,

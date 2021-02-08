@@ -13,6 +13,7 @@
         "express-mysql-session": "^2.1.4",
         "express-session": "^1.17.1",
         "jsonwebtoken": "^8.5.1",
+        "mongodb": "^3.6.4",
         "mysql": "^2.18.1",
         "node": "^14.4.0",
         "nodemailer": "^6.4.11",
@@ -20,15 +21,11 @@
         "parcel-bundler": "^1.12.4",
         "passport": "^0.4.1"
     },
-    "devDependencies": {
-        "jest": "^26.4.2"
-    },
     "scripts": {
         "prod": "concurrently \"npm:build\" \"cross-env NODE_ENV=production node server.js\"",
         "build": "cd views/index && npm run build",
         "watch": "cd views/index && npm run dev",
-        "dev": "concurrently \"npm:watch\" \"cross-env NODE_ENV=development node server.js\"",
-        "test": "concurrently \"jest --testPathPattern=tests_node\" \"cd views/index && npm run-script test\" --loglevel verbose"
+        "dev": "concurrently \"npm:watch\" \"cross-env NODE_ENV=development node server.js\""
     },
     "keywords": [],
     "author": "MadCreativity",

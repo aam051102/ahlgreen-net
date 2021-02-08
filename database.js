@@ -1,7 +1,11 @@
 const mysql = require("mysql");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
-const { connect } = require("http2");
+const { MongoClient } = require("mongodb");
+
+// MongoDB connection
+const mongoClient = new MongoClient(process.env.MONGODB_CONNECTION_STRING);
+mongoClient.connect();
 
 // MySQL database connection
 let databaseConnection;
@@ -43,4 +47,5 @@ module.exports = {
     getDatabaseConnection,
     connectToDatabase,
     sessionStore,
+    mongoClient,
 };
