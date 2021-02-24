@@ -9,9 +9,14 @@ router.get("/", (req, res) => {
 });
 
 router.get("/app/hsse", (req, res) => {
-    res.sendFile(
-        path.join(__dirname, "..", "views/app/hsse/build", "index.html")
-    );
+    if(req.originalUrl.endsWith("/")) {
+        res.sendFile(
+            path.join(__dirname, "..", "views/app/hsse/build", "index.html")
+        );
+    } else {
+        res.set("location", "https://ahlgreen.net/app/hsse/");
+        res.status(301).send();
+    }
 });
 
 router.get("/admin", (req, res) => {
