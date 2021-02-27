@@ -4,7 +4,9 @@ const MySQLStore = require("express-mysql-session")(session);
 const { MongoClient } = require("mongodb");
 
 // MongoDB connection
-const mongoClient = new MongoClient(process.env.MONGODB_CONNECTION_STRING);
+const mongoClient = new MongoClient(process.env.MONGODB_CONNECTION_STRING, {
+    useUnifiedTopology: true,
+});
 mongoClient.connect();
 
 // MySQL database connection

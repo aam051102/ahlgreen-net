@@ -302,31 +302,41 @@ router.post("/update/:type/:selector", authenticateToken, (req, res) => {
 // 1 - Homestuck Search Engine
 router.get("/app/1/tags", async (req, res) => {
     try {
-        //await mongoClient.connect();
-
         const db = await mongoClient.db("homestuck");
         const collection = await db.collection("tag");
         res.status(200).json(await collection.find({}).toArray());
     } catch (e) {
         res.status(500).json({ error: e });
-    } finally {
-        //await mongoClient.close();
     }
 });
 
 router.post("/app/1/search", async (req, res) => {
     try {
-        //await mongoClient.connect();
-
         const db = await mongoClient.db("homestuck");
         const collection = await db.collection("asset");
-        res.status(200).json(
-            await collection.find({ tags: { $all: req.body.tags } }).toArray()
-        );
+
+        let searchObj = {
+            tags: { $all: req.body.tags },
+        };
+
+        let pageRanges = req.body.pageRanges;
+
+        if (pageRanges.length > 0) {
+            searchObj["$or"] = [];
+        }
+
+        for (let i = 0; i < pageRanges.length; i++) {
+            searchObj["$or"].push({
+                $range: [
+                    parseInt(pageRanges[i][0]),
+                    parseInt(pageRanges[i][1]),
+                ],
+            });
+        }
+
+        res.status(200).json(await collection.find(searchObj).toArray());
     } catch (e) {
         res.status(500).json({ error: e });
-    } finally {
-        //await mongoClient.close();
     }
 });
 
