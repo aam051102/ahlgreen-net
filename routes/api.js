@@ -55,7 +55,7 @@ const sanitize = (text) => {
 
 // Check if database connection is valid
 const validateDatabase = () => {
-    databaseConnection.query("SELECT test FROM system", (err, resp) => {
+    databaseConnection.query("SELECT test FROM system", (err) => {
         if (err) {
             console.log("Reperformed database handshake.");
             databaseConnection = connectToDatabase();
@@ -74,8 +74,6 @@ setInterval(validateDatabase, 1000 * 60 * 60 * 24 * 14);
 // Routes
 // Admin login
 router.post("/login", (req, res) => {
-    let sess = req.session;
-
     if (
         req.session.adminLocked == undefined ||
         req.session.adminLocked == false
@@ -131,7 +129,7 @@ router.post("/login", (req, res) => {
 });
 
 // Validation check
-router.post("/validate", authenticateToken, (req, res) => {
+router.post("/validate", authenticateToken, (_, res) => {
     res.sendStatus(200);
 });
 
@@ -300,11 +298,48 @@ router.post("/update/:type/:selector", authenticateToken, (req, res) => {
 
 /// Apps
 // 1 - Homestuck Search Engine
-router.get("/app/1/tags", async (req, res) => {
+router.get("/app/1/tags", async (_, res) => {
     try {
-        const db = await mongoClient.db("homestuck");
-        const collection = await db.collection("tag");
+        const db = mongoClient.db("homestuck");
+        const collection = db.collection("tag");
         res.status(200).json(await collection.find({}).toArray());
+    } catch (e) {
+        res.status(500).json({ error: e });
+    }
+});
+
+// DANGEROUS DEBUGGING FUNCTION
+// TODO: REMOVE AFTER MODIFYING DATABASE
+router.get("/app/1/debug", async (_, res) => {
+    try {
+        const db = mongoClient.db("homestuck");
+        const collection = db.collection("asset");
+
+        const items = await collection.find().toArray();
+        let ob = [];
+
+        for (let i = 0; i < items.length; i++) {
+            ob.push({
+                info: await collection
+                    .updateOne(
+                        { content: items[i].content },
+                        {
+                            $set: {
+                                page: parseInt(
+                                    items[i].url.substr(
+                                        items[i].url.lastIndexOf("/") + 1
+                                    )
+                                ),
+                            },
+                        }
+                    )
+                    .then((e) => e.result),
+            });
+
+            ob.push(items[i]);
+        }
+
+        res.status(200).json({ test: ob, items: items });
     } catch (e) {
         res.status(500).json({ error: e });
     }
@@ -312,26 +347,36 @@ router.get("/app/1/tags", async (req, res) => {
 
 router.post("/app/1/search", async (req, res) => {
     try {
-        const db = await mongoClient.db("homestuck");
-        const collection = await db.collection("asset");
+        const db = mongoClient.db("homestuck");
+        const collection = db.collection("asset");
 
-        let searchObj = {
-            tags: { $all: req.body.tags },
-        };
+        let searchObj = {};
 
-        let pageRanges = req.body.pageRanges;
-
-        if (pageRanges.length > 0) {
-            searchObj["$or"] = [];
+        // Tags
+        let tags = req.body.tags;
+        if (tags && tags.length > 0) {
+            searchObj.tags = { $all: tags };
         }
 
-        for (let i = 0; i < pageRanges.length; i++) {
-            searchObj["$or"].push({
-                $range: [
-                    parseInt(pageRanges[i][0]),
-                    parseInt(pageRanges[i][1]),
-                ],
-            });
+        // Page ranges
+        let pageRanges = req.body.ranges;
+        if (pageRanges && pageRanges.length > 0) {
+            /*if (pageRanges.length > 0) {
+                searchObj["$or"] = [];
+            }
+
+            for (let i = 0; i < pageRanges.length; i++) {
+                searchObj["$or"].push({
+                    page: {
+                        $gte: parseInt(pageRanges[i][0]),
+                        $lte: parseInt(pageRanges[i][1]),
+                    },
+                });
+            }*/
+            searchObj.page = {
+                $gte: parseInt(pageRanges[0][0]),
+                $lte: parseInt(pageRanges[0][1]),
+            };
         }
 
         res.status(200).json(await collection.find(searchObj).toArray());
