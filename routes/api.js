@@ -361,7 +361,7 @@ router.post("/app/1/search", async (req, res) => {
         // Page ranges
         let pageRanges = req.body.ranges;
         if (pageRanges && pageRanges.length > 0) {
-            /*if (pageRanges.length > 0) {
+            if (pageRanges.length > 0) {
                 searchObj["$or"] = [];
             }
 
@@ -372,11 +372,7 @@ router.post("/app/1/search", async (req, res) => {
                         $lte: parseInt(pageRanges[i][1]),
                     },
                 });
-            }*/
-            searchObj.page = {
-                $gte: parseInt(pageRanges[0][0]),
-                $lte: parseInt(pageRanges[0][1]),
-            };
+            }
         }
 
         res.status(200).json(await collection.find(searchObj).toArray());
