@@ -54,13 +54,17 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Set static folder
-app.use(express.static(path.join(__dirname, "build")));
+// Set static folders
 app.use("/public", express.static(path.join(__dirname, "public")));
+app.use(
+    "/app/hsse",
+    express.static(path.join(__dirname, "views/app/hsse/build"))
+);
+app.use("/", express.static(path.join(__dirname, "views/index/dist")));
+app.use(express.static(path.join(__dirname, "build")));
 
 // Routes
 app.use("/api", require("./routes/api"));
-app.use("/", require("./routes/index"));
 
 // Clear session store
 sessionStore.clear((err) => {

@@ -121,6 +121,7 @@ gulp.task("dev", function (next) {
     connect.server({
         livereload: true,
         root: "dist",
+        silent: true,
     });
 
     next();

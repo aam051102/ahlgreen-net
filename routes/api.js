@@ -310,7 +310,7 @@ router.get("/app/1/tags", async (_, res) => {
 
 // DANGEROUS DEBUGGING FUNCTION
 // TODO: REMOVE AFTER MODIFYING DATABASE
-router.get("/app/1/debug", async (_, res) => {
+/*router.get("/app/1/debug", async (_, res) => {
     try {
         const db = mongoClient.db("homestuck");
         const collection = db.collection("asset");
@@ -343,7 +343,7 @@ router.get("/app/1/debug", async (_, res) => {
     } catch (e) {
         res.status(500).json({ error: e });
     }
-});
+});*/
 
 router.post("/app/1/search", async (req, res) => {
     try {
