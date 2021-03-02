@@ -3,6 +3,6 @@ dist/
 node_modules/
 .env.*
 sslcert/
-public/
+./public/
 *.test
 package-lock.json
