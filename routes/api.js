@@ -381,4 +381,19 @@ router.post("/app/1/search", async (req, res) => {
     }
 });
 
+router.post("/app/1/edit/:id", async (req, res) => {
+    try {
+        const db = mongoClient.db("homestuck");
+        const collection = db.collection("asset");
+
+        if (req.body.test) {
+            collection.updateOne({ _id: req.params.id }, { $set: {} });
+        }
+
+        res.status(200).json({});
+    } catch (e) {
+        res.status(500).json({ error: e });
+    }
+});
+
 module.exports = router;
