@@ -39,7 +39,6 @@ const authenticateToken = (req, res, next) => {
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
         if (err) {
-            console.log(err);
             return res.sendStatus(403);
         }
 
@@ -78,11 +77,7 @@ router.post("/login", (req, res) => {
         req.session.adminLocked == undefined ||
         req.session.adminLocked == false
     ) {
-        if (
-            req.body != undefined &&
-            req.body.username != undefined &&
-            req.body.password != undefined
-        ) {
+        if (req.body && req.body.username && req.body.password) {
             for (let i = 0; i < credentials.length; i++) {
                 if (
                     req.body.username == credentials[i].username &&
@@ -383,17 +378,52 @@ router.post("/app/1/search", async (req, res) => {
 
 router.post("/app/1/edit/:id", async (req, res) => {
     try {
-        const db = mongoClient.db("homestuck");
-        const collection = db.collection("asset");
+        if (req.body.tags && req.body.tags.length > 0) {
+            const db = mongoClient.db("homestuck");
+            const collection = db.collection("asset");
 
-        if (req.body.test) {
-            collection.updateOne({ _id: req.params.id }, { $set: {} });
+            collection.updateOne(
+                { _id: req.params.id },
+                { $set: { tags: req.body.tags } }
+            );
+            res.status(200).json({});
+        } else {
+            res.status(400).json({
+                error:
+                    "Incorrect data format. Requires tags in the form of an array.",
+            });
         }
-
-        res.status(200).json({});
     } catch (e) {
         res.status(500).json({ error: e });
     }
+});
+
+// Login
+router.post("/app/1/login", (req, res) => {
+    if (req.body && req.body.password) {
+        if (req.body.password == process.env.APP_HSSE_PASSWORD) {
+            // Generate token
+            res.status(200).json({
+                valid: true,
+                token: jwt.sign(
+                    { date: req.body.password },
+                    process.env.TOKEN_SECRET,
+                    { expiresIn: "1h" }
+                ),
+                expires: new Date().getTime() + 1000 * 60 * 60,
+            });
+            return;
+        }
+    }
+
+    res.status(400).json({
+        error: "Incorrect password",
+    });
+});
+
+// Validation check
+router.post("/app/1/validate", authenticateToken, (_, res) => {
+    res.sendStatus(200);
 });
 
 module.exports = router;

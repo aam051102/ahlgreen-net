@@ -14,5 +14,7 @@
 <link rel="shortcut icon" href="/assets/images/icon.png" type="image/png" />
 
 <script>
-    const ENDPOINT = "https://ahlgreen.net";
+    const ENDPOINT = window.location.hostname === "localhost"
+        ? "http://localhost:4000"
+        : "https://ahlgreen.net";
 </script>
