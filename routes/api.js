@@ -383,11 +383,10 @@ router.post("/app/1/edit/:id", authenticateToken, async (req, res) => {
             const db = mongoClient.db("homestuck");
             const collection = db.collection("asset");
             
-            collection.updateOne(
+            res.status(200).json(await collection.updateOne(
                 { _id: new ObjectId(req.params.id) },
                 { $set: { tags: req.body.tags } }
-            );
-            res.status(200).json({});
+            ));
         } else {
             res.status(400).json({
                 error:
