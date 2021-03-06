@@ -32,5 +32,6 @@
     },
     "keywords": [],
     "author": "MadCreativity",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {}
 }

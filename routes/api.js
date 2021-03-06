@@ -8,6 +8,7 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const { ObjectId } = require("bson");
 
 let databaseConnection = getDatabaseConnection();
 
@@ -376,14 +377,14 @@ router.post("/app/1/search", async (req, res) => {
     }
 });
 
-router.post("/app/1/edit/:id", async (req, res) => {
+router.post("/app/1/edit/:id", authenticateToken, async (req, res) => {
     try {
         if (req.body.tags && req.body.tags.length > 0) {
             const db = mongoClient.db("homestuck");
             const collection = db.collection("asset");
-
+            
             collection.updateOne(
-                { _id: req.params.id },
+                { _id: new ObjectId(req.params.id) },
                 { $set: { tags: req.body.tags } }
             );
             res.status(200).json({});
