@@ -54,12 +54,18 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Set static folders
-app.use("/public", express.static(path.join(__dirname, "public")));
+// HSSE
+app.get(["/app/hsse", "/app/hsse/login"], (req, res) => {
+    res.sendFile(path.join(__dirname, "views/app/hsse/build/index.html"));
+});
+
 app.use(
     "/app/hsse",
     express.static(path.join(__dirname, "views/app/hsse/build"))
 );
+    
+// Set static folders
+app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/", express.static(path.join(__dirname, "views/index/dist")));
 app.use(express.static(path.join(__dirname, "build")));
 
