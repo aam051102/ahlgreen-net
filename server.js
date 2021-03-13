@@ -55,8 +55,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // HSSE
-app.get(["/app/hsse", "/app/hsse/login"], (req, res) => {
-    res.sendFile(path.join(__dirname, "views/app/hsse/build/index.html"));
+app.get(["/app/hsse/login"], (req, res) => {
+    if(req.originalUrl.endsWith("/")) {
+        res.status(302).redirect(req.originalUrl.substr(0, req.originalUrl.length - 1));
+    } else {
+        res.sendFile(path.join(__dirname, "views/app/hsse/build/index.html"));
+    }
 });
 
 app.use(
