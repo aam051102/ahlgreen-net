@@ -5,6 +5,20 @@ html,
 body {
     font-size: 16px;
     font-family: $body-font;
+
+    &::-webkit-scrollbar {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: mix($light-gray, $medium, 75);
+        outline: none;
+        border: 0;
+    }
 }
 
 h1,
@@ -135,6 +149,7 @@ label {
             width: 100%;
             color: $dark;
             font-family: $title-font;
+            line-height: 1;
             transition: border-color 0.25s ease;
 
             &.invalid {
@@ -266,7 +281,12 @@ label {
         width: 100%;
         margin-right: 1em;
         background: $light-gray;
-        background: linear-gradient(to left, rgba($light-gray, 0) 0%, $light-gray 5rem, $light-gray);
+        background: linear-gradient(
+            to left,
+            rgba($light-gray, 0) 0%,
+            $light-gray 5rem,
+            $light-gray
+        );
     }
 
     &::after {
@@ -275,7 +295,12 @@ label {
         width: 100%;
         margin-left: 1em;
         background: $light-gray;
-        background: linear-gradient(to right, rgba($light-gray, 0) 0%, $light-gray 5rem, $light-gray);
+        background: linear-gradient(
+            to right,
+            rgba($light-gray, 0) 0%,
+            $light-gray 5rem,
+            $light-gray
+        );
     }
 
     &.inverted {
@@ -283,12 +308,22 @@ label {
 
         &::before {
             background: rgba($light-gray, 0.25);
-            background: linear-gradient(to left, rgba($light-gray, 0) 0%, rgba($light-gray, 0.25) 5rem, rgba($light-gray, 0.25));
+            background: linear-gradient(
+                to left,
+                rgba($light-gray, 0) 0%,
+                rgba($light-gray, 0.25) 5rem,
+                rgba($light-gray, 0.25)
+            );
         }
 
         &::after {
             background: rgba($light-gray, 0.25);
-            background: linear-gradient(to right, rgba($light-gray, 0) 0%, rgba($light-gray, 0.25) 5rem, rgba($light-gray, 0.25));
+            background: linear-gradient(
+                to right,
+                rgba($light-gray, 0) 0%,
+                rgba($light-gray, 0.25) 5rem,
+                rgba($light-gray, 0.25)
+            );
         }
     }
 }

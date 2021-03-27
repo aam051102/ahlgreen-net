@@ -65,7 +65,10 @@
                 li {
                     a {
                         &:hover {
-                            background-color: rgba($light-gray, 0.3);
+                            background: rgba(
+                                mix($light-gray, $medium, 75),
+                                0.2
+                            );
                         }
                     }
                 }

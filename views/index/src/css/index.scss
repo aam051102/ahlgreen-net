@@ -208,6 +208,14 @@
                     border-color: $medium;
                 }
             }
+
+            button {
+                color: #fff;
+
+                &:hover {
+                    color: #fff;
+                }
+            }
         }
     }
 
