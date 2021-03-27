@@ -262,27 +262,33 @@ label {
 
     &::before {
         content: "";
-        border-top: 1px solid $light-gray;
+        height: 1px;
         width: 100%;
-        margin-right: 2em;
+        margin-right: 1em;
+        background: $light-gray;
+        background: linear-gradient(to left, rgba($light-gray, 0) 0%, $light-gray 5rem, $light-gray);
     }
 
     &::after {
         content: "";
-        border-top: 1px solid $light-gray;
+        height: 1px;
         width: 100%;
-        margin-left: 2em;
+        margin-left: 1em;
+        background: $light-gray;
+        background: linear-gradient(to right, rgba($light-gray, 0) 0%, $light-gray 5rem, $light-gray);
     }
 
     &.inverted {
         color: #fff;
 
         &::before {
-            border-color: rgba($light-gray, 0.25);
+            background: rgba($light-gray, 0.25);
+            background: linear-gradient(to left, rgba($light-gray, 0) 0%, rgba($light-gray, 0.25) 5rem, rgba($light-gray, 0.25));
         }
 
         &::after {
-            border-color: rgba($light-gray, 0.25);
+            background: rgba($light-gray, 0.25);
+            background: linear-gradient(to right, rgba($light-gray, 0) 0%, rgba($light-gray, 0.25) 5rem, rgba($light-gray, 0.25));
         }
     }
 }
