@@ -1,5 +1,6 @@
 ///--- DOM Variables ---///
 const header_DOM = document.querySelector(".header");
+const heroHeader_DOM = document.querySelector(".hero .header");
 const sendMessageBtn_DOM = document.querySelector("#send-message-btn");
 const heroCanvas_DOM = document.querySelector(".hero-canvas");
 const creationsContainer_DOM = document.querySelector("#creations-container");
@@ -97,22 +98,6 @@ fetch(`${ENDPOINT}/api/get/creations`)
             </section>`;
         }
     });
-
-///--- Navigation Colour Change ---///
-const updateNav = () => {
-    if (
-        window.scrollY >= window.innerHeight &&
-        window.scrollY < footer_DOM.offsetTop
-    ) {
-        header_DOM.classList.add("inverse");
-    } else {
-        header_DOM.classList.remove("inverse");
-    }
-};
-
-updateNav();
-
-window.addEventListener("scroll", updateNav);
 
 ///--- Send Message ---///
 sendMessageBtn_DOM.addEventListener("click", (e) => {

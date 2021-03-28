@@ -15,7 +15,7 @@ main {
 #admin-save-btn {
     background-color: $dark;
     border-radius: $corner-curve;
-    color: #fff;
+    color: $white;
     font-family: $title-font;
     padding: 0.25rem 1rem;
     height: auto;
@@ -40,7 +40,7 @@ main {
     justify-content: center;
     box-shadow: 0 4px 20px 2px #0002;
     border: 0;
-    background-color: #fff;
+    background-color: $white;
     font-size: 1.5rem;
     padding: 0;
     margin: 0 auto 3rem auto;
@@ -50,7 +50,7 @@ main {
 
     &:hover {
         cursor: pointer;
-        color: #fff;
+        color: $white;
         background-color: $dark;
     }
 }
@@ -88,7 +88,7 @@ main {
         background-color: $dark;
         border-radius: $corner-curve;
         border: 0;
-        color: #ffffff;
+        color: $white;
         font-family: $title-font;
         padding: 0.25rem 1rem;
         height: auto;

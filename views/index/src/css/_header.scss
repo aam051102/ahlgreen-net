@@ -15,14 +15,18 @@
     transition: background-color 0.25s ease;
 
     nav {
-        color: #fff;
+        display: flex;
+        justify-content: flex-end;
+        color: $white;
         height: 100%;
+        padding: 0 90px;
         transition: color 0.25s ease;
 
         ul {
+            display: flex;
+            align-items: center;
             padding: 0;
             margin: 0;
-            display: flex;
             font-family: $title-font;
             font-weight: 400;
             height: 100%;
@@ -30,18 +34,31 @@
 
             li {
                 a {
+                    position: relative;
                     color: inherit;
                     border: 0;
-                    padding: 1em 2em;
+                    padding: 1em 0;
+                    margin-left: 2.5em;
                     pointer-events: all;
                     line-height: 1;
-                    height: 100%;
                     display: flex;
                     align-items: center;
-                    transition: background-color 0.25s ease;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        width: 0;
+                        height: 2px;
+                        left: 0;
+                        bottom: 0;
+                        background-color: $white;
+                        transition: width 0.3s ease-out;
+                    }
 
                     &:hover {
-                        background-color: rgba($bright-gray, 0.2);
+                        &::after {
+                            width: 100%;
+                        }
                     }
                 }
             }
@@ -49,20 +66,17 @@
     }
 
     &.inverse {
-        background: #fff;
-        box-shadow: 0 1px 0 0 #0002;
+        background: $white;
+        box-shadow: 0 1px 0 0 rgba($dark, 0.1);
 
         nav {
-            color: #000;
+            color: $dark;
 
             ul {
                 li {
                     a {
-                        &:hover {
-                            background: rgba(
-                                mix($light-gray, $medium, 75),
-                                0.2
-                            );
+                        &::after {
+                            background-color: $dark;
                         }
                     }
                 }
@@ -112,7 +126,7 @@
                 right: 0;
                 z-index: 150;
                 pointer-events: all;
-                color: #fff;
+                color: $white;
                 font-weight: 900;
                 font-size: 1.5rem;
                 line-height: 1;

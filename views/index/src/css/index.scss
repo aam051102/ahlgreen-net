@@ -3,7 +3,7 @@
 
 /* Hero */
 .hero {
-    color: #fff;
+    color: $white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,6 +14,8 @@
     padding-bottom: 10vw;
     position: relative;
     overflow: hidden;
+    z-index: 105;
+    clip-path: ellipse(calc(150vmax + 10vw) 100% at 50% 0%);
 
     .hero-canvas {
         position: absolute;
@@ -22,7 +24,6 @@
         z-index: -1;
         width: 100%;
         height: 100%;
-        clip-path: ellipse(calc(150vmax + 10vw) 100% at 50% 0%);
         background-color: #114459;
         background: linear-gradient(
                 110deg,
@@ -79,7 +80,7 @@
 
     .project-figure {
         flex-shrink: 0;
-        width: 33%;
+        width: 25%;
         height: fit-content;
         border-radius: $corner-curve;
         overflow: hidden;
@@ -87,44 +88,25 @@
     }
 
     .project-view-btn {
+        font-family: $title-font;
         position: absolute;
         bottom: 0;
         right: 0;
-        border-radius: 3px;
+        border-radius: $corner-curve;
         border: 0;
         color: $dark;
-        font-family: $title-font;
-        padding: 0.5rem 1.5rem;
+        padding: 0.5rem 1rem;
         height: auto;
         overflow: hidden;
         z-index: 10;
-        background: rgba($dark, 0.1);
-        transition: background-color 0.25s ease, color 0.25s ease,
-            border-color 0.25s ease;
-
-        &::before {
-            content: "";
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: $dark;
-            transform-origin: bottom left;
-            transform: translateX(100%);
-            z-index: -1;
-            border-radius: $corner-curve;
-            transition: transform 0.5s cubic-bezier(0.3, 1, 0.7, 1);
-        }
+        background-color: transparent;
+        border: 3px solid $dark;
+        transition: background-color 0.25s ease, color 0.25s ease;
 
         &:hover {
             color: $white;
             cursor: pointer;
-
-            &::before {
-                transform: translateX(0%);
-            }
+            background-color: $dark;
         }
     }
 
@@ -179,13 +161,15 @@
     background-color: $dark;
     margin-bottom: 0;
     padding-top: 2.5rem;
-    padding-bottom: 8rem;
+    padding-bottom: 2.5rem;
     min-height: calc(100vh + 2.5rem);
     clip-path: polygon(0% 2.5rem, 100% 0%, 100% 100%, 0% 100%);
-    color: #fff;
+    color: $white;
     text-align: center;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 105;
 
     .navpoint {
         margin-top: 0;
@@ -209,7 +193,7 @@
             input,
             textarea {
                 background-color: $medium;
-                color: #fff;
+                color: $white;
 
                 &:not(.invalid) {
                     border-color: $medium;
@@ -217,10 +201,10 @@
             }
 
             button {
-                color: #fff;
+                color: $white;
 
                 &:hover {
-                    color: #fff;
+                    color: $white;
                 }
             }
         }
