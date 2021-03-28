@@ -138,7 +138,7 @@ router.post("/email", async (req, res) => {
                     from: `${process.env.EMAIL_USERNAME}`,
                     to: `${process.env.EMAIL_PRIVATE}`,
                     subject: req.body.subject,
-                    text: `${req.body.email}:\n\n${req.body.message}`,
+                    text: `From: ${req.body.email}\n\n${req.body.message}`,
                 },
                 (err, info) => {
                     if (err) {

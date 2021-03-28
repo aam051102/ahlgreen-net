@@ -57,7 +57,7 @@
         svg {
             vertical-align: bottom;
             height: 100%;
-            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         &:hover svg {
@@ -81,37 +81,50 @@
         flex-shrink: 0;
         width: 33%;
         height: fit-content;
-        box-shadow: 0 4px 20px 2px #0002;
-        border-radius: 5px;
+        border-radius: $corner-curve;
         overflow: hidden;
         max-width: 100%;
-
-        @supports (filter: drop-shadow(0 0 0 #000)) {
-            filter: drop-shadow(0 4px 20px #0002);
-            box-shadow: none;
-        }
     }
 
     .project-view-btn {
         position: absolute;
         bottom: 0;
         right: 0;
-        background-color: $dark;
-        border-radius: 5px;
+        border-radius: 3px;
         border: 0;
-        color: #ffffff;
+        color: $dark;
         font-family: $title-font;
-        padding: 0.25rem 1rem;
+        padding: 0.5rem 1.5rem;
         height: auto;
-        border: 3px solid $dark;
+        overflow: hidden;
+        z-index: 10;
+        background: rgba($dark, 0.1);
         transition: background-color 0.25s ease, color 0.25s ease,
             border-color 0.25s ease;
 
+        &::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: $dark;
+            transform-origin: bottom left;
+            transform: translateX(100%);
+            z-index: -1;
+            border-radius: $corner-curve;
+            transition: transform 0.5s cubic-bezier(0.3, 1, 0.7, 1);
+        }
+
         &:hover {
-            background-color: transparent;
-            border-color: $dark;
-            color: $dark;
+            color: $white;
             cursor: pointer;
+
+            &::before {
+                transform: translateX(0%);
+            }
         }
     }
 
@@ -149,13 +162,7 @@
         max-width: 20rem;
         border-radius: 9999px;
         overflow: hidden;
-        box-shadow: 0 4px 20px 2px #0002;
         margin: 3rem auto;
-
-        @supports (filter: drop-shadow(0 0 0 #000)) {
-            filter: drop-shadow(0 4px 20px #0002);
-            box-shadow: none;
-        }
     }
 
     p {

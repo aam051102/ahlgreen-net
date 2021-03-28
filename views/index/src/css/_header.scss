@@ -15,7 +15,6 @@
     transition: background-color 0.25s ease;
 
     nav {
-        padding: 0 1.5em;
         color: #fff;
         height: 100%;
         transition: color 0.25s ease;
@@ -51,12 +50,7 @@
 
     &.inverse {
         background: #fff;
-        box-shadow: 0 4px 20px 2px #0002;
-
-        @supports (filter: drop-shadow(0 0 0 #000)) {
-            filter: drop-shadow(0 4px 20px #0002);
-            box-shadow: none;
-        }
+        box-shadow: 0 1px 0 0 #0002;
 
         nav {
             color: #000;

@@ -14,7 +14,7 @@ main {
 
 #admin-save-btn {
     background-color: $dark;
-    border-radius: 5px;
+    border-radius: $corner-curve;
     color: #fff;
     font-family: $title-font;
     padding: 0.25rem 1rem;
@@ -71,7 +71,7 @@ main {
         width: 33%;
         height: fit-content;
         box-shadow: 0 4px 20px 2px #0002;
-        border-radius: 5px;
+        border-radius: $corner-curve;
         overflow: hidden;
         max-width: 100%;
 
@@ -86,7 +86,7 @@ main {
         bottom: 0;
         right: 0;
         background-color: $dark;
-        border-radius: 5px;
+        border-radius: $corner-curve;
         border: 0;
         color: #ffffff;
         font-family: $title-font;
