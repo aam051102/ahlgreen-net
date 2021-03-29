@@ -22,6 +22,10 @@
         padding: 0 90px;
         transition: color 0.25s ease;
 
+        @media screen and (max-width: 35rem) {
+            padding: 0 30px 0 0;
+        }
+
         ul {
             display: flex;
             align-items: center;
@@ -113,7 +117,7 @@
         &.inverse {
             nav {
                 .mobile-nav {
-                    color: #000;
+                    color: $dark;
                 }
             }
         }
@@ -138,12 +142,16 @@
                 margin-top: 1rem;
                 margin-right: 1rem;
                 transition: color 0.25s ease;
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
 
             #mobile-nav-checkbox {
                 &:checked {
                     & + .mobile-nav {
-                        color: #000;
+                        color: $white;
 
                         & + ul {
                             transform: translateX(0);
@@ -162,17 +170,19 @@
             ul {
                 position: fixed;
                 right: 0;
-                width: 10rem;
-                background-color: #fff;
+                width: 12rem;
+                max-width: 100%;
+                background-color: $white;
                 height: 100vh;
                 z-index: 100;
                 color: $dark;
                 transform: translateX(100%);
                 display: block;
-                padding-top: $navbar-height;
+                padding: 4rem 2rem 2rem;
 
                 li {
                     a {
+                        margin: 0;
                         width: 100%;
                     }
                 }

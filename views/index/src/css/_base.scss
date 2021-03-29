@@ -9,6 +9,9 @@ html {
 body {
     font-family: $body-font;
     overflow-x: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
+    word-break: break-word;
 
     &::-webkit-scrollbar {
         background: transparent;
@@ -66,27 +69,23 @@ h1 {
     font-weight: normal;
     margin: 0;
     max-width: 100%;
-    font-size: 9vw;
-    font-family: "Dancing Script";
+    font-size: 10vw;
+    font-family: "Dancing Script", "Open Sans", sans-serif;
 
     @media screen and (max-width: 90rem) {
-        font-size: 9vw;
+        font-size: 12vw;
     }
 
     @media screen and (max-width: 45rem) {
-        font-size: 11vw;
+        font-size: 15vw;
     }
 
     @media screen and (max-width: 35rem) {
-        font-size: 14vw;
-        letter-spacing: 0.25em;
-        margin-right: -0.25em;
+        font-size: 20vw;
     }
 
     @media screen and (max-width: 25rem) {
-        font-size: 19vw;
-        letter-spacing: 0em;
-        margin-right: 0;
+        font-size: 25vw;
     }
 }
 
@@ -139,6 +138,10 @@ label {
     max-width: 1350px;
     width: 100%;
     padding: 0 90px;
+
+    @media screen and (max-width: 35rem) {
+        padding: 0 30px;
+    }
 }
 
 .tight-forced-width {
@@ -300,6 +303,11 @@ label {
         max-width: 100%;
         letter-spacing: 0.5em;
         margin-right: -0.5em;
+
+        @media screen and (max-width: 30rem) {
+            letter-spacing: 2vw;
+            margin-right: -2vw;
+        }
     }
 
     &::before,

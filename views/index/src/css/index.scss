@@ -45,13 +45,14 @@
     align-items: center;
     justify-content: center;
     color: $dark;
-    padding: 5rem 0 3rem;
+    padding: 4rem 0 2rem;
     font-size: 4rem;
+    flex-wrap: wrap;
 
     a {
         color: inherit;
         border: 0;
-        margin: 0 1rem;
+        margin: 1rem;
         line-height: 1;
         height: 1em;
 
@@ -130,6 +131,7 @@
 /* About */
 #section-about {
     text-align: center;
+    padding-bottom: 2rem;
 
     figure {
         width: 100%;
@@ -162,6 +164,7 @@
     flex-direction: column;
     position: relative;
     z-index: 105;
+    overflow: hidden;
 
     .navpoint {
         margin-top: 0;
