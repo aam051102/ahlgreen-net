@@ -88,25 +88,17 @@
     }
 
     .project-view-btn {
-        font-family: $title-font;
+        @extend .button;
+
         position: absolute;
         bottom: 0;
         right: 0;
-        border-radius: $corner-curve;
-        border: 0;
         color: $dark;
-        padding: 0.5rem 1rem;
-        height: auto;
-        overflow: hidden;
-        z-index: 10;
-        background-color: transparent;
-        border: 3px solid $dark;
-        transition: background-color 0.25s ease, color 0.25s ease;
 
         &:hover {
             color: $white;
-            cursor: pointer;
             background-color: $dark;
+            cursor: pointer;
         }
     }
 
