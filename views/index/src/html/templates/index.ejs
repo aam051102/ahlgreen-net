@@ -32,12 +32,12 @@
         <title>Alexander Ahlgreen | Web Developer</title>
     </head>
     <body>
-        <%- include("../partials/header", { inverse: true }) -%>
+        <%- include("../partials/header", { inverse: true, sub: false }) -%>
 
         <main>
             <!-- Hero -->
             <section class="hero">
-                <%- include("../partials/header", { inverse: false }) -%>
+                <%- include("../partials/header", { inverse: false, sub: true }) -%>
 
                 <h1>Ahlgreen</h1>
                 <h2>Web & Software Developer</h2>
@@ -182,7 +182,7 @@
                 <p>
                     If you want to contact me, please use the form below or send
                     me an email:
-                    <a href="mailto:ahlgreenmadsen@gmail.com"
+                    <a class="link" href="mailto:ahlgreenmadsen@gmail.com"
                         >ahlgreenmadsen@gmail.com</a
                     >
                 </p>

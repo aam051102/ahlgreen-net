@@ -150,6 +150,29 @@ label {
     width: 100%;
 }
 
+.link {
+    position: relative;
+    border-bottom: 0;
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: currentColor;
+        transition: width 0.3s ease-out;
+    }
+
+    &:hover {
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
 .button {
     font-family: $body-font;
     background-color: transparent;
@@ -233,13 +256,19 @@ label {
             .input-container {
                 width: 100%;
 
-                &:first-child {
-                    margin-right: 0.5rem;
-                }
+                @media screen and (min-width: 400px) {
+                    &:first-child {
+                        margin-right: 0.5rem;
+                    }
 
-                &:last-child {
-                    margin-left: 0.5rem;
+                    &:last-child {
+                        margin-left: 0.5rem;
+                    }
                 }
+            }
+
+            @media screen and (max-width: 400px) {
+                display: block;
             }
         }
     }

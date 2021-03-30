@@ -1,5 +1,6 @@
 ///--- DOM Variables ---///
 const header_DOM = document.querySelector(".header");
+const hero_DOM = document.querySelector(".hero");
 const heroHeader_DOM = document.querySelector(".hero .header");
 const sendMessageBtn_DOM = document.querySelector("#send-message-btn");
 const heroCanvas_DOM = document.querySelector(".hero-canvas");
@@ -22,8 +23,8 @@ dlg.addColorStop(0.75, 19, 60, 63);
 dlg.addColorStop(1.0, 12, 19, 17);
 
 const renderCanvas = () => {
-    heroCanvas_DOM.width = window.innerWidth;
-    heroCanvas_DOM.height = window.innerHeight;
+    heroCanvas_DOM.width = document.body.clientWidth;
+    heroCanvas_DOM.height = hero_DOM.clientHeight;
 
     dlg.x1 = heroCanvas_DOM.clientWidth;
     dlg.y1 = heroCanvas_DOM.clientHeight;
@@ -32,8 +33,8 @@ const renderCanvas = () => {
         heroCanvas_DOM.getContext("2d"),
         0,
         0,
-        window.innerWidth,
-        window.innerHeight
+        heroCanvas_DOM.clientWidth,
+        heroCanvas_DOM.clientHeight
     );
 };
 

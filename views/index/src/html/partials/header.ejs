@@ -5,7 +5,10 @@
 <% } %>
 
 	<nav>
-		<input id="mobile-nav-checkbox" type="checkbox" />
+		<% if(!sub) { %>
+			<input id="mobile-nav-checkbox" class="mobile-nav-checkbox" type="checkbox" />
+		<% } %>
+
 		<label for="mobile-nav-checkbox" class="mobile-nav">
 			<svg
 				viewBox="0 0 120 100"
