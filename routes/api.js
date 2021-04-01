@@ -377,6 +377,35 @@ router.post("/app/1/search", async (req, res) => {
     }
 });
 
+router.post("/app/1/edit", authenticateToken, async (req, res) => {
+    try {
+        if (req.body.edits) {
+            const db = mongoClient.db("homestuck");
+            const collection = db.collection("asset");
+
+            const edits = Object.entries(req.body.edits);
+
+            for(let i = 0; i < edits.length; i++) {
+                const [id, tags] = edits[i];
+
+                await collection.updateOne(
+                    { _id: new ObjectId(id) },
+                    { $set: { tags: tags } }
+                )
+            }
+
+            res.status(200).json({});
+        } else {
+            res.status(400).json({
+                error:
+                    "Incorrect data format. Requires tags in the form of an array.",
+            });
+        }
+    } catch (e) {
+        res.status(500).json({ error: e });
+    }
+});
+
 router.post("/app/1/edit/:id", authenticateToken, async (req, res) => {
     try {
         if (req.body.tags && req.body.tags.length > 0) {
