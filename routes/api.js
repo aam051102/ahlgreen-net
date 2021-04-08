@@ -390,7 +390,7 @@ router.post("/app/1/edit", authenticateToken, async (req, res) => {
 
                 await collection.updateOne(
                     { _id: new ObjectId(id) },
-                    { $set: { tags: tags } }
+                    { $set: { tags: tags.map((tag) => tag[1]) } }
                 )
             }
 
