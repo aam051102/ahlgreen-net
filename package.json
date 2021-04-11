@@ -28,7 +28,8 @@
         "dev": "concurrently \"npm:watch\" \"cross-env NODE_ENV=development node server.js\"",
         "db-setup": "node db_setup.js",
         "db-setup-dev": "cross-env NODE_ENV=development npm run db-setup",
-        "db-setup-prod": "cross-env NODE_ENV=production npm run db-setup"
+        "db-setup-prod": "cross-env NODE_ENV=production npm run db-setup",
+        "DANGEROUS-db-reset": "cross-env NODE_ENV=development node db_reset.js"
     },
     "keywords": [],
     "author": "MadCreativity",

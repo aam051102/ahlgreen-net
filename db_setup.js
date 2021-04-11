@@ -13,7 +13,7 @@ const {
 const setupMongoWait = () => {
     if (!mongoClient.isConnected()) {
         console.log("repeat");
-        setTimeout(setupWait, 1000);
+        setTimeout(setupMongoWait, 1000);
         return;
     }
 
