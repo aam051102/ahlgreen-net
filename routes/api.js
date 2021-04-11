@@ -383,10 +383,8 @@ router.post("/app/1/edit", authenticateToken, async (req, res) => {
             const db = mongoClient.db("homestuck");
             const collection = db.collection("asset");
 
-            const edits = Object.entries(req.body.edits);
-
-            for(let i = 0; i < edits.length; i++) {
-                const [id, tags] = edits[i];
+            for(const id in req.body.edits) {
+                const tags = req.body.edits[id];
 
                 await collection.updateOne(
                     { _id: new ObjectId(id) },
