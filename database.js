@@ -28,8 +28,18 @@ const connectToDatabase = () => {
     databaseConnection.connect((err) => {
         if (err) {
             console.error("Failed to connect to MySQL database:", err);
+            setTimeout(connectToDatabase, 2000);
         } else {
             console.log("Successfully connected to MySQL database.");
+        }
+    });
+
+    databaseConnection.on("error", (err) => {
+        if(err.code === "PROTOCOL_CONNECTION_LOST") {
+            connectToDatabase();
+        } else {
+            console.log("MySQL Error: ", err);
+            throw err;
         }
     });
 

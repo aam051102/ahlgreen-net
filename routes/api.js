@@ -9,6 +9,7 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { ObjectId } = require("bson");
+const ms = require("ms");
 
 let databaseConnection = getDatabaseConnection();
 
@@ -426,6 +427,8 @@ router.post("/app/1/edit/:id", authenticateToken, async (req, res) => {
 });
 
 // Login
+const expirationTime = process.env.NODE_ENV === "development" ? (1000 * 60 * 60 * 6) : (1000 * 60 * 60);
+
 router.post("/app/1/login", (req, res) => {
     if (req.body && req.body.password) {
         if (req.body.password == process.env.APP_HSSE_PASSWORD) {
@@ -435,9 +438,9 @@ router.post("/app/1/login", (req, res) => {
                 token: jwt.sign(
                     { date: req.body.password },
                     process.env.TOKEN_SECRET,
-                    { expiresIn: "1h" }
+                    { expiresIn: ms(expirationTime) }
                 ),
-                expires: new Date().getTime() + 1000 * 60 * 60,
+                expires: new Date().getTime() + expirationTime,
             });
             return;
         }
