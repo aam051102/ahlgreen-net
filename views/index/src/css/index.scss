@@ -90,6 +90,11 @@
         border-radius: $corner-curve;
         overflow: hidden;
         max-width: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .project-view-btn {
