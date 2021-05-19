@@ -10,6 +10,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { ObjectId } = require("bson");
 const ms = require("ms");
+const fs = require("fs");
 
 let databaseConnection = getDatabaseConnection();
 
@@ -59,6 +60,7 @@ const validateDatabase = () => {
     databaseConnection.query("SELECT test FROM system", (err) => {
         if (err) {
             console.log("Reperformed database handshake.");
+            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
             databaseConnection = connectToDatabase();
         }
     });
@@ -168,6 +170,7 @@ router.get("/get/:type", (req, res) => {
     databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
+            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
             return;
         }
 
@@ -194,6 +197,7 @@ router.get("/get/:type/:selector", (req, res) => {
     databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
+            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
             return;
         }
 
@@ -220,6 +224,7 @@ router.post("/delete/:type/:selector", authenticateToken, (req, res) => {
     databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
+            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
             return;
         }
 
@@ -255,6 +260,7 @@ router.post("/insert/:type", authenticateToken, (req, res) => {
     databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
+            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
             return;
         }
 
@@ -286,6 +292,7 @@ router.post("/update/:type/:selector", authenticateToken, (req, res) => {
     databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
+            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
             return;
         }
 
