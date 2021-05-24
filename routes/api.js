@@ -30,6 +30,11 @@ const credentials = [
     },
 ];
 
+// Logs errors to file
+const logError = (err) => {
+    fs.appendFileSync("./errors.txt", `${new Date()}: ${err}\n`);
+}
+
 // Authenticate token
 const authenticateToken = (req, res, next) => {
     // Gather the jwt access token from the request header
@@ -60,7 +65,7 @@ const validateDatabase = () => {
     databaseConnection.query("SELECT test FROM system", (err) => {
         if (err) {
             console.log("Reperformed database handshake.");
-            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
+            logError(err);
             databaseConnection = connectToDatabase();
         }
     });
@@ -170,7 +175,7 @@ router.get("/get/:type", (req, res) => {
     databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
-            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
+            logError(err);
             return;
         }
 
@@ -197,7 +202,7 @@ router.get("/get/:type/:selector", (req, res) => {
     databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
-            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
+            logError(err)
             return;
         }
 
@@ -224,7 +229,7 @@ router.post("/delete/:type/:selector", authenticateToken, (req, res) => {
     databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
-            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
+            logError(err);
             return;
         }
 
@@ -260,7 +265,7 @@ router.post("/insert/:type", authenticateToken, (req, res) => {
     databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
-            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
+            logError(err);
             return;
         }
 
@@ -292,7 +297,7 @@ router.post("/update/:type/:selector", authenticateToken, (req, res) => {
     databaseConnection.query(query, (err, resp) => {
         if (err) {
             res.status(400).json({ error: "An error occured: " + err });
-            fs.writeFileSync("./sql-errors.txt", `${new Date()}: ${err}\n`);
+            logError(err)
             return;
         }
 
