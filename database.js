@@ -2,6 +2,7 @@ const mysql = require("mysql");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const { MongoClient } = require("mongodb");
+const { logError } = require("./util");
 
 // MongoDB connection
 const mongoClient = new MongoClient(process.env.MONGODB_CONNECTION_STRING, {
@@ -27,7 +28,7 @@ const connectToDatabase = () => {
 
     databaseConnection.connect((err) => {
         if (err) {
-            console.error("Failed to connect to MySQL database:", err);
+            logError(err);
             setTimeout(connectToDatabase, 2000);
         } else {
             console.log("Successfully connected to MySQL database.");
@@ -35,11 +36,10 @@ const connectToDatabase = () => {
     });
 
     databaseConnection.on("error", (err) => {
-        if(err.code === "PROTOCOL_CONNECTION_LOST") {
+        logError(err);
+
+        if(err.code === "PROTOCOL_CONNECTION_LOST" || err.fatal) {
             connectToDatabase();
-        } else {
-            console.log("MySQL Error: ", err);
-            throw err;
         }
     });
 

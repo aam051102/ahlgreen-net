@@ -10,7 +10,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { ObjectId } = require("bson");
 const ms = require("ms");
-const fs = require("fs");
+const { logError } = require("../util");
 
 let databaseConnection = getDatabaseConnection();
 
@@ -29,11 +29,6 @@ const credentials = [
         password: process.env.ADMIN_PASSWORD,
     },
 ];
-
-// Logs errors to file
-const logError = (err) => {
-    fs.appendFileSync("./errors.txt", `${new Date()}: ${err}\n`);
-}
 
 // Authenticate token
 const authenticateToken = (req, res, next) => {
@@ -64,7 +59,6 @@ const sanitize = (text) => {
 const validateDatabase = () => {
     databaseConnection.query("SELECT test FROM system", (err) => {
         if (err) {
-            console.log("Reperformed database handshake.");
             logError(err);
             databaseConnection = connectToDatabase();
         }
