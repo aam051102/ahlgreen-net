@@ -19,21 +19,22 @@ const getDatabaseConnection = () => {
 };
 
 const connectToDatabase = () => {
-    databaseConnection = mysql.createConnection({
+    databaseConnection = mysql.createPool({
+        connectionLimit: 10,
         host: "localhost",
         user: "root",
         password: process.env.MYSQL_PASSWORD,
         database: "ahlgreen_net",
     });
 
-    databaseConnection.connect((err) => {
+    /*databaseConnection.connect((err) => {
         if (err) {
             logError(err);
             setTimeout(connectToDatabase, 2000);
         } else {
             console.log("Successfully connected to MySQL database.");
         }
-    });
+    });*/
 
     databaseConnection.on("error", (err) => {
         logError(err);
