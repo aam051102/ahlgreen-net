@@ -1,0 +1,2 @@
+(this["webpackJsonphomestuck-search"]=this["webpackJsonphomestuck-search"]||[]).push([[3],{31:function(e,t,a){},35:function(e,t,a){"use strict";a.r(t);var c=a(3),s=a(0),n=a.n(s),r=(a(31),a(6)),i=a(5);t.default=function(e){return e?n.a.createElement(i.a,{className:"edit-page",title:"Edit Tags"},n.a.createElement(r.a,{src:"https://pipe.miroware.io/5bc7665ecc3313406322aba0/dirk_bg_earthC.png"})):n.a.createElement(c.b,{to:"/login"})}}}]);
+//# sourceMappingURL=3.036f6b3a.chunk.js.map

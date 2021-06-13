@@ -1,0 +1,1 @@
+{"version":3,"sources":["Settings.scss"],"names":[],"mappings":"AAAA,oBAEQ,eAAgB,CAChB,0BAA2B","file":"6.33b7fa30.chunk.css","sourcesContent":[".settings-page {\r\n    form {\r\n        margin-top: 50vh;\r\n        transform: translateY(-50%);\r\n    }\r\n}\r\n"]}

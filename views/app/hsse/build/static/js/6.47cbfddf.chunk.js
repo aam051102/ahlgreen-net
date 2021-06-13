@@ -1,0 +1,2 @@
+(this["webpackJsonphomestuck-search"]=this["webpackJsonphomestuck-search"]||[]).push([[6],{32:function(e,t,a){},36:function(e,t,a){"use strict";a.r(t);var n=a(0),s=a.n(n),c=(a(32),a(5));t.default=function(){return s.a.createElement(c.a,{className:"settings-page",title:"Settings"},s.a.createElement("form",null,s.a.createElement("h2",null,"Settings will be added at a later date.")))}}}]);
+//# sourceMappingURL=6.47cbfddf.chunk.js.map

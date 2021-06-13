@@ -1,0 +1,2 @@
+(this["webpackJsonphomestuck-search"]=this["webpackJsonphomestuck-search"]||[]).push([[5],{30:function(e,t,a){},34:function(e,t,a){"use strict";a.r(t);var c=a(0),n=a.n(c),s=(a(30),a(6)),r=a(5);t.default=function(){return n.a.createElement(r.a,{className:"login-page",title:"Sign In"},n.a.createElement(s.a,{src:"https://pipe.miroware.io/5bc7665ecc3313406322aba0/dirk_bg_earthC.png"}))}}}]);
+//# sourceMappingURL=5.5ce29d52.chunk.js.map
