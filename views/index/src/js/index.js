@@ -75,28 +75,34 @@ fetch(`${ENDPOINT}/api/get/creations`)
         creationsContainer_DOM.innerHTML = "";
 
         for (let i = 0; i < data.length; i++) {
-            creationsContainer_DOM.innerHTML += `<section class="skewed">
-                <div class="forced-width project-wrapper">
-                    <figure class="project-figure">
-                        <img
-                            src="${testText(data[i].image_url)}"
-                            alt="${testText(data[i].name)}"
-                        />
-                    </figure>
+            let creation_code = `<section class="skewed">
+                <div class="forced-width project-wrapper">`;
+
+            if (data[i].image_url !== "undefined") {
+                creation_code += `<figure class="project-figure">
+                    <img
+                        src="${testText(data[i].image_url)}"
+                        alt="${testText(data[i].name)}"
+                    />
+                </figure>`;
+            }
+
+            creation_code += `
                     <section class="project-section">
                         <h4>${testText(data[i].name)}</h4>
-                        <h5>${testText(data[i].stack || "")}</h5>
-                        ${processText(data[i].description)}
-                        <a
-                            class="project-view-btn"
-                            href="${testText(data[i].url)}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            >View</a
-                        >
-                    </section>
+                        ${processText(data[i].description)}`;
+
+            if (data[i].url !== "undefined") {
+                creation_code += `<a class="project-view-btn" href="${testText(
+                    data[i].url
+                )}" target="_blank" rel="noopener noreferrer">View</a>`;
+            }
+
+            creation_code += `</section>
                 </div>
             </section>`;
+
+            creationsContainer_DOM.innerHTML += creation_code;
         }
     });
 

@@ -12,33 +12,29 @@ body {
     word-wrap: break-word;
     word-break: break-all;
     word-break: break-word;
+}
 
+body,
+textarea {
     &::-webkit-scrollbar {
-        background: transparent;
+        background-color: transparent;
         width: 0.75em;
         transition: background-color 0.3s ease-out;
     }
 
     &::-webkit-scrollbar-track {
-        background: transparent;
+        background-color: transparent;
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: mix($light-gray, $medium, 75);
+        background-color: mix($light-gray, $medium, 90);
         outline: none;
         border: 0;
         border-radius: 9999px;
         transition: background-color 0.3s ease-out;
-    }
 
-    &.inverse {
-        &::-webkit-scrollbar {
-            background-color: $dark;
-            width: 0.75em;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: mix($light-gray, $medium, 25);
+        &:hover {
+            background-color: mix($light-gray, $medium, 65);
         }
     }
 }
@@ -190,6 +186,18 @@ label {
     }
 }
 
+.std-button {
+    @extend .button;
+
+    color: $dark;
+
+    &:hover {
+        color: $white;
+        background-color: $dark;
+        cursor: pointer;
+    }
+}
+
 .form-container {
     position: relative;
 
@@ -208,7 +216,7 @@ label {
             background-color: transparent;
             border: 1px solid #999;
             border-radius: $corner-curve;
-            padding: 0.5rem 2rem 0.5rem 1rem;
+            padding: 0.5rem 1rem;
             outline: none;
             width: 100%;
             color: $dark;
@@ -219,13 +227,17 @@ label {
                 border-color: $red;
             }
 
-            &[required] + label::after {
-                content: "*";
-                color: #db5e3f;
-                height: 1ch;
-                margin-top: 0.5em;
-                line-height: 100%;
-                transform: translateY(-0.25ch);
+            &[required] {
+                padding-right: 2rem;
+
+                & + label::after {
+                    content: "*";
+                    color: #db5e3f;
+                    height: 1ch;
+                    margin-top: 0.5em;
+                    line-height: 100%;
+                    transform: translateY(-0.25ch);
+                }
             }
 
             &:focus {
@@ -249,7 +261,7 @@ label {
         }
 
         button {
-            @extend .button;
+            @extend .std-button;
         }
 
         .flex {
@@ -375,9 +387,11 @@ label {
             .project-wrapper {
                 flex-direction: row-reverse;
 
-                .project-section {
-                    margin-left: 0;
-                    margin-right: 2rem;
+                .project-figure {
+                    & + .project-section {
+                        margin-left: 0;
+                        margin-right: 2rem;
+                    }
                 }
             }
 

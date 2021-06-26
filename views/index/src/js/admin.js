@@ -82,9 +82,9 @@ const createElement = (element) => {
     const projectTitle_element = clone_element.querySelector(
         ".template-project-title"
     );
-    const projectStack_element = clone_element.querySelector(
+    /*const projectStack_element = clone_element.querySelector(
         ".template-project-stack"
-    );
+    );*/
     const projectDescription_element = clone_element.querySelector(
         ".template-project-description"
     );
@@ -103,7 +103,7 @@ const createElement = (element) => {
 
             const element_this = {
                 name: projectTitle_element.value,
-                stack: projectStack_element.value,
+                //stack: projectStack_element.value,
                 description: projectDescription_element.value,
                 image_url: projectImageUrl_element.value,
                 url: projectUrl_element.value,
@@ -123,13 +123,16 @@ const createElement = (element) => {
         });
 
     // Image
-    clone_element.querySelector(".template-project-image").src = testText(
-        element.image_url || ""
+    const projectImage_element = clone_element.querySelector(
+        ".template-project-image"
     );
-    clone_element.querySelector(".template-project-image").alt = name;
+    projectImage_element.src = testText(
+        element.image_url === "undefined" ? "" : element.image_url
+    );
+    projectImage_element.alt = name;
 
     // Title
-    projectTitle_element.value = name;
+    projectTitle_element.value = name === "undefined" ? "" : name;
     projectTitle_element.id = `project-${id}-title`;
 
     clone_element.querySelector(
@@ -137,15 +140,19 @@ const createElement = (element) => {
     ).for = `project-${id}-title`;
 
     // Stack
-    projectStack_element.value = testText(element.stack || "");
+    /*projectStack_element.value = testText(
+        element.stack === "undefined" ? "" : element.stack
+    );
     projectStack_element.id = `project-${id}-stack`;
 
     clone_element.querySelector(
         ".template-project-stack-label"
-    ).for = `project-${id}-stack`;
+    ).for = `project-${id}-stack`;*/
 
     // Description
-    projectDescription_element.value = testText(element.description || "");
+    projectDescription_element.value = testText(
+        element.description === "undefined" ? "" : element.description
+    );
     projectDescription_element.id = `project-${id}-description`;
 
     clone_element.querySelector(
@@ -153,15 +160,27 @@ const createElement = (element) => {
     ).for = `project-${id}-description`;
 
     // Image URL
-    projectImageUrl_element.value = testText(element.image_url || "");
+    projectImageUrl_element.value = testText(
+        element.image_url === "undefined" ? "" : element.image_url
+    );
     projectImageUrl_element.id = `project-${id}-image-url`;
 
     clone_element.querySelector(
         ".template-project-image-url-label"
     ).for = `project-${id}-image-url`;
 
+    projectImageUrl_element.addEventListener("input", () => {
+        projectImage_element.src = testText(
+            projectImageUrl_element.value === "undefined"
+                ? ""
+                : projectImageUrl_element.value
+        );
+    });
+
     // URL
-    projectUrl_element.value = testText(element.url || "");
+    projectUrl_element.value = testText(
+        element.url === "undefined" ? "" : element.image_url
+    );
     projectUrl_element.id = `project-${id}-url`;
 
     clone_element.querySelector(
@@ -211,10 +230,10 @@ const insert = (element) => {
                 .then((data) => {
                     if (data) {
                         createElement({
-                            name: "none",
-                            description: "none",
-                            image_url: "none",
-                            url: "none",
+                            name: "",
+                            description: "",
+                            image_url: "",
+                            url: "",
                             id: data.id,
                         });
                     }
