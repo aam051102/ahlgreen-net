@@ -179,7 +179,7 @@ const createElement = (element) => {
 
     // URL
     projectUrl_element.value = testText(
-        element.url === "undefined" ? "" : element.image_url
+        element.url === "undefined" ? "" : element.url
     );
     projectUrl_element.id = `project-${id}-url`;
 
