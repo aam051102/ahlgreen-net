@@ -65,6 +65,10 @@
         &:hover svg {
             transform: translateY(-0.1em);
         }
+
+        @media screen and (max-width: 400px) {
+            margin: 0.25rem;
+        }
     }
 }
 
@@ -95,10 +99,8 @@
             height: 100%;
         }
 
-        & + {
-            .project-section {
-                margin-left: 2rem;
-            }
+        & + .project-section {
+            margin-left: 2rem;
         }
     }
 
@@ -121,10 +123,10 @@
 
         .project-figure {
             margin-bottom: 1rem;
-        }
 
-        .project-section {
-            margin: 0;
+            & + .project-section {
+                margin: 0;
+            }
         }
     }
 

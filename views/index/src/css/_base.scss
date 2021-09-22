@@ -138,6 +138,10 @@ label {
     @media screen and (max-width: 35rem) {
         padding: 0 30px;
     }
+
+    @media screen and (max-width: 400px) {
+        padding: 0 10px;
+    }
 }
 
 .tight-forced-width {
@@ -417,6 +421,30 @@ label {
                 transform: rotate(-1deg) translateX(-1.25rem);
                 padding-right: 2.5rem;
                 box-sizing: content-box;
+            }
+
+            @media screen and (max-width: 32rem) {
+                background: $white;
+
+                &::before,
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        @media screen and (max-width: 32rem) {
+            padding: 0;
+            background: $white;
+            margin: 2rem 1rem;
+            box-shadow: $shadow-light;
+
+            .project-wrapper {
+                padding: 1rem;
+
+                .project-figure {
+                    width: 100%;
+                }
             }
         }
     }
