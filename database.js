@@ -51,7 +51,7 @@ connectToDatabase();
 // Session store
 const sessionStore = new MySQLStore({
     host: "localhost",
-    port: "3306",
+    port: process.env.MYSQL_PORT ?? "3306",
     user: "root",
     password: process.env.MYSQL_PASSWORD,
     database: "ahlgreen_net",
