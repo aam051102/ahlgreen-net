@@ -304,49 +304,27 @@ router.post("/update/:type/:selector", authenticateToken, (req, res) => {
 router.get("/app/1/tags", async (_, res) => {
     try {
         const db = mongoClient.db("homestuck");
-        const collection = db.collection("tag");
-        res.status(200).json(await collection.find({}).toArray());
+        const definitionsCollection = db.collection("tag_definition");
+        const synonymsCollection = db.collection("tag_synonym");
+
+        const synonyms = {};
+        (await synonymsCollection.find({}).toArray()).forEach((item) => {
+            synonyms[item._id] = item;
+        })
+
+        const definitions = {};
+        (await definitionsCollection.find({}).toArray()).forEach((item) => {
+            definitions[item._id] = item;
+        })
+
+        res.status(200).json({
+            definitions: definitions,
+            synonyms: synonyms,
+        });
     } catch (e) {
         res.status(500).json({ error: e });
     }
 });
-
-// DANGEROUS DEBUGGING FUNCTION
-// TODO: REMOVE AFTER MODIFYING DATABASE
-/*router.get("/app/1/debug", async (_, res) => {
-    try {
-        const db = mongoClient.db("homestuck");
-        const collection = db.collection("asset");
-
-        const items = await collection.find().toArray();
-        let ob = [];
-
-        for (let i = 0; i < items.length; i++) {
-            ob.push({
-                info: await collection
-                    .updateOne(
-                        { content: items[i].content },
-                        {
-                            $set: {
-                                page: parseInt(
-                                    items[i].url.substr(
-                                        items[i].url.lastIndexOf("/") + 1
-                                    )
-                                ),
-                            },
-                        }
-                    )
-                    .then((e) => e.result),
-            });
-
-            ob.push(items[i]);
-        }
-
-        res.status(200).json({ test: ob, items: items });
-    } catch (e) {
-        res.status(500).json({ error: e });
-    }
-});*/
 
 router.post("/app/1/search", async (req, res) => {
     try {
