@@ -87,7 +87,7 @@ process.on("exit", () => {
 });
 
 // Listen on port
-if (process.env.NODE_ENV == "production") {
+/*if (process.env.NODE_ENV == "production") {
     https
         .createServer(
             {
@@ -99,8 +99,8 @@ if (process.env.NODE_ENV == "production") {
         .listen(process.env.PORT, () => {
             console.log(`App listening on PORT ${process.env.PORT}`);
         });
-} else {
+} else {*/
     http.createServer(app).listen(process.env.PORT, () => {
         console.log(`App listening on PORT ${process.env.PORT}`);
     });
-}
+//}
