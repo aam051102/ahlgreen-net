@@ -70,6 +70,7 @@ app.use(
     
 // Set static folders
 app.use("/public", express.static(path.join(__dirname, "public")));
+app.use("/story/favor-the-kind", express.static(path.join(__dirname, "views/story/favor-the-kind")));
 app.use("/", express.static(path.join(__dirname, "views/index/dist")));
 app.use(express.static(path.join(__dirname, "build")));
 
