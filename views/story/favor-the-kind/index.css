@@ -34,7 +34,9 @@ body {
 
 .page-cover {
     max-width: 200px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    border-radius: 5px;
 }
 
 .page-divider {
