@@ -23,10 +23,8 @@
         "passport": "^0.4.1"
     },
     "scripts": {
-        "prod": "concurrently \"npm:build\" \"cross-env NODE_ENV=production node server.js\"",
-        "build": "cd views/index && npm run build",
-        "watch": "cd views/index && npm run dev",
-        "dev": "concurrently \"npm:watch\" \"cross-env NODE_ENV=development node server.js\"",
+        "prod": "cross-env NODE_ENV=production node server.js",
+        "dev": "cross-env NODE_ENV=development node server.js",
         "db-setup": "node db_setup.js",
         "db-setup-dev": "cross-env NODE_ENV=development npm run db-setup",
         "db-setup-prod": "cross-env NODE_ENV=production npm run db-setup",

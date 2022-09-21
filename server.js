@@ -56,8 +56,10 @@ app.use(passport.session());
 
 // HSSE
 app.get(["/app/hsse/login"], (req, res) => {
-    if(req.originalUrl.endsWith("/")) {
-        res.status(302).redirect(req.originalUrl.substr(0, req.originalUrl.length - 1));
+    if (req.originalUrl.endsWith("/")) {
+        res.status(302).redirect(
+            req.originalUrl.substr(0, req.originalUrl.length - 1)
+        );
     } else {
         res.sendFile(path.join(__dirname, "views/app/hsse/build/index.html"));
     }
@@ -67,11 +69,10 @@ app.use(
     "/app/hsse",
     express.static(path.join(__dirname, "views/app/hsse/build"))
 );
-    
+
 // Set static folders
 app.use("/public", express.static(path.join(__dirname, "public")));
-app.use("/story/favor-the-kind", express.static(path.join(__dirname, "views/story/favor-the-kind")));
-app.use("/", express.static(path.join(__dirname, "views/index/dist")));
+app.use("/", express.static(path.join(__dirname, "views/index")));
 app.use(express.static(path.join(__dirname, "build")));
 
 // Routes
@@ -101,7 +102,7 @@ process.on("exit", () => {
             console.log(`App listening on PORT ${process.env.PORT}`);
         });
 } else {*/
-    http.createServer(app).listen(process.env.PORT, () => {
-        console.log(`App listening on PORT ${process.env.PORT}`);
-    });
+http.createServer(app).listen(process.env.PORT, () => {
+    console.log(`App listening on PORT ${process.env.PORT}`);
+});
 //}
