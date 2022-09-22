@@ -2,7 +2,7 @@ body {
     font-family: "Merriweather", Cambria, Cochin, Georgia, Times,
         "Times New Roman", serif;
     margin: 0;
-    background-color: #f9f9f9;
+    background-color: #020104;
 }
 
 .page-wrapper {
@@ -11,7 +11,6 @@ body {
 }
 
 .page-inner {
-    background-color: #ffffff;
     min-height: 100vh;
     padding: 0 40px;
     max-width: 800px;
@@ -20,7 +19,7 @@ body {
     margin-top: 20px;
     margin-bottom: 60px;
     border-radius: 5px;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ffffff20;
 }
 
 .page-header {
@@ -42,14 +41,14 @@ body {
 .page-divider {
     height: 1px;
     border: 0;
-    background-color: #dddddd;
+    background-color: #ffffff20;
     margin: 0 50px;
 }
 
 .page-title {
     font-size: 1.25rem;
     font-weight: bold;
-    color: #212121;
+    color: #ffffff;
 }
 
 .page-content {
@@ -57,7 +56,7 @@ body {
 }
 
 .page-content h2 {
-    color: #212121;
+    color: #ffffff;
     font-size: 1.75rem;
     margin-bottom: 20px;
 }
@@ -66,7 +65,7 @@ body {
     line-height: 2;
     font-size: 1rem;
     margin-bottom: 1.5em;
-    color: #212121;
+    color: #999999;
 }
 
 .page-footer {
@@ -81,41 +80,6 @@ body {
     font-size: 0.75rem;
 }
 
-.page-sidebar {
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    background: #ffffff;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
-}
-
-.page-font-size-btn {
-    border: 1px solid #dddddd;
-    background: #ffffff;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-sizing: border-box;
-}
-
-.page-font-size-btn::before {
-    content: "Aa";
-}
-
-.page-font-size-btn:hover {
-    border-color: #dddddd;
-    background: #f9f9f9;
-}
-
-.page-font-size-btn.active {
-    border-color: #dddddd;
-}
-
 .page-tags {
     display: flex;
     gap: 10px;
@@ -126,7 +90,7 @@ body {
 
 .page-tag {
     font-size: 0.75rem;
-    border: 1px solid #dddddd;
+    border: 1px solid #ffffff20;
     border-radius: 5px;
     padding: 5px 10px;
     color: #7a7a7a;
