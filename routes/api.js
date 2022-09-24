@@ -1,34 +1,8 @@
-const {
-    getDatabaseConnection,
-    connectToDatabase,
-    sessionStore,
-    mongoClient,
-} = require("../database");
+const { mongoClient } = require("../database");
 const express = require("express");
-const nodemailer = require("nodemailer");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { ObjectId } = require("bson");
-const ms = require("ms");
-const { logError } = require("../util");
-
-let databaseConnection = getDatabaseConnection();
-
-let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD,
-    },
-});
-
-// Credentials
-const credentials = [
-    {
-        username: process.env.ADMIN_USERNAME,
-        password: process.env.ADMIN_PASSWORD,
-    },
-];
 
 // Authenticate token
 const authenticateToken = (req, res, next) => {
@@ -50,255 +24,6 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
-// Sanitize MySQL input
-const sanitize = (text) => {
-    return encodeURIComponent(text).replace(/'|"|`/g, "\\$&");
-};
-
-// Check if database connection is valid
-const validateDatabase = () => {
-    databaseConnection.query("SELECT test FROM system", (err) => {
-        if (err) {
-            logError(err);
-            databaseConnection = connectToDatabase();
-        }
-    });
-
-    // Clear session store
-    sessionStore.clear((err) => {
-        if (err) console.error(err);
-        console.log("Cleared session storage.");
-    });
-};
-
-setInterval(validateDatabase, 1000 * 60 * 60 * 24 * 14);
-
-// Routes
-// Admin login
-router.post("/login", (req, res) => {
-    if (
-        req.session.adminLocked == undefined ||
-        req.session.adminLocked == false
-    ) {
-        if (req.body && req.body.username && req.body.password) {
-            for (let i = 0; i < credentials.length; i++) {
-                if (
-                    req.body.username == credentials[i].username &&
-                    req.body.password == credentials[i].password
-                ) {
-                    // Generate token
-                    res.status(200).json({
-                        valid: true,
-                        token: jwt.sign(
-                            { date: req.body.username },
-                            process.env.TOKEN_SECRET,
-                            { expiresIn: "1h" }
-                        ),
-                        expires: new Date().getTime() + 1000 * 60 * 60,
-                    });
-                    return;
-                }
-            }
-        }
-
-        if (req.session.adminAttempts) {
-            req.session.adminAttempts++;
-
-            if (req.session.adminAttempts > 3) {
-                req.session.adminLocked = true;
-            }
-        } else {
-            req.session.adminAttempts = 1;
-            req.session.adminLocked = false;
-        }
-    }
-
-    if (req.session.adminLocked) {
-        res.status(400).json({
-            error: "Too many attempts at accessing the administration panel",
-            locked: true,
-        });
-    } else {
-        res.status(400).json({
-            error: "Incorrect password and username combination",
-            locked: false,
-        });
-    }
-});
-
-// Validation check
-router.post("/validate", authenticateToken, (_, res) => {
-    res.sendStatus(200);
-});
-
-// Email
-router.post("/email", async (req, res) => {
-    res.json(
-        new Promise((resolve, reject) => {
-            transporter.sendMail(
-                {
-                    from: `${process.env.EMAIL_USERNAME}`,
-                    to: `${process.env.EMAIL_PRIVATE}`,
-                    subject: req.body.subject,
-                    text: `From: ${req.body.email}\n\n${req.body.message}`,
-                },
-                (err, info) => {
-                    if (err) {
-                        console.log(err);
-                        reject(err);
-                    } else {
-                        resolve(info);
-                    }
-                }
-            );
-        })
-    );
-});
-
-// Get all
-router.get("/get/:type", (req, res) => {
-    let query = "";
-
-    if (req.params.type == "creations" || req.params.type == "knowledge") {
-        query = `SELECT * FROM \`${sanitize(req.params.type)}\``;
-    } else {
-        res.status(400).json({ error: "Invalid type." });
-        return;
-    }
-
-    databaseConnection.query(query, (err, resp) => {
-        if (err) {
-            res.status(400).json({ error: "An error occured: " + err });
-            logError(err);
-            return;
-        }
-
-        res.status(200).json(resp);
-    });
-});
-
-// Get single
-router.get("/get/:type/:selector", (req, res) => {
-    let query = "";
-    if (req.params.type == "creations") {
-        query = `SELECT * FROM \`${sanitize(
-            req.params.type
-        )}\` WHERE id='${sanitize(req.params.selector)}'`;
-    } else if (req.params.type == "knowledge") {
-        query = `SELECT * FROM \`${sanitize(
-            req.params.type
-        )}\` WHERE id='${sanitize(req.params.selector)}'`;
-    } else {
-        res.status(400).json({ error: "Invalid type." });
-        return;
-    }
-
-    databaseConnection.query(query, (err, resp) => {
-        if (err) {
-            res.status(400).json({ error: "An error occured: " + err });
-            logError(err)
-            return;
-        }
-
-        res.status(200).json(resp);
-    });
-});
-
-// Delete single
-router.post("/delete/:type/:selector", authenticateToken, (req, res) => {
-    let query = "";
-    if (req.params.type == "creations") {
-        query = `DELETE FROM \`${sanitize(
-            req.params.type
-        )}\` WHERE id="${sanitize(req.params.selector)}";`;
-    } else if (req.params.type == "knowledge") {
-        query = `DELETE FROM \`${sanitize(
-            req.params.type
-        )}\` WHERE id="${sanitize(req.params.selector)}";`;
-    } else {
-        res.status(400).json({ error: "Invalid type." });
-        return;
-    }
-
-    databaseConnection.query(query, (err, resp) => {
-        if (err) {
-            res.status(400).json({ error: "An error occured: " + err });
-            logError(err);
-            return;
-        }
-
-        res.status(200).json(resp);
-    });
-});
-
-// Insert
-router.post("/insert/:type", authenticateToken, (req, res) => {
-    let query = ``;
-    if (req.params.type == "creations") {
-        query = `INSERT INTO \`${sanitize(
-            req.params.type
-        )}\` (\`name\`, \`image_url\`, \`url\`, \`description\`) VALUES (
-            '${sanitize(req.body.name)}',
-            '${sanitize(req.body.image_url)}',
-            '${sanitize(req.body.url)}',
-            '${sanitize(req.body.description)}'
-            )`;
-    } else if (req.params.type == "knowledge") {
-        query = `INSERT INTO \`${sanitize(
-            req.params.type
-        )}\` (\`name\`, \`percentage\`, \`experience\`) VALUES (
-            '${sanitize(req.body.name)}',
-            '${sanitize(req.body.percentage)}',
-            '${sanitize(req.body.experience)}'
-            )`;
-    } else {
-        res.status(400).json({ error: "Invalid type." });
-        return;
-    }
-
-    databaseConnection.query(query, (err, resp) => {
-        if (err) {
-            res.status(400).json({ error: "An error occured: " + err });
-            logError(err);
-            return;
-        }
-
-        res.status(200).json({ id: resp.insertId });
-    });
-});
-
-// Update
-router.post("/update/:type/:selector", authenticateToken, (req, res) => {
-    let query = "";
-    if (req.params.type == "creations") {
-        query = `UPDATE \`${sanitize(req.params.type)}\` SET 
-        \`name\`='${sanitize(req.body.name)}',
-        \`image_url\`='${sanitize(req.body.image_url)}',
-        \`url\`='${sanitize(req.body.url)}',
-        \`description\`='${sanitize(req.body.description)}' 
-        WHERE id="${sanitize(req.params.selector)}";`;
-    } else if (req.params.type == "knowledge") {
-        query = `UPDATE \`${sanitize(req.params.type)}\` SET 
-        \`name\`='${sanitize(req.body.name)}',
-        \`percentage\`='${sanitize(req.body.percentage)}',
-        \`experience\`='${sanitize(req.body.experience)}'
-        WHERE id="${sanitize(req.params.selector)}";`;
-    } else {
-        res.status(400).json({ error: "Invalid type." });
-        return;
-    }
-
-    databaseConnection.query(query, (err, resp) => {
-        if (err) {
-            res.status(400).json({ error: "An error occured: " + err });
-            logError(err)
-            return;
-        }
-
-        res.status(200).json(resp);
-    });
-});
-
 /// Apps
 // 1 - Homestuck Search Engine
 router.get("/app/1/tags", async (_, res) => {
@@ -310,12 +35,12 @@ router.get("/app/1/tags", async (_, res) => {
         const synonyms = {};
         (await synonymsCollection.find({}).toArray()).forEach((item) => {
             synonyms[item._id] = item;
-        })
+        });
 
         const definitions = {};
         (await definitionsCollection.find({}).toArray()).forEach((item) => {
             definitions[item._id] = item;
-        })
+        });
 
         res.status(200).json({
             definitions: definitions,
@@ -368,20 +93,19 @@ router.post("/app/1/edit", authenticateToken, async (req, res) => {
             const db = mongoClient.db("homestuck");
             const collection = db.collection("asset");
 
-            for(const id in req.body.edits) {
+            for (const id in req.body.edits) {
                 const tags = req.body.edits[id];
 
                 await collection.updateOne(
                     { _id: new ObjectId(id) },
                     { $set: { tags: tags.map((tag) => tag[1]) } }
-                )
+                );
             }
 
             res.status(200).json({});
         } else {
             res.status(400).json({
-                error:
-                    "Incorrect data format. Requires tags in the form of an array.",
+                error: "Incorrect data format. Requires tags in the form of an array.",
             });
         }
     } catch (e) {
@@ -394,15 +118,16 @@ router.post("/app/1/edit/:id", authenticateToken, async (req, res) => {
         if (req.body.tags && req.body.tags.length > 0) {
             const db = mongoClient.db("homestuck");
             const collection = db.collection("asset");
-            
-            res.status(200).json(await collection.updateOne(
-                { _id: new ObjectId(req.params.id) },
-                { $set: { tags: req.body.tags } }
-            ));
+
+            res.status(200).json(
+                await collection.updateOne(
+                    { _id: new ObjectId(req.params.id) },
+                    { $set: { tags: req.body.tags } }
+                )
+            );
         } else {
             res.status(400).json({
-                error:
-                    "Incorrect data format. Requires tags in the form of an array.",
+                error: "Incorrect data format. Requires tags in the form of an array.",
             });
         }
     } catch (e) {
@@ -411,7 +136,10 @@ router.post("/app/1/edit/:id", authenticateToken, async (req, res) => {
 });
 
 // Login
-const expirationTime = process.env.NODE_ENV === "development" ? (1000 * 60 * 60 * 6) : (1000 * 60 * 60);
+const expirationTime =
+    process.env.NODE_ENV === "development"
+        ? 1000 * 60 * 60 * 6
+        : 1000 * 60 * 60;
 
 router.post("/app/1/login", (req, res) => {
     if (req.body && req.body.password) {
@@ -422,7 +150,7 @@ router.post("/app/1/login", (req, res) => {
                 token: jwt.sign(
                     { date: req.body.password },
                     process.env.TOKEN_SECRET,
-                    { expiresIn: ms(expirationTime) }
+                    { expiresIn: expirationTime / 1000 }
                 ),
                 expires: new Date().getTime() + expirationTime,
             });

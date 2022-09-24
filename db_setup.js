@@ -2,12 +2,7 @@ require("dotenv").config({
     path: `.env.${process.env.NODE_ENV}`,
 });
 
-const {
-    getDatabaseConnection,
-    connectToDatabase,
-    sessionStore,
-    mongoClient,
-} = require("./database");
+const { mongoClient } = require("./database");
 
 // Setup MongoDB
 const setupMongoWait = () => {
