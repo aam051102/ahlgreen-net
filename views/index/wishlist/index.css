@@ -1,0 +1,130 @@
+body {
+    font-family: "Source Code Pro";
+    margin: 0;
+    background-color: #020104;
+    color: #ffffff;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.page-inner {
+    padding: 0 20px;
+    max-width: 1024px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: left;
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.page-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    padding: 120px 0;
+    flex-wrap: wrap;
+}
+
+.page-buttons_button {
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 30ms ease-in-out, transform 30ms ease-in-out,
+        box-shadow 30ms ease-in-out;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid #ffffff20;
+    gap: 10px;
+    position: relative;
+    box-shadow: 0 5px 0 rgba(255, 255, 255, 0.1);
+    font-family: "Merriweather", Cambria, Cochin, Georgia, Times,
+        "Times New Roman", serif;
+}
+
+.page-buttons_button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translate(0, 5px);
+    box-shadow: none;
+    border: 1px solid transparent;
+}
+
+.page-buttons_button_info {
+    flex-grow: 1;
+    text-align: left;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.page-buttons_button_icon {
+    width: 10rem;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+.page-buttons_button_title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.page-buttons_button_description {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .page-wrapper {
+        box-sizing: border-box;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .page-buttons {
+        padding: 60px 0;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .page-buttons_button {
+        display: block;
+        height: auto;
+        width: 100%;
+    }
+
+    .page-buttons_button_icon {
+        height: auto;
+        width: 100%;
+    }
+}

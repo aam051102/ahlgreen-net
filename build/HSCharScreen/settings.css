@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    background-color: #535353;
+    font-size: 14px;
+    font-family: "Courier New";
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+}
+
+#slide {
+    max-width: 900px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    background-color: #eeeeee;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px solid #c6c6c6;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type="button"] {
+    outline-width: 0px !important;
+}
+
+input[type="button"]:hover {
+    background-color: gray;
+}
+
+input[type="button"]:active {
+    outline-width: 2px !important;
+}
+
+input[type="text"] {
+    width: 220px;
+    padding: 5px 10px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    outline: 1px solid black;
+}
+
+textarea {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    min-height: 140px;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: none;
+    outline: 1px solid black;
+}
+
+@media screen and (max-width: 425px) {
+    input[type="text"] {
+        width: 100%;
+    }
+}

@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Homestuck - Customizable Character Selection Screen</title>
+
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="google-site-verification"
+            content="EwCR20L7XzRSB65nUy-ZPMiQNO1PTssbOlv4ch_ZSuU"
+        />
+        <meta content="origin" name="referrer" />
+
+        <meta property="author" content="MadCreativity" />
+        <meta property="og:site_name" content="MadCreativity" />
+        <meta property="og:type" content="website" />
+
+        <link type="text/css" rel="stylesheet" href="settings.css" />
+
+        <script>
+            function createCode() {
+                var URL = "https://ahlgreen.net/HSCharScreen/?";
+
+                if (document.getElementById("char1A").value != "") {
+                    URL +=
+                        "char1A=" +
+                        encodeURIComponent(
+                            document.getElementById("char1A").value
+                        ) +
+                        "&";
+
+                    if (document.getElementById("char1B").value != "") {
+                        URL +=
+                            "char1B=" +
+                            encodeURIComponent(
+                                document.getElementById("char1B").value
+                            ) +
+                            "&";
+                    }
+                    if (document.getElementById("char1C").value != "") {
+                        URL +=
+                            "char1C=" +
+                            encodeURIComponent(
+                                document.getElementById("char1C").value
+                            ) +
+                            "&";
+                    }
+                    URL +=
+                        "char1E=" +
+                        document.getElementById("char1E").checked +
+                        "&";
+                    URL +=
+                        "char1F=" +
+                        document.getElementById("char1F").checked +
+                        "&";
+                }
+
+                if (document.getElementById("char2A").value != "") {
+                    URL +=
+                        "char2A=" +
+                        encodeURIComponent(
+                            document.getElementById("char2A").value
+                        ) +
+                        "&";
+
+                    if (document.getElementById("char2B").value != "") {
+                        URL +=
+                            "char2B=" +
+                            encodeURIComponent(
+                                document.getElementById("char2B").value
+                            ) +
+                            "&";
+                    }
+                    if (document.getElementById("char2C").value != "") {
+                        URL +=
+                            "char2C=" +
+                            encodeURIComponent(
+                                document.getElementById("char2C").value
+                            ) +
+                            "&";
+                    }
+                    URL +=
+                        "char2E=" +
+                        document.getElementById("char2E").checked +
+                        "&";
+                    URL +=
+                        "char2F=" +
+                        document.getElementById("char2F").checked +
+                        "&";
+                }
+
+                if (document.getElementById("char3A").value != "") {
+                    URL +=
+                        "char3A=" +
+                        encodeURIComponent(
+                            document.getElementById("char3A").value
+                        ) +
+                        "&";
+
+                    if (document.getElementById("char3B").value != "") {
+                        URL +=
+                            "char3B=" +
+                            encodeURIComponent(
+                                document.getElementById("char3B").value
+                            ) +
+                            "&";
+                    }
+                    if (document.getElementById("char3C").value != "") {
+                        URL +=
+                            "char3C=" +
+                            encodeURIComponent(
+                                document.getElementById("char3C").value
+                            ) +
+                            "&";
+                    }
+                    URL +=
+                        "char3E=" +
+                        document.getElementById("char3E").checked +
+                        "&";
+                    URL +=
+                        "char3F=" +
+                        document.getElementById("char3F").checked +
+                        "&";
+                }
+
+                if (document.getElementById("char4A").value != "") {
+                    URL +=
+                        "char4A=" +
+                        encodeURIComponent(
+                            document.getElementById("char4A").value
+                        ) +
+                        "&";
+
+                    if (document.getElementById("char4B").value != "") {
+                        URL +=
+                            "char4B=" +
+                            encodeURIComponent(
+                                document.getElementById("char4B").value
+                            ) +
+                            "&";
+                    }
+                    if (document.getElementById("char4C").value != "") {
+                        URL +=
+                            "char4C=" +
+                            encodeURIComponent(
+                                document.getElementById("char4C").value
+                            ) +
+                            "&";
+                    }
+                    URL +=
+                        "char4E=" +
+                        document.getElementById("char4E").checked +
+                        "&";
+                    URL +=
+                        "char4F=" +
+                        document.getElementById("char4F").checked +
+                        "&";
+                }
+
+                URL = URL.slice(0, URL.length - 1);
+                document.getElementById("output").innerText =
+                    '<iframe src="' +
+                    URL +
+                    '" width="650" height="450" style="overflow: hidden; border: none;"></iframe>';
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="main">
+            <div id="slide">
+                <p style="font-size: xx-large">SELECTION SCREEN CUSTOMIZER</p>
+                <br />
+                <div style="text-align: left; font-size: large">
+                    <p style="font-size: x-large">Character 1</p>
+                    <input type="text" id="char1A" />
+                    <label>CHARACTER IMAGE URL (148x148)</label>
+                    <br />
+                    <br />
+                    <input type="text" id="char1B" />
+                    <label>BACKGROUND IMAGE URL (632x371)</label>
+                    <br />
+                    <br />
+                    <input type="text" id="char1C" />
+                    <label>CHARACTER PAGE LINK</label>
+                    <br />
+                    <br />
+                    <input type="checkbox" id="char1E" />
+                    <label>USABLE</label>
+                    <br />
+                    <br />
+                    <input type="checkbox" id="char1F" />
+                    <label>PANELS DONE</label>
+                    <br />
+                    <br />
+                    <br />
+                    <p style="font-size: x-large">Character 2</p>
+                    <input type="text" id="char2A" />
+                    <label>CHARACTER IMAGE URL (148x148)</label>
+                    <br />
+                    <br />
+                    <input type="text" id="char2B" />
+                    <label>BACKGROUND IMAGE URL (632x371)</label>
+                    <br />
+                    <br />
+                    <input type="text" id="char2C" />
+                    <label>CHARACTER PAGE LINK</label>
+                    <br />
+                    <br />
+                    <input type="checkbox" id="char2E" />
+                    <label>USABLE</label>
+                    <br />
+                    <br />
+                    <input type="checkbox" id="char2F" />
+                    <label>PANELS DONE</label>
+                    <br />
+                    <br />
+                    <br />
+                    <p style="font-size: x-large">Character 3</p>
+                    <input type="text" id="char3A" />
+                    <label>CHARACTER IMAGE URL (148x148)</label>
+                    <br />
+                    <br />
+                    <input type="text" id="char3B" />
+                    <label>BACKGROUND IMAGE URL (632x371)</label>
+                    <br />
+                    <br />
+                    <input type="text" id="char3C" />
+                    <label>CHARACTER PAGE LINK</label>
+                    <br />
+                    <br />
+                    <input type="checkbox" id="char3E" />
+                    <label>USABLE</label>
+                    <br />
+                    <br />
+                    <input type="checkbox" id="char3F" />
+                    <label>PANELS DONE</label>
+                    <br />
+                    <br />
+                    <br />
+                    <p style="font-size: x-large">Character 4</p>
+                    <input type="text" id="char4A" />
+                    <label>CHARACTER IMAGE URL (148x148)</label>
+                    <br />
+                    <br />
+                    <input type="text" id="char4B" />
+                    <label>BACKGROUND IMAGE URL (632x371)</label>
+                    <br />
+                    <br />
+                    <input type="text" id="char4C" />
+                    <label>CHARACTER PAGE LINK</label>
+                    <br />
+                    <br />
+                    <input type="checkbox" id="char4E" />
+                    <label>USABLE</label>
+                    <br />
+                    <br />
+                    <input type="checkbox" id="char4F" />
+                    <label>PANELS DONE</label>
+                    <br />
+                    <br />
+                    <br />
+                    <textarea id="output" readonly></textarea>
+                    <br />
+                    <input
+                        type="button"
+                        value="Generate Code"
+                        onclick="createCode()"
+                    />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

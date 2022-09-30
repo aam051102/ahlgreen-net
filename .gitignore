@@ -4,6 +4,7 @@ node_modules/
 build/*
 !build/robots.txt
 !build/sitemap.xml
+!build/HSCharScreen
 public/
 sslcert/
 .env.*
