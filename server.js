@@ -12,6 +12,7 @@ const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const http = require("http");
+const request = require("request");
 
 // Create server
 const app = express();
@@ -49,6 +50,81 @@ app.use(
     "/app/hsse",
     express.static(path.join(__dirname, "views/app/hsse/build"))
 );
+
+// MUSE
+var generateRandomString = function (length) {
+    var text = "";
+    var possible =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+};
+
+const spotify_client_id = process.env.SPOTIFY_CLIENT_ID;
+const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+
+const SELF_URL =
+    process.env.NODE_ENV === "production"
+        ? "https://ahlgreen.net"
+        : "http://localhost:4000";
+
+app.get("/app/muse/auth/login", (req, res) => {
+    const state = generateRandomString(16);
+    const scope = "user-read-private user-read-email";
+
+    const authQueryParameters = new URLSearchParams({
+        response_type: "code",
+        client_id: spotify_client_id,
+        scope: scope,
+        redirect_uri: `${SELF_URL}/app/muse/auth/callback`,
+        state: state,
+    });
+
+    res.redirect(
+        "https://accounts.spotify.com/authorize?" +
+            authQueryParameters.toString()
+    );
+});
+
+app.get("/app/muse/auth/callback", (req, res) => {
+    const code = req.query.code;
+
+    const authOptions = {
+        url: "https://accounts.spotify.com/api/token",
+        form: {
+            code: code,
+            redirect_uri: `${SELF_URL}/app/muse/auth/callback`,
+            grant_type: "authorization_code",
+        },
+        headers: {
+            Authorization:
+                "Basic " +
+                Buffer.from(
+                    spotify_client_id + ":" + spotify_client_secret
+                ).toString("base64"),
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        json: true,
+    };
+
+    request.post(authOptions, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            const accessToken = body.access_token;
+            res.redirect(`/app/muse/search?token=${accessToken}`);
+        }
+    });
+});
+
+app.use(["/app/muse", "/app/muse/*"], (req, res) => {
+    if (req.path.lastIndexOf(".") === -1) {
+        res.sendFile(path.join(__dirname, "views/app/muse/build/index.html"));
+    } else {
+        res.sendFile(path.join(__dirname, "views/app/muse/build", req.path));
+    }
+});
 
 // Set static folders
 app.use("/public", express.static(path.join(__dirname, "public")));
