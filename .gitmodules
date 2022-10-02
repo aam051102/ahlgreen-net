@@ -1,7 +1,6 @@
 [submodule "views/app/hsse"]
 	path = views/app/hsse
 	url = https://github.com/aam051102/homestuck-search-engine.git
-
 [submodule "views/app/muse"]
 	path = views/app/muse
 	url = https://github.com/aam051102/muse.git
