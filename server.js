@@ -113,7 +113,43 @@ app.get("/app/muse/auth/callback", (req, res) => {
     request.post(authOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {
             const accessToken = body.access_token;
-            res.redirect(`/app/muse/search?token=${accessToken}`);
+            const refreshToken = body.refresh_token;
+            const expiry = body.expires_in;
+            res.redirect(
+                `/app/muse/search?token=${accessToken}&refreshToken=${refreshToken}&expiry=${
+                    new Date().getTime() + expiry * 1000
+                }`
+            );
+        }
+    });
+});
+
+app.get("/app/muse/auth/refresh_token", function (req, res) {
+    const refresh_token = req.query.refresh_token;
+    const authOptions = {
+        url: "https://accounts.spotify.com/api/token",
+        headers: {
+            Authorization:
+                "Basic " +
+                Buffer.from(
+                    spotify_client_id + ":" + spotify_client_secret
+                ).toString("base64"),
+        },
+        form: {
+            grant_type: "refresh_token",
+            refresh_token: refresh_token,
+        },
+        json: true,
+    };
+
+    request.post(authOptions, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            const access_token = body.access_token;
+            const expiry = body.expires_in; // Expiry is in seconds
+            res.json({
+                token: access_token,
+                expiry: new Date().getTime() + expiry * 1000,
+            });
         }
     });
 });
