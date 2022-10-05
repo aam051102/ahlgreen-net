@@ -13,6 +13,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const http = require("http");
 const request = require("request");
+const dayjs = require("dayjs");
 
 // Create server
 const app = express();
@@ -114,11 +115,11 @@ app.get("/app/muse/auth/callback", (req, res) => {
         if (!error && response.statusCode === 200) {
             const accessToken = body.access_token;
             const refreshToken = body.refresh_token;
-            const expiry = body.expires_in;
+            const expiry = body.expires_in; // Expiry is in seconds
             res.redirect(
-                `/app/muse/search?token=${accessToken}&refreshToken=${refreshToken}&expiry=${
-                    new Date().getTime() + expiry * 1000
-                }`
+                `/app/muse/search?token=${accessToken}&refreshToken=${refreshToken}&expiry=${dayjs()
+                    .add(expiry, "seconds")
+                    .toISOString()}`
             );
         }
     });
@@ -148,7 +149,7 @@ app.get("/app/muse/auth/refresh_token", function (req, res) {
             const expiry = body.expires_in; // Expiry is in seconds
             res.json({
                 token: access_token,
-                expiry: new Date().getTime() + expiry * 1000,
+                expiry: dayjs().add(expiry, "seconds").toISOString(),
             });
         }
     });
