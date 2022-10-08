@@ -37,7 +37,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700;900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Source+Code+Pro:wght@400;700&display=swap"
             rel="stylesheet"
         />
 
@@ -72,41 +72,162 @@
     <body>
         <div class="page-wrapper">
             <main class="page-content">
-                <div class="page-inner">
-                    <h1>Alexander Ahlgreen Madsen</h1>
+                <section class="page-section" id="stories">
+                    <div class="page-section_inner">
+                        <h1>MadCreativity</h1>
 
-                    <div class="page-buttons">
-                        <a href="/story" class="page-buttons_button">
-                            <svg
-                                class="page-buttons_button_icon"
-                                stroke="currentColor"
-                                fill="currentColor"
-                                stroke-width="0"
-                                viewBox="0 0 16 16"
-                                xmlns="http://www.w3.org/2000/svg"
+                        <h2>Stories</h2>
+
+                        <div class="page-buttons">
+                            <a
+                                href="/story/favor-the-kind"
+                                class="page-buttons_button"
                             >
-                                <path
-                                    d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
-                                ></path>
-                            </svg>
-                            <p class="page-buttons_button_title">Stories</p>
-                        </a>
+                                <img
+                                    src="./story/favor-the-kind/assets/cover_favor-the-kind.png"
+                                    class="page-buttons_button_icon"
+                                />
 
-                        <a href="/app/hsse/" class="page-buttons_button">
-                            <p class="page-buttons_button_title">
-                                Homestuck Search Engine
-                            </p>
-                        </a>
+                                <div class="page-buttons_button_info">
+                                    <div
+                                        class="page-buttons_button_info_header"
+                                    >
+                                        <p class="page-buttons_button_title">
+                                            Favor The Kind
+                                        </p>
+                                    </div>
 
-                        <a href="/app/muse/" class="page-buttons_button">
-                            <img
-                                src="./assets/muse_logo.svg"
-                                class="h-5"
-                                alt="MUSE"
-                            />
-                        </a>
+                                    <div class="page-buttons_button_tags">
+                                        <div class="page-buttons_button_tag">
+                                            Fantasy
+                                        </div>
+                                        <div class="page-buttons_button_tag">
+                                            Narrator
+                                        </div>
+                                        <div class="page-buttons_button_tag">
+                                            Female lead
+                                        </div>
+                                        <div class="page-buttons_button_tag">
+                                            Elves
+                                        </div>
+                                        <div class="page-buttons_button_tag">
+                                            Magic
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </section>
+
+                <section class="page-section" id="applications">
+                    <div class="page-section_inner">
+                        <h2>Applications</h2>
+
+                        <div class="page-buttons">
+                            <a href="/app/muse" class="page-buttons_button">
+                                <img
+                                    src="./assets/muse_logo.svg"
+                                    class="page-buttons_button_icon"
+                                />
+
+                                <div class="page-buttons_button_info">
+                                    <div
+                                        class="page-buttons_button_info_header"
+                                    >
+                                        <p class="page-buttons_button_title">
+                                            MUSE
+                                        </p>
+
+                                        <p
+                                            class="page-buttons_button_description"
+                                        >
+                                            A web-app which manipulates
+                                            Spotify's recommendation API to
+                                            allow for highly customized music
+                                            recommendations. Requires
+                                            whitelisting.
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="/app/hsse" class="page-buttons_button">
+                                <img
+                                    src="./assets/hsse_logo.svg"
+                                    class="page-buttons_button_icon"
+                                />
+
+                                <div class="page-buttons_button_info">
+                                    <div
+                                        class="page-buttons_button_info_header"
+                                    >
+                                        <p class="page-buttons_button_title">
+                                            Homestuck Search Engine
+                                        </p>
+
+                                        <p
+                                            class="page-buttons_button_description"
+                                        >
+                                            A web-app which allows easy
+                                            searching of a large database of
+                                            tagged illustrations from the
+                                            webcomic "Homestuck". Unafilliated
+                                            with What Pumpkin Games.
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="page-section" id="timeline">
+                    <div class="page-section_inner">
+                        <h2>Employment & Education</h2>
+
+                        <div class="page-timeline">
+                            <div class="page-timeline_point">
+                                <div class="page-timeline_point-info">
+                                    <div class="page-timeline_point-header">
+                                        <div class="page-timeline_point-title">
+                                            Youandx ApS
+                                        </div>
+                                        <div class="page-timeline_point-time">
+                                            Aug. 2021 - now
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="page-timeline_point">
+                                <div class="page-timeline_point-info">
+                                    <div class="page-timeline_point-header">
+                                        <div class="page-timeline_point-title">
+                                            i-Strategi
+                                        </div>
+                                        <div class="page-timeline_point-time">
+                                            Nov. 2020 - Aug. 2021
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="page-timeline_point">
+                                <div class="page-timeline_point-info">
+                                    <div class="page-timeline_point-header">
+                                        <div class="page-timeline_point-title">
+                                            Roskilde Technical College
+                                        </div>
+                                        <div class="page-timeline_point-time">
+                                            Aug. 2018 - Nov. 2020
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </main>
 
             <footer class="page-footer">

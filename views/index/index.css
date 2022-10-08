@@ -1,7 +1,7 @@
 body {
     font-family: "Source Code Pro", monospace;
     margin: 0;
-    background-color: #020104;
+    background-color: rgba(15, 15, 15);
     color: #ffffff;
 }
 
@@ -14,73 +14,206 @@ body {
 }
 
 .page-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-grow: 1;
-}
-
-.page-inner {
     padding: 0 20px;
     max-width: 1024px;
     width: 100%;
     box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.page-section {
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+}
+
+.page-section_inner {
+    width: 100%;
+}
+
+.page-header {
+    padding: 20px;
 }
 
 h1 {
     text-align: left;
     margin-top: 0;
-    font-weight: 400;
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-weight: 800;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    font-family: "Montserrat", monospace;
+}
+
+h2 {
+    text-align: left;
+    margin-top: 0;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-family: "Montserrat", monospace;
 }
 
 .page-buttons {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
-    padding: 120px 0;
+    gap: 30px;
     flex-wrap: wrap;
 }
 
 .page-buttons_button {
-    color: #ffffff;
     text-decoration: none;
     text-align: center;
     transition: background-color 30ms ease-in-out, transform 30ms ease-in-out,
         box-shadow 30ms ease-in-out;
-    border-radius: 5px;
-    padding: 20px 20px 10px 20px;
-    width: 12.5rem;
-    height: 12.5rem;
+    width: 100%;
     display: flex;
-    align-items: center;
     box-sizing: border-box;
-    justify-content: center;
-    flex-direction: column;
-    border: 1px solid #ffffff20;
-    box-shadow: 0 5px 0 rgba(255, 255, 255, 0.1);
+    gap: 10px;
+    position: relative;
+    color: #ffffff;
+    background: rgb(24, 24, 24);
+    border-radius: 5px;
+    overflow: hidden;
 }
 
-.page-buttons_button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translate(0, 5px);
-    box-shadow: none;
-    border: 1px solid transparent;
+.page-buttons_button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #202020;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 150ms ease-in-out;
+}
+
+.page-buttons_button:hover::before {
+    opacity: 1;
+}
+
+.page-buttons_button_info {
+    flex-grow: 1;
+    text-align: left;
+    padding: 20px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 5;
+}
+
+.page-buttons_button_info_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .page-buttons_button_icon {
-    height: 3rem;
+    width: 10rem;
+    border-radius: 0px;
+    background: rgb(10, 10, 10);
+    position: relative;
+    z-index: 5;
+    min-height: 10rem;
+    object-fit: cover;
+    object-position: center;
 }
 
 .page-buttons_button_title {
     font-size: 1.25rem;
-    font-weight: 400;
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 1rem;
 }
 
+.page-buttons_button_description {
+    margin: 0;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #aaaaaa;
+}
+
+.page-buttons_button_tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+.page-buttons_button_tag {
+    font-size: 0.75rem;
+    border: 1px solid #404040;
+    border-radius: 2px;
+    padding: 5px 10px;
+    color: #aaaaaa;
+}
+
+/* Timeline */
+.page-timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-timeline_point {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 50px;
+    position: relative;
+}
+
+.page-timeline_point:not(:first-of-type) {
+    margin-top: 20px;
+}
+
+.page-timeline_point::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    box-sizing: border-box;
+    border: 1px solid #202020;
+}
+
+.page-timeline_point:not(:last-of-type)::after {
+    content: "";
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(10px) translateY(20px);
+    background: #202020;
+}
+
+.page-timeline_point-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.page-timeline_point-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.page-timeline_point-time {
+    color: #aaaaaa;
+}
+
+.page-timeline_point-description {
+    color: #aaaaaa;
+}
+
+/* Footer */
 .page-footer {
-    padding: 20px;
+    padding: 60px 20px 20px 20px;
     box-sizing: border-box;
     width: 100%;
     display: flex;
@@ -88,6 +221,7 @@ h1 {
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
+    background: linear-gradient(to bottom, rgb(15, 15, 15), rgb(8, 8, 8));
 }
 
 .page-footer_contact {
@@ -117,24 +251,20 @@ h1 {
 .page-footer_socials a {
     color: #ffffff;
     text-decoration: none;
-    transition: background-color 30ms ease-in-out, transform 30ms ease-in-out,
-        box-shadow 30ms ease-in-out;
+    transition: background-color 150ms ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
     flex-direction: column;
-    border: 1px solid #ffffff20;
-    box-shadow: 0 2.5px 0 rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
+    border-radius: 2px;
+    border: 1px solid #202020;
+    background: #000000;
 }
 
 .page-footer_socials a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translate(0, 2.5px);
-    box-shadow: none;
-    border: 1px solid transparent;
+    background-color: #202020;
 }
 
 .page-footer_socials a svg {
@@ -149,11 +279,8 @@ h1 {
     }
 
     h1 {
+        font-size: 3rem;
         text-align: center;
-    }
-
-    .page-buttons {
-        padding: 60px 0;
     }
 
     .page-footer {
@@ -163,10 +290,17 @@ h1 {
 
 @media screen and (max-width: 425px) {
     h1 {
-        font-size: 1.5rem;
+        font-size: 2.5rem;
     }
 
     .page-buttons_button {
         width: 100%;
+        flex-direction: column;
+    }
+
+    .page-buttons_button_icon {
+        width: 100%;
+        min-height: none;
+        height: 10rem;
     }
 }
