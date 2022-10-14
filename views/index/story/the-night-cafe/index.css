@@ -1,0 +1,227 @@
+body {
+    font-family: "Merriweather", Cambria, Cochin, Georgia, Times,
+        "Times New Roman", serif;
+    margin: 0;
+    background-color: #020104;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-inner {
+    min-height: 100vh;
+    padding: 0 40px;
+    max-width: 800px;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ffffff20;
+}
+
+.page-inner_header {
+    padding-top: 40px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-cover {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.page-divider {
+    height: 1px;
+    border: 0;
+    background-color: #ffffff20;
+    margin: 0 50px;
+}
+
+.page-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.page-content {
+    padding: 25px 0;
+}
+
+.page-content h2 {
+    color: #ffffff;
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+}
+
+.page-content p {
+    line-height: 2;
+    font-size: 1rem;
+    margin-bottom: 1.5em;
+    color: #999999;
+}
+
+.page-inner_footer {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7a7a7a;
+}
+
+.page-inner_footer p {
+    font-size: 0.75rem;
+}
+
+.page-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.page-tag {
+    font-size: 0.75rem;
+    border: 1px solid #ffffff20;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #7a7a7a;
+}
+
+.page-read-time {
+    font-size: 0.75rem;
+    color: #7a7a7a;
+    text-align: right;
+    display: block;
+    padding: 10px 50px;
+}
+
+.page-header {
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-family: "Source Code Pro";
+}
+
+.page-header .page-header_back-button {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border 30ms ease-in-out;
+}
+
+.page-header .page-header_back-button:hover {
+    border-bottom: 1px solid currentColor;
+}
+
+.page-header svg {
+    height: 1rem;
+    color: #ffffff;
+}
+
+.page-footer {
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font-family: "Source Code Pro";
+}
+
+.page-footer_contact {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.page-footer_contact a {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border 30ms ease-in-out;
+}
+
+.page-footer_contact a:hover {
+    border-bottom: 1px solid currentColor;
+}
+
+.page-footer_socials {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: end;
+}
+
+.page-footer_socials a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 30ms ease-in-out, transform 30ms ease-in-out,
+        box-shadow 30ms ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-direction: column;
+    border: 1px solid #ffffff20;
+    box-shadow: 0 2.5px 0 rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.page-footer_socials a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translate(0, 2.5px);
+    box-shadow: none;
+    border: 1px solid transparent;
+}
+
+.page-footer_socials a svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+@media screen and (max-width: 800px) {
+    .page-inner {
+        padding: 0 20px;
+        margin: 0;
+        box-shadow: 0;
+        border-radius: 0;
+    }
+
+    .page-divider {
+        margin: 0 20px;
+    }
+
+    .page-read-time {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .page-content {
+        padding: 20px 0;
+    }
+
+    .page-inner_footer {
+        padding: 20px 0;
+    }
+
+    .page-footer {
+        justify-content: center;
+    }
+}
