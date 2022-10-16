@@ -11,18 +11,41 @@ const contentPaths = fs.readdirSync("./src/content");
 for (const p of contentPaths) {
     const content = fs.readFileSync(path.join("./src/content", p)).toString();
 
-    const parsedContent = marked.marked(content);
+    const headMatch = content.match(/\{\{\s*HEAD\s*\}\}/);
+    const bodyMatch = content.match(/\{\{\s*BODY\s*\}\}/);
+
+    // Header data
+    const headContent = content.substring(
+        headMatch.index + headMatch[0].length,
+        bodyMatch.index
+    );
+
+    const headLines = headContent
+        .split("\n")
+        .filter((l) => l.trim().length !== 0);
+    const head = headLines.reduce((prev, curr) => {
+        const def = curr.trim().split("=");
+
+        return { ...prev, [def[0]]: def[1] };
+    }, {});
+
+    // Content body
+    const markdownContent = content.substring(
+        bodyMatch.index + bodyMatch[0].length
+    );
+
+    const parsedContent = marked.marked(markdownContent, { headerIds: true });
 
     let outputContent = templateContent;
 
     outputContent = outputContent.replace(
         /\{\{\s*title\s*\}\}/g,
-        "Article by MadCreativity"
+        `${head["title"]} | Article by MadCreativity`
     );
 
     outputContent = outputContent.replace(
         /\{\{\s*description\s*\}\}/g,
-        "An article written by MadCreativity."
+        head["description"] || ""
     );
 
     outputContent = outputContent.replace(

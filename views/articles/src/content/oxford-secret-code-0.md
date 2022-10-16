@@ -1,8 +1,22 @@
+{{HEAD}}
+title=Oxford Code #0
+description=A description of my process in solving a secret cipher code from Oxford College.
+
+{{BODY}}
+
 # Oxford Code #0
 
-Oxford College's Department of Mathematics and Computer Science provides a challenge in the form of a secret code in their [Number Theory](http://math.oxford.emory.edu/site/math125/) course. This article includes a description of how I went about solving it, the simplest decoding method, and links to all of the resources they included.
-
 **THIS ARTICLE INCLUDES THE SOLUTION. PLEASE APPROACH THE PROBLEM YOURSELF FIRST.**
+
+Oxford College's Department of Mathematics and Computer Science provides a challenge in the form of a secret code in their [Number Theory](http://math.oxford.emory.edu/site/math125/) course. This article focuses primarily on my approach to solving it.
+
+## Table of contents
+
+-   [Resources](#resources)
+-   [How I solved it](#how-i-solved-it)
+-   [How to decode](#how-to-decode)
+-   [Decoder (JavaScript)](#decoder-javascript)
+-   [Conclusion](#conclusion)
 
 ## Resources
 

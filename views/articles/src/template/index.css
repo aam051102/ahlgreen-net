@@ -1,5 +1,5 @@
 body {
-    font-family: "Source Code Pro", monospace;
+    font-family: "Montserrat", monospace;
     margin: 0;
     background-color: rgba(15, 15, 15);
     color: #ffffff;
@@ -80,6 +80,8 @@ body {
 
 .page-section_inner p {
     font-size: 1rem;
+    line-height: 1.5;
+    margin: 1.5rem 0;
 }
 
 .page-section_inner pre {
@@ -91,6 +93,7 @@ body {
     border-radius: 5px;
     font: inherit;
     font-size: 0.75rem;
+    font-family: "Source Code Pro", monospace;
 }
 
 .page-section_inner code {
@@ -100,14 +103,27 @@ body {
 
 .page-section_inner a {
     color: #1563eb;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.page-section_inner a:hover {
+    border-bottom: 1px solid currentColor;
 }
 
 .page-section_inner ul {
     margin: 0;
+    list-style: none;
+    padding-left: 20px;
 }
 
 .page-section_inner li {
     padding: 5px 0;
+}
+
+.page-section_inner li::before {
+    content: "-";
+    margin-right: 20px;
 }
 
 /* Footer */
