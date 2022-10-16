@@ -14,6 +14,7 @@ const cookieParser = require("cookie-parser");
 const http = require("http");
 const request = require("request");
 const dayjs = require("dayjs");
+const fs = require("fs");
 
 // Create server
 const app = express();
@@ -165,6 +166,17 @@ app.use(["/app/muse", "/app/muse/*"], (req, res) => {
 
 // Set static folders
 app.use("/public", express.static(path.join(__dirname, "public")));
+app.use("/articles", (req, res) => {
+    const p = path.join(__dirname, "views/articles/build", req.path + ".html");
+
+    if (fs.existsSync(p)) {
+        res.sendFile(
+            path.join(__dirname, "views/articles/build", req.path + ".html")
+        );
+    } else {
+        res.sendFile(path.join(__dirname, "views/articles/build", req.path));
+    }
+});
 app.use("/", express.static(path.join(__dirname, "views/index")));
 app.use(express.static(path.join(__dirname, "build")));
 

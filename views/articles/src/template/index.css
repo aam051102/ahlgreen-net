@@ -1,0 +1,149 @@
+body {
+    font-family: "Source Code Pro", monospace;
+    margin: 0;
+    background-color: rgba(15, 15, 15);
+    color: #ffffff;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.page-content {
+    flex-grow: 1;
+    padding: 0 20px;
+    max-width: 1024px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.page-section {
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+}
+
+.page-section_inner {
+    width: 100%;
+}
+
+.page-header {
+    padding: 20px;
+}
+
+h1 {
+    text-align: left;
+    margin-top: 0;
+    font-weight: 800;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    font-family: "Montserrat", monospace;
+}
+
+h2 {
+    text-align: left;
+    margin-top: 0;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-family: "Montserrat", monospace;
+}
+
+/* Footer */
+.page-footer {
+    padding: 60px 20px 20px 20px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background: linear-gradient(to bottom, rgb(15, 15, 15), rgb(8, 8, 8));
+}
+
+.page-footer_contact {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.page-footer_contact a {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border 30ms ease-in-out;
+}
+
+.page-footer_contact a:hover {
+    border-bottom: 1px solid currentColor;
+}
+
+.page-footer_socials {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: end;
+}
+
+.page-footer_socials a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 150ms ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-direction: column;
+    border-radius: 2px;
+    border: 1px solid #202020;
+    background: #000000;
+}
+
+.page-footer_socials a:hover {
+    background-color: #202020;
+}
+
+.page-footer_socials a svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .page-wrapper {
+        padding: 20px 0;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .page-footer {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .page-buttons_button {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .page-buttons_button_icon {
+        width: 100%;
+        min-height: none;
+        height: 10rem;
+    }
+}
