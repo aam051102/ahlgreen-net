@@ -1,0 +1,248 @@
+# Oxford Code #0
+
+Oxford College's Department of Mathematics and Computer Science provides a challenge in the form of a secret code in their [Number Theory](http://math.oxford.emory.edu/site/math125/) course. This article includes a description of how I went about solving it, the simplest decoding method, and links to all of the resources they included.
+
+**THIS ARTICLE INCLUDES THE SOLUTION. PLEASE APPROACH THE PROBLEM YOURSELF FIRST.**
+
+## Resources
+
+-   [Letter frequencies in English](http://math.oxford.emory.edu/site/math125/englishLetterFreqs/)
+-   [The Freemason Letters (fiction)](http://math.oxford.emory.edu/site/math125/secretCodes/the_freemason_letters.pdf)
+-   [The encrypted message](http://math.oxford.emory.edu/site/math125/secretCodes/0.txt)
+-   [Transposition ciphers](http://math.oxford.emory.edu/site/math125/transpositionCiphers/)
+
+Below is the full _encrypted_ message, in case the above links become deprecated.
+
+```
+WSEYCDSEOTIOOATFHSVNGHLEOEEEEECNROOFTALYUFRT
+SYBRTEEUTYSHERAHFUIMSLAUCSASCTTCCSOOTUEAOMNH
+RSPNEVEESSSOEYGOUTFRHERLHWSANSEAHAVEATTOTERR
+HHMIAAERACOLTCOVONLIHUENSBOAGOCOENRHVEFESGTE
+RONFEIRNUSADMSMRERTEEATNROUETITEATNTMTMDITEEW
+ODLHRSIVTIESTCEOZFMIEDTIOOLOFHNRSLNRIGMTOCOSTAG
+TEMCHTRHTOOEIAEOULBOVRTRLENESHOESAAFEWCTNNAI
+NTMDDLRTIAERLOHONVESRANNOLOITOELEMGTVRUVEIHE
+STAWNEROINHAYTFOTELMHCNTRRIEOOOEEGANFOBCHGCT
+UEITEEHRTPBSAINWIEWLSAEETIMGTENTTERINTEHNEOTSRT
+TANHAKHATSENNEVCHSDOSAOIEOWAIUSTNFMLNTWCREAT
+OOEOPBRRETMULYYXHWREPOTRHPTLTROEOOAHEUNSTCE
+MGCEHEREHEAEISSTTNMNMTHHDTTEHIETOHRESYOTIEIVCS
+HSLREAEATYCSMCTOIOSEUEMLMEARNELMLSEDAUOFWTXS
+MNOEHXEIARHEXRNLDAPXIAIIVAXETTSESX
+```
+
+## How I solved it
+
+Confronted with the full encrypted message, I first did what any rational person would, and threw every known substitution or shift cipher at it, to no effect.
+
+During this lunacy, I happened to note that there were several long rows of E's. These rows were sometimes 5 or 6 letters long, and creating any words from them would be impossible. I also took note of the frequency at which letters such as T and E were used, and quickly recognized the similarity to common letter frequency in the English language, with T and E being some of the most used letters. It was then that I realized that it must be a rotation of some sort.
+
+Oxford had earlier provided a variety of transposition ciphers, which I looked through. I particularly took note of the rotation cipher. Here, I first tried every combination of block size and rotation angle I could think of. Again to no avail.
+
+Clearly, these random attempts were getting me nowhere. It was time to think rationally.
+
+I couldn't think of anything and went to bed. I then awoke 6 hours later and decided to try again.
+
+This time, however, I had a plan. I looked at the cipher and noted that the letter at the top left was a W. Based on the words I could think of that ended with a W, none of them would have worked as the end of a sentence. This meant that the W was most likely the beginning of the cipher.
+
+I decided to focus on the first line of the cipher, assuming it to be a series of seperate messages, as they were of separate lengths.
+
+```
+WSEYCDSEOTIOOATFHSVNGHLEOEEEEECNROOFTALYUFRT
+```
+
+Continuing with my earlier idea of the rotation cipher, I began going from left to right, trying to find letters which could form a word with the letter W. I first found H, and hoped for a "WHEN" or "WHERE", but "WHR" is not a word, so no luck.
+
+```
+WSEYCDSEOTIOOATF
+HSVNGHLEOEEEEECN
+ROOFTALYUFRT
+```
+
+I decided to try again, but this time I used the E, for a "WE" instead. The first vertical "WE" created only gibberish.
+
+```
+WS
+EY
+CD
+SE
+OT
+IO
+OA
+TF
+HS
+VN
+GH
+LE
+OE
+EE
+EE
+CN
+RO
+OF
+TA
+LY
+UF
+RT
+```
+
+Thus, I decided to try with the second E. Here, I struck gold, with the vertical text being "WETHEFR".
+
+```
+WSEYCDS
+EOTIOOA
+TFHSVNG
+HLEOEEE
+EECNROO
+FTALYUF
+RT
+```
+
+Knowing that the story was about the Freemasons, I immediately jumped on this, and looked to the rest of the line, but "WETHEFR" could not be continued rationally on that line. Then, I thought, perhaps if I simply ignore the linebreak and use the following line, too. And there it was. "WETHEFREEMASO". We the Freemaso... ns.
+
+```
+WSEYCDS
+EOTIOOA
+TFHSVNG
+HLEOEEE
+EECNROO
+FTALYUF
+RTSYBRT
+EEUTYSH
+ERAHFUI
+MSLAUCS
+ASCTTCC
+SOOTUEA
+OMNH
+```
+
+Clearly, this was the way to go, so I continued from there with the steps showed in the section below.
+
+## How to decode
+
+First, remove all line breaks.
+
+```
+WSEYCDSEOTIOOATFHSVNGHLEOEEEEECNROOFTALYUFRTSYBRTEEUTYSHERAHFUIMSLAUCSASCTTCCSOOTUEAOMNHRSPNEVEESSSOEYGOUTFRHERLHWSANSEAHAVEATTOTERRHHMIAAERACOLTCOVONLIHUENSBOAGOCOENRHVEFESGTERONFEIRNUSADMSMRERTEEATNROUETITEATNTMTMDITEEWODLHRSIVTIESTCEOZFMIEDTIOOLOFHNRSLNRIGMTOCOSTAGTEMCHTRHTOOEIAEOULBOVRTRLENESHOESAAFEWCTNNAINTMDDLRTIAERLOHONVESRANNOLOITOELEMGTVRUVEIHESTAWNEROINHAYTFOTELMHCNTRRIEOOOEEGANFOBCHGCTUEITEEHRTPBSAINWIEWLSAEETIMGTENTTERINTEHNEOTSRTTANHAKHATSENNEVCHSDOSAOIEOWAIUSTNFMLNTWCREATOOEOPBRRETMULYYXHWREPOTRHPTLTROEOOAHEUNSTCEMGCEHEREHEAEISSTTNMNMTHHDTTEHIETOHRESYOTIEIVCSHSLREAEATYCSMCTOIOSEUEMLMEARNELMLSEDAUOFWTXSMNOEHXEIARHEXRNLDAPXIAIIVAXETTSESX
+```
+
+Then add a line break every seven characters through the whole string.
+
+```
+WSEYCDS
+EOTIOOA
+TFHSVNG
+HLEOEEE
+EECNROO
+FTALYUF
+RTSYBRT
+EEUTYSH
+ERAHFUI
+MSLAUCS
+ASCTTCC
+SOOTUEA
+OMNHRSP
+NEVEESS
+SOEYGOU
+TFRHERL
+HWSANSE
+AHAVEAT
+TOTERRH
+HMIAAER
+ACOLTCO
+VONLIHU
+ENSBOAG
+OCOENRH
+VEFESGT
+ERONFEI
+RNUSADM
+SMRERTE
+EATNROU
+ETITEAT
+NTMTMDI
+TEEWODL
+HRSIVTI
+ESTCEOZ
+FMIEDTI
+OOLOFHN
+RSLNRIG
+MTOCOST
+AGTEMCH
+TRHTOOE
+IAEOULB
+OVRTRLE
+NESHOES
+AAFEWCT
+NNAINTM
+DDLRTIA
+ERLOHON
+VESRANN
+OLOITOE
+LEMGTVR
+UVEIHES
+TAWNERO
+INHAYTF
+OTELMHC
+NTRRIEO
+OOEEGAN
+FOBCHGC
+TUEITEE
+HRTPBSA
+INWIEWL
+SAEETIM
+GTENTTE
+RINTEHN
+EOTSRTT
+ANHAKHA
+TSENNEV
+CHSDOSA
+OIEOWAI
+USTNFML
+NTWCREA
+TOOEOPB
+RRETMUL
+YYXHWRE
+POTRHPT
+LTROEOO
+AHEUNST
+CEMGCEH
+EREHEAE
+ISSTTNM
+NMTHHDT
+TEHIETO
+HRESYOT
+IEIVCSH
+SLREAEA
+TYCSMCT
+OIOSEUE
+MLMEARN
+ELMLSED
+AUOFWTX
+SMNOEHX
+EIARHEX
+RNLDAPX
+IAIIVAX
+ETTSESX
+```
+
+Each vertical line now contains 1/7th of the answer. Placing each vertical line in extension of one another will show the full message (without spaces) vertically. Rotating that result to be horizontal will give the following.
+
+```
+WETHEFREEMASONSTHATHAVEOVERSEENTHEFORMATIONANDEVOLUTIONOFTHISGREATCOUNTRYPLACEINTHISTOMEASERIESOFLETTERSSOMEOFWHOMCONCERNMATTERSMOSTGRAVEANDRELEVANTTOOURNATIONSHISTORYOTHERSMERELYILLUMINATETHECASUALCONVERSATIONSOFOURTIMESTILLOTHERSFALLSOMEWHEREBETWEENTHESETWOEXTREMESTHEIRCOMMONALITYISONLYTHATTHEYHAVEALLBEENSENTTWICEONCETOTHEIRORIGINALRECIPIENTSANDONCETHROUGHTHISVESSELFORDISCOVERYBYFUTUREGENERATIONSFARREMOVEDFROMOUROWNTHATTHEYMIGHTBETTERKNOWFROMWHENCETHEYCAMEASWEHAVEDONEOURSUCCESSORSARECHARGEDTOADDTOTHISCOLLECTIONOVERTHEAGESWITHTHESAMEPURPOSEANDTOSECURETHEPASSAGEOFTHISCAPSULETHROUGHTIMEUTILIZINGTHEBESTMANNERSOFCONCEALMENTAVAILABLETOTHEMTOTHATENDXXXXXX
+```
+
+Find words and add spaces.
+
+```
+WE THE FREEMASONS THAT HAVE OVERSEEN THE FORMATION AND EVOLUTION OF THIS GREAT COUNTRY PLACE IN THIS TOME A SERIES OF LETTERS SOME OF WHOM CONCERN MATTERS MOST GRAVE AND RELEVANT TO OUR NATIONS HISTORY OTHERS MERELY ILLUMINATE THE CASUAL CONVERSATIONS OF OUR TIME STILL OTHERS FALL SOMEWHERE BETWEEN THESE TWO EXTREMES THEIR COMMONALITY IS ONLY THAT THEY HAVE ALL BEEN SENT TWICE ONCE TO THEIR ORIGINAL RECIPIENTS AND ONCE THROUGH THIS VESSEL FOR DISCOVERY BY FUTURE GENERATIONS FAR REMOVED FROM OUR OWN THAT THEY MIGHT BETTER KNOW FROM WHENCE THEY CAME AS WE HAVE DONE OUR SUCCESSORS ARE CHARGED TO ADD TO THIS COLLECTION OVER THE AGES WITH THE SAME PURPOSE AND TO SECURE THE PASSAGE OF THIS CAPSULE THROUGH TIME UTILIZING THE BEST MANNERS OF CONCEALMENT AVAILABLE TO THEM TO THAT END XXXXXX
+```
+
+The X's at the end are merely padding and may be removed.
+
+```
+WE THE FREEMASONS THAT HAVE OVERSEEN THE FORMATION AND EVOLUTION OF THIS GREAT COUNTRY PLACE IN THIS TOME A SERIES OF LETTERS SOME OF WHOM CONCERN MATTERS MOST GRAVE AND RELEVANT TO OUR NATIONS HISTORY OTHERS MERELY ILLUMINATE THE CASUAL CONVERSATIONS OF OUR TIME STILL OTHERS FALL SOMEWHERE BETWEEN THESE TWO EXTREMES THEIR COMMONALITY IS ONLY THAT THEY HAVE ALL BEEN SENT TWICE ONCE TO THEIR ORIGINAL RECIPIENTS AND ONCE THROUGH THIS VESSEL FOR DISCOVERY BY FUTURE GENERATIONS FAR REMOVED FROM OUR OWN THAT THEY MIGHT BETTER KNOW FROM WHENCE THEY CAME AS WE HAVE DONE OUR SUCCESSORS ARE CHARGED TO ADD TO THIS COLLECTION OVER THE AGES WITH THE SAME PURPOSE AND TO SECURE THE PASSAGE OF THIS CAPSULE THROUGH TIME UTILIZING THE BEST MANNERS OF CONCEALMENT AVAILABLE TO THEM TO THAT END
+```
+
+## Conclusion
+
+This was fun and well-executed challenge by Oxford and a lesson to me not to rely on guesswork and use my head every once in a while.
