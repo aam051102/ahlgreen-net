@@ -245,34 +245,8 @@ WE THE FREEMASONS THAT HAVE OVERSEEN THE FORMATION AND EVOLUTION OF THIS GREAT C
 
 ## Decoder (JavaScript)
 
-Time: O(2n) - with line break removal
-
-Time: O(n) - without line break removal
-
-Memory: 2n
-
 ```js
-function decode(str, blockSize) {
-    // Remove line breaks (only specific to this task. could be removed otherwise, saving O(n) time)
-    const inputArr = [];
-    for (const c of str) {
-        if (c !== "\n") inputArr.push(c);
-    }
-
-    // Add correct characters to output string
-    let output = "";
-
-    for (let x = 0; x < blockSize; x++) {
-        for (let y = 0; y < inputArr.length; y += blockSize) {
-            output += inputArr[x + y];
-        }
-    }
-
-    return output;
-}
-
-decode(
-    `WSEYCDSEOTIOOATFHSVNGHLEOEEEEECNROOFTALYUFRT
+const INPUT = `WSEYCDSEOTIOOATFHSVNGHLEOEEEEECNROOFTALYUFRT
 SYBRTEEUTYSHERAHFUIMSLAUCSASCTTCCSOOTUEAOMNH
 RSPNEVEESSSOEYGOUTFRHERLHWSANSEAHAVEATTOTERR
 HHMIAAERACOLTCOVONLIHUENSBOAGOCOENRHVEFESGTE
@@ -286,9 +260,42 @@ TANHAKHATSENNEVCHSDOSAOIEOWAIUSTNFMLNTWCREAT
 OOEOPBRRETMULYYXHWREPOTRHPTLTROEOOAHEUNSTCE
 MGCEHEREHEAEISSTTNMNMTHHDTTEHIETOHRESYOTIEIVCS
 HSLREAEATYCSMCTOIOSEUEMLMEARNELMLSEDAUOFWTXS
-MNOEHXEIARHEXRNLDAPXIAIIVAXETTSESX`,
-    7
-);
+MNOEHXEIARHEXRNLDAPXIAIIVAXETTSESX`;
+
+const BLOCK_SIZE = 7;
+
+/**
+ * Remove line breaks.
+ * NOTE: Only specific to this task. Could be removed otherwise, saving O(n) time and memory
+ */
+function removeLineBreaks(str) {
+    let output = "";
+
+    for (const c of str) {
+        if (c !== "\n") output += c;
+    }
+
+    return output;
+}
+
+/**
+ * Decoder
+ * Time: O(n)
+ * Speed: O(n)
+ */
+function decode(str, blockSize) {
+    let output = "";
+
+    for (let x = 0; x < blockSize; x++) {
+        for (let y = 0; y < str.length; y += blockSize) {
+            output += str[x + y];
+        }
+    }
+
+    return output;
+}
+
+decode(removeLineBreaks(INPUT), BLOCK_SIZE);
 ```
 
 ## Conclusion
