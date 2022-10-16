@@ -130,7 +130,6 @@ h2 {
     font-size: 1.25rem;
     font-weight: 700;
     margin: 0;
-    margin-bottom: 1rem;
 }
 
 .page-buttons_button_description {
@@ -138,6 +137,7 @@ h2 {
     font-weight: 400;
     font-size: 1rem;
     color: #aaaaaa;
+    margin-top: 10px;
 }
 
 .page-buttons_button_tags {
