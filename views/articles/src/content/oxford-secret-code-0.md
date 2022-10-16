@@ -11,7 +11,7 @@ Oxford College's Department of Mathematics and Computer Science provides a chall
 -   [The encrypted message](http://math.oxford.emory.edu/site/math125/secretCodes/0.txt)
 -   [Transposition ciphers](http://math.oxford.emory.edu/site/math125/transpositionCiphers/)
 
-Below is the full _encrypted_ message, in case the above links become deprecated.
+Below is the full encrypted message, in case the above links become deprecated.
 
 ```
 WSEYCDSEOTIOOATFHSVNGHLEOEEEEECNROOFTALYUFRT

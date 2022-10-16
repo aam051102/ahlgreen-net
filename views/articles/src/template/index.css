@@ -34,9 +34,32 @@ body {
 
 .page-header {
     padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-family: "Source Code Pro";
 }
 
-h1 {
+.page-header .page-header_back-button {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border 30ms ease-in-out;
+}
+
+.page-header .page-header_back-button:hover {
+    border-bottom: 1px solid currentColor;
+}
+
+.page-header svg {
+    height: 1rem;
+    color: #ffffff;
+}
+
+.page-section_inner h1 {
     text-align: left;
     margin-top: 0;
     font-weight: 800;
@@ -45,13 +68,46 @@ h1 {
     font-family: "Montserrat", monospace;
 }
 
-h2 {
+.page-section_inner h2 {
     text-align: left;
     margin-top: 0;
     font-weight: 700;
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
     font-family: "Montserrat", monospace;
+}
+
+.page-section_inner p {
+    font-size: 1rem;
+}
+
+.page-section_inner pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    background: #000000;
+    border-radius: 5px;
+    font: inherit;
+    font-size: 0.75rem;
+}
+
+.page-section_inner code {
+    width: fit-content;
+    font: inherit;
+}
+
+.page-section_inner a {
+    color: #1563eb;
+}
+
+.page-section_inner ul {
+    margin: 0;
+}
+
+.page-section_inner li {
+    padding: 5px 0;
 }
 
 /* Footer */
@@ -64,7 +120,6 @@ h2 {
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
-    background: linear-gradient(to bottom, rgb(15, 15, 15), rgb(8, 8, 8));
 }
 
 .page-footer_contact {
