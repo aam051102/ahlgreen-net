@@ -9,11 +9,19 @@
         <priority>0.9</priority>
     </url>
     <url>
+        <loc>https://ahlgreen.net/story/the-night-cafe/</loc>
+        <priority>0.9</priority>
+    </url>
+    <url>
         <loc>https://ahlgreen.net/app/hsse/</loc>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://ahlgreen.net/app/muse/</loc>
+        <priority>0.9</priority>
+    </url>
+        <url>
+        <loc>https://ahlgreen.net/articles/oxford-secret-code-0</loc>
         <priority>0.9</priority>
     </url>
 </urlset> 
