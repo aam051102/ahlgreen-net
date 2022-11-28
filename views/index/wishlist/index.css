@@ -1,8 +1,8 @@
 body {
-    font-family: "Source Code Pro";
+    font-family: "Open Sans";
     margin: 0;
-    background-color: #020104;
-    color: #ffffff;
+    background-color: #f6f6f6;
+    color: #000000;
 }
 
 .page-wrapper {
@@ -28,43 +28,42 @@ body {
 }
 
 h1 {
-    text-align: left;
+    text-align: center;
     margin-top: 0;
-    font-weight: 800;
-    font-size: 4rem;
+    font-weight: 700;
+    font-size: 3rem;
     margin-bottom: 2rem;
-    font-family: "Montserrat", monospace;
 }
 
 .page-buttons {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    padding: 10px 0;
     flex-wrap: wrap;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .page-buttons_button {
-    color: #ffffff;
+    color: #000000;
     text-decoration: none;
     text-align: center;
-    transition: background-color 30ms ease-in-out;
-    border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
     width: 100%;
     display: flex;
     box-sizing: border-box;
-    border: 1px solid #ffffff20;
+    background: #ffffff;
     gap: 10px;
     position: relative;
-    font-family: "Merriweather", Cambria, Cochin, Georgia, Times,
-        "Times New Roman", serif;
+}
+
+.page-buttons_button:nth-child(2n + 0) {
+    background: #f9f9f9;
 }
 
 .page-buttons_button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid transparent;
+    background-color: #ebebf9;
 }
 
 .page-buttons_button_info {
@@ -77,14 +76,14 @@ h1 {
 }
 
 .page-buttons_button_icon {
-    width: 10rem;
-    height: 10rem;
+    width: 5rem;
+    height: 5rem;
     border-radius: 5px;
     object-fit: cover;
 }
 
 .page-buttons_button_title {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
     margin: 0;
 }
@@ -93,7 +92,7 @@ h1 {
     font-size: 1rem;
     font-weight: 400;
     margin: 0;
-    margin-top: 10px;
+    margin-top: 4px;
 }
 
 @media screen and (max-width: 768px) {
