@@ -68,4 +68,77 @@ The Sburb engine uses a variation on the XML language to define their levels. As
 
 You will be using SBURBML to define which assets to load, which objects to place, which interactions will occur, and so on.
 
+As a general rule of thumb, a SBURBML file has the following structure:
+
+```xml
+<sburb ...>
+  <dependencies>
+    <dependency>...</dependency>
+    ...
+    <dependency>...</dependency>
+  </dependencies>
+
+  <assets>
+    <asset ...>...</asset>
+    ...
+    <asset ...>...</asset>
+  </assets>
+
+  <classes>
+    <sprite ...>...</sprite>
+    ...
+    <sprite ...>...</sprite>
+  </classes>
+
+  <effects>
+    <animation ...>...</animation>
+    ...
+    <animation ...>...</animation>
+  </effects>
+
+  <hud>
+    <spritebutton ... />
+    ...
+    <spritebutton ... />
+
+    <dialoger ...>
+    </dialoger>
+
+    <dialogsprite>
+       <animation ...>...</animation>
+       ...
+       <animation ...>...</animation>
+    </dialogsprite>
+  </hud>
+
+  <rooms>
+    <room ...>...</room>
+    ...
+    <room ...>...</room>
+  </rooms>
+</sburb>
+```
+
+Note, however, that you are not required to include all of the sections in each file. Room definitions, for example, are generally just a list of assets, dependencies, and a single room. Like so:
+
+```xml
+<sburb ...>
+  <dependencies>
+    <dependency>...</dependency>
+    ...
+    <dependency>...</dependency>
+  </dependencies>
+
+  <assets>
+    <asset ...>...</asset>
+    ...
+    <asset ...>...</asset>
+  </assets>
+
+  <rooms>
+    <room ...>...</room>
+  </rooms>
+</sburb>
+```
+
 The sample code has plenty of comments, so feel free to explore the sample game and its code before continuing.
