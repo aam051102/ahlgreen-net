@@ -12,6 +12,8 @@ This article focuses on the creation of rooms in the Sburb game engine.
 
 -   [Overview](/openbound-overview)
 -   [Basics](/openbound-basics)
+    -   [Assets](/openbound-assets)
+    -   [Dependencies](/openbound-dependencies)
     -   [**Rooms**](/openbound-rooms)
     -   [Characters](/openbound-characters)
     -   [Chests](/openbound-chests)
