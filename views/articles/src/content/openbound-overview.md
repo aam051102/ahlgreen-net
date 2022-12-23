@@ -18,6 +18,8 @@ The Openbound games were built on what is now known as [the Sburb game engine](h
     -   [Structure](/openbound-overview#structure)
     -   [SBURBML](/openbound-overview#sburbml)
 -   [Basics](/openbound-basics)
+    -   [Assets](/openbound-assets)
+    -   [Dependencies](/openbound-dependencies)
     -   [Rooms](/openbound-rooms)
     -   [Characters](/openbound-characters)
     -   [Chests](/openbound-chests)
@@ -60,11 +62,57 @@ The Sburb engine has a very simple structure. It may seem overwhelming at first,
 
 `resources`, as the name entails, contains every resource used by the files in `levels`. You'll almost only be using it to add new images/animations, but you may also add the occasional piece of music or sound.
 
+Both `levels` and `resources` have a subdirectory with the name of the project, such as `sample`. This directory will from now on be called `[PROJECT]` in all path illustrations. An example might be `levels/[PROJECT]/rooms`. If this is confusing, please look at the sample project for reference.
+
 Some more advanced features, such as changing text colours, may require editing the files in `src`, but I will cover those segments later, as necessary. For now, just focus on `resources` and `levels`.
 
 ## SBURBML
 
 The Sburb engine uses a variation on the XML language to define their levels. As a matter of fact, all of the files in the sample end with `.xml`, so you may as well just consider them XML files.
+
+### Basic tag
+
+I would rather not turn this into a programming or XML tutorial, as that information can be found elsewhere, but I will cover the most basic tag necessary, just in case. The meaning of the following tags will be covered later. Please just focus on the syntax.
+
+A simple XML (here SBURBML) tag has an opening tag and a closing tag.
+
+```xml
+<sburb></sburb>
+```
+
+A tag may have any amount of attributes, including 0. Here is an example of a tag with an attribute.
+
+```xml
+<sburb description="first room"></sburb>
+```
+
+A tag may contain text content
+
+```xml
+<args>karkat3,meenah</args>
+```
+
+Alternatively to text content, a tag may have children
+
+```xml
+<action>
+  <args>karkat3, meenah</args>
+</action>
+```
+
+This applies to all tags recursively. Basically, XML (here SBURBML) files can look like this, with children and attributes mixed however many times you want:
+
+```xml
+<sburb description="first room">
+  <action>
+    <args>karkat3, meenah</args>
+  </action>
+</sburb>
+```
+
+If none of that made sense to you, you'll probably have trouble with the rest of this tutorial, and I advise you to look up an XML tutorial instead.
+
+### File structure
 
 You will be using SBURBML to define which assets to load, which objects to place, which interactions will occur, and so on.
 
