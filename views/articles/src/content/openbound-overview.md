@@ -10,6 +10,27 @@ These articles function as a tutorial for the creation of new Openbound walkarou
 
 The Openbound games were built on what is now known as [the Sburb game engine](https://github.com/WhatPumpkin/Sburb). This is what the tutorial will focus on.
 
+## Table Of Contents
+
+-   [**Overview**](/openbound-overview)
+    -   [Resources](/openbound-overview#resources)
+    -   [Setup](/openbound-overview#setup)
+    -   [Structure](/openbound-overview#structure)
+    -   [SBURBML](/openbound-overview#sburbml)
+-   [Basics](/openbound-basics)
+    -   [Rooms](/openbound-rooms)
+    -   [Characters](/openbound-characters)
+    -   [Chests](/openbound-chests)
+    -   [Actions/interactions](/openbound-actions)
+    -   [Triggers](/openbound-triggers)
+    -   [Paths](/openbound-paths)
+    -   [Templates](/openbound-templates)
+-   [Advanced](/openbound-advanced)
+    -   [Text colours](/openbound-text-colours)
+-   [Production](/openbound-production)
+    -   [Build](/openbound-build)
+    -   [Release](openbound-release)
+
 ## Resources
 
 -   [Visual Studio Code (recommended editor)](https://code.visualstudio.com/)
