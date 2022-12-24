@@ -34,7 +34,10 @@ for (const p of contentPaths) {
         bodyMatch.index + bodyMatch[0].length
     );
 
-    const parsedContent = marked.marked(markdownContent, { headerIds: true });
+    const parsedContent = marked.marked(markdownContent, {
+        headerIds: true,
+        baseUrl: `/articles`,
+    });
 
     let outputContent = templateContent;
 

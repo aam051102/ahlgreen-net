@@ -18,6 +18,8 @@ This article focuses on the creation of assets in the Sburb game engine.
     -   [Characters](/openbound-characters)
     -   [Chests](/openbound-chests)
     -   [Actions/interactions](/openbound-actions)
+    -   [Dialog sprites](/openbound-dialog-sprites)
+    -   [Dialog](/openbound-dialog)
     -   [Triggers](/openbound-triggers)
     -   [Paths](/openbound-paths)
     -   [Templates](/openbound-templates)
