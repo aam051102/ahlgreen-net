@@ -77,9 +77,9 @@ Assuming a single room in the file, and disregarding the `<dependencies>` and `<
 
 Let us start by focusing on the `<room>` tag and its attributes. Anything inside of the room tag, represented here by `...`, will be contained within the room when the player character enters it. This is usually sprites, paths, characters, or triggers.
 
-## Attributes
+# Attributes
 
-### name
+## name
 
 The `name` attribute, here set as `name='firstRoom'` determines the name used by other actions to refer to the room. An example might be the action to enter a room, which takes the room name as an argument. See example below:
 
@@ -89,12 +89,12 @@ The `name` attribute, here set as `name='firstRoom'` determines the name used by
 </action>
 ```
 
-### walkableMap
+## walkableMap
 
 The `walkableMap` attribute, here set as `walkableMap='firstRoomMap'` determines which graphic asset (see [assets](/openbound-assets)) to use for the walkable map.
 
 The walkable map is a black and white (by which I mean the colours black and white; not grayscale) image, which represents where the player character can and can't walk in the room. Note that the map itself is usually not the size of the room. To keep both accuracy and performance good, the Openbound developers commonly went at a map a 1/4 the size of the actual room map.
 
-### mapScale
+## mapScale
 
 The `mapScale` attribute, here set as `mapScale='4'`, determines the amount of times that the walkable map needs to be sized up to align with the actual world map. As specified earlier, 4 times (for a map 1/4 the size of the room) is a good mid-point.
