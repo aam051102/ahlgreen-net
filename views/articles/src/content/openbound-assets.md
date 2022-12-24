@@ -33,7 +33,7 @@ Asset sections can exist in any file and several different asset types exist. Mo
 
 ## File
 
-The general structure for an individual room file is as follows:
+The general structure for an asset section is as follows:
 
 ```xml
 <assets>
