@@ -6,7 +6,7 @@ description=An in-depth tutorial of the Openbound game engine, Sburb. This secti
 
 # Openbound - Good practice
 
-This article focuses on best practice. In other words, my recommendations for keeping your project easily logically structured and understandable by anyone who might look at it.
+This article focuses on good practice. In other words, my recommendations for keeping your project easily logically structured and understandable by anyone who might look at it.
 
 ## Table Of Contents
 
@@ -16,7 +16,6 @@ This article focuses on best practice. In other words, my recommendations for ke
     -   [Dependencies](/openbound-dependencies)
     -   [Rooms](/openbound-rooms)
     -   [Characters](/openbound-characters)
-    -   [Chests](/openbound-chests)
     -   [Actions/interactions](/openbound-actions)
     -   [Dialog sprites](/openbound-dialog-sprites)
     -   [Dialog](/openbound-dialog)

@@ -16,7 +16,6 @@ This article focuses on character creation in the Sburb game engine. A character
     -   [Dependencies](/openbound-dependencies)
     -   [Rooms](/openbound-rooms)
     -   [**Characters**](/openbound-characters)
-    -   [Chests](/openbound-chests)
     -   [Actions/interactions](/openbound-actions)
     -   [Dialog sprites](/openbound-dialog-sprites)
     -   [Dialog](/openbound-dialog)

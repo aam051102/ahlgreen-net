@@ -16,7 +16,6 @@ This article focuses on actions in the Sburb game engine. An action is essential
     -   [Dependencies](/openbound-dependencies)
     -   [Rooms](/openbound-rooms)
     -   [Characters](/openbound-characters)
-    -   [Chests](/openbound-chests)
     -   [**Actions**](/openbound-actions)
     -   [Dialog sprites](/openbound-dialog-sprites)
     -   [Dialog](/openbound-dialog)
