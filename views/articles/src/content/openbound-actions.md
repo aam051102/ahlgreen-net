@@ -74,33 +74,33 @@ Note the additional attribute `name`. This defines the name shown to the user in
 
 ## talk
 
-Activates a [[dialog]]. It takes one parameter that is a series of dialogs.
+Activates a [dialog](/openbound-dialog). It takes one parameter that is a series of dialogs.
 
-The syntax for this is specified on the [[dialog]] page.
+The syntax for this is specified on the [dialog](/openbound-dialog) page.
 
 ## randomTalk
 
-Activates a [[dialog]]. It takes one parameter that is a series of dialogs.
+Activates a [dialog](/openbound-dialog). It takes one parameter that is a series of dialogs.
 
-The syntax for this is specified on the [[dialog]] page.
+The syntax for this is specified on the [dialog](/openbound-dialog) page.
 
 ## changeRoom
 
-Changes the current [[room]] to the specified room, and moves the [[character]] to it.
+Changes the current [room](/openbound-rooms) to the specified room, and moves the [character](/openbound-characters) to it.
 
 Syntax: "newRoom,newX,newY"
 
 ## changeRoomRemote
 
-Changes the current [[room]], to the specified room, and moves the [[character]] to it. If the specified SburbML file, which presumably contains the room being referenced, is not loaded yet, loads it first.
+Changes the current [room](/openbound-rooms), to the specified room, and moves the [character](/openbound-characters) to it. If the specified SburbML file, which presumably contains the room being referenced, is not loaded yet, loads it first.
 
 Syntax: "file,newRoom,newX,newY"
 
 ## playAnimation / startAnimation
 
-Have the target [[sprite]] play the specified [[animation]].
+Have the target [sprite](/openbound-sprites) play the specified [animation](/openbound-animations).
 
-Syntax: "sprite,animation"
+Syntax: sprite, animation
 
 This command also supports "char" in place of "sprite" to play this animation on the player.
 
@@ -108,49 +108,49 @@ This command also supports "char" in place of "sprite" to play this animation on
 
 Change the player's character to the one specified. Also changes the room to the one in which the new character is standing.
 
-Syntax: "sprite"
+Syntax: sprite
 
 ## changeFocus
 
 Change the sprite the camera is focusing on.
 
-Syntax: "sprite"
+Syntax: sprite
 
 ## playSong
 
-Make the specified audio [[asset]] play as the background music.
+Make the specified audio [asset](/openbound-assets) play as the background music.
 
-Syntax: "song"
+Syntax: song
 
 ## playSound
 
-Make the specified audio [[asset]] play as a sound effect.
+Make the specified audio [asset](/openbound-assets) play as a sound effect.
 
-Syntax: "sound"
+Syntax: sound
 
 ## teleport
 
-Calls the [[action#wiki-changeRoom|changeRoom]] command, and applies transportalizer effects.
+Calls the [changeRoom](#changeroom) command, and applies transportalizer effects.
 
-Syntax: [[action#wiki-changeRoom|changeRoom]]'s syntax.
+Syntax: [changeRoom](#changeroom)'s syntax.
 
 ## teleportRemote
 
-Calls the [[action#wiki-changeRoomRemote|changeRoomRemote]] command, and applies transportalizer effects.
+Calls the [changeRoomRemote](#changeroomremote) command, and applies transportalizer effects.
 
-Syntax: [[action#wiki-changeRoomRemote|changeRoomRemote]]'s syntax.
+Syntax: [changeRoomRemote](#changeroomremote)'s syntax.
 
 ## playEffect
 
-Play the specified [[effect]] at the specified location.
+Play the specified [effect](/openbound-effects) at the specified location.
 
-Syntax: "effect,x,y"
+Syntax: effect, x, y
 
 ## openChest
 
 Open the specified chest, display the specified sprite as its contents, and a message.
 
-Syntax: "chest,sprite,message"
+Syntax: chest, sprite, message
 
 ## waitFor
 
@@ -158,7 +158,7 @@ Syntax: "chest,sprite,message"
 
 Take away player control, and wait for the specified trigger.
 
-Syntax: see [[trigger]] syntax
+Syntax: see [trigger](/openbound-triggers) syntax
 
 ## macro
 
@@ -170,46 +170,46 @@ Syntax: action tag
 
 Move the sprite from it's current position by the specified amount in pixels.
 
-Syntax: "sprite,dx,dy"
+Syntax: sprite, dx, dy
 
 ## moveSprite
 
 Move the sprite to the specified location in pixels.
 
-Sytnax: "sprite,x,y"
+Sytnax: sprite, x, y
 
 ## addSprite
 
 Add the specified sprite to the specified room.
 Warning: if this sprite is in another room, it will now be in both!
 
-Syntax: "sprite,room"
+Syntax: sprite, room
 
 ## removeSprite
 
 Remove the specified sprite from the specified room. Even if a sprite isn't physically present anywhere, it can still be referenced by name.
 
-Syntax: "spriteName, roomName"
+Syntax: spriteName, roomName
 
 ## cloneSprite
 
 Clone the specified sprite with a new name
 
-Syntax: "spriteName, newName"
+Syntax: spriteName, newName
 
 ## playMovie
 
-Play the specified movie [[asset]].
+Play the specified movie [asset](/openbound-assets).
 
-Syntax: "movieName"
+Syntax: movieName
 
 ## removeMovie
 
-Stops the specified movie [[asset]].
+Stops the specified movie [asset](/openbound-assets).
 
 (utility function used internally, not recommended for explicit use)
 
-Syntax: "movieName"
+Syntax: movieName
 
 ## toggleVolume
 
@@ -219,49 +219,49 @@ Sytnax: takes no parameters
 
 ## addAction / addActions
 
-Add the given [[action]]s to a sprite.
+Add the given [action](/openbound-actions)s to a sprite.
 
-Syntax: [[Creating-a-SBURBML-File#wiki-Action|SburbML Action Sytax]]
+Syntax: SBURBML Action Syntax
 
 ## removeAction / removeActions
 
-Remove the given [[action]]s from a sprite
+Remove the given [action](/openbound-actions)s from a sprite
 
 Syntax: spriteName, actionName, actionName, actionName, ...
 Note: Non-determinism may arise if multiple actions have the same name!
 
 ## presentAction / presentActions
 
-Present the given [[action]]s to the user as a set of choices. Note that unlike normal, is not assumed to be a choice.
+Present the given [action](/openbound-actions)s to the user as a set of choices. Note that unlike normal, is not assumed to be a choice.
 
-Syntax: [[Creating-a-SBURBML-File#wiki-Action|SburbML Action Sytax]]
+Syntax: SBURBML Action Syntax
 
 ## addWalkable
 
 Add the specified path as a walkable to the specified room
 
-syntax: pathName, roomName
+Syntax: pathName, roomName
 
 ## addUnwalkable
 
 Add the specified path as an unwalkable to the specified room
 
-syntax: pathName, roomName
+Syntax: pathName, roomName
 
 ## addMotionPath
 
 Add the specified path as a motionpath to the specified room
-syntax: pathName, xtox, xtoy, ytox, ytoy, dx, dy, roomName
+Syntax: pathName, xtox, xtoy, ytox, ytoy, dx, dy, roomName
 
 ## removeWalkable
 
 Remove the specified walkable from the specified room
-syntax: pathName, roomName
+Syntax: pathName, roomName
 
 ## removeUnwalkable
 
 Remove the specified unwalkable from the specified room
-syntax: pathName, roomName
+Syntax: pathName, roomName
 
 ## walk
 
@@ -303,8 +303,9 @@ Syntax: useLocal
 
 ## loadStateFile
 
-load in an additional SBURBML file
-syntax: path, keepOld
+Load in an additional SBURBML file
+
+Syntax: path, keepOld
 
 ## setGameState
 
@@ -320,13 +321,15 @@ Syntax: charName
 
 ## fadeOut
 
-fade out to black
-syntax: none
+Fade out to black
+
+Syntax: none
 
 ## setButtonState
 
 Change the state of the specified button
-syntax: buttonName, state
+
+Syntax: buttonName, state
 
 ## changeMode
 
@@ -340,33 +343,37 @@ Valid mode names are "wander" and "strife".
 
 Try to trigger the given triggers in order, if one succeeds, don't do the rest (they are like an else-if chain)
 
-Syntax: See trigger syntax
+Syntax: SBURBML Trigger Syntax
 
 ## skipDialog
 
 Skip the current conversation
-syntax: none
+
+Syntax: none
 
 ## follow
 
 Set a character to follow another character
-syntax: followerName, leaderName
+
+Syntax: followerName, leaderName
 
 ## unfollow
 
 Set a character to stop following another character
-syntax: followerName
+
+Syntax: followerName
 
 ## addOverlay
 
 Overlay a sprite over the game area (below the HUD)
-syntax: spriteName
-commands.
+
+Syntax: spriteName
 
 ## removeOverlay
 
 Remove an overlay
-syntax: spriteName
+
+Syntax: spriteName
 
 ## disableControl
 
