@@ -16,6 +16,7 @@ The basics section of this tutorial covers everything that you can do by modifyi
     -   [Dependencies](./openbound-dependencies)
     -   [Rooms](./openbound-rooms)
     -   [Sprites](./openbound-sprites)
+    -   [Animations](./openbound-animations)
     -   [Characters](./openbound-characters)
     -   [Actions](./openbound-actions)
     -   [Dialog](./openbound-dialog)

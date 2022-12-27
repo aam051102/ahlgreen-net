@@ -16,6 +16,7 @@ The official wiki describes triggers as event listeners. They are essentially ch
     -   [Dependencies](./openbound-dependencies)
     -   [Rooms](./openbound-rooms)
     -   [Sprites](./openbound-sprites)
+    -   [Animations](./openbound-animations)
     -   [Characters](./openbound-characters)
     -   [Actions](./openbound-actions)
     -   [Dialog](./openbound-dialog)

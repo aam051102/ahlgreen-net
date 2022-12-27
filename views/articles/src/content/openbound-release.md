@@ -16,6 +16,7 @@ When you've completed your Openbound walkaround, you'll probably want to release
     -   [Dependencies](./openbound-dependencies)
     -   [Rooms](./openbound-rooms)
     -   [Sprites](./openbound-sprites)
+    -   [Animations](./openbound-animations)
     -   [Characters](./openbound-characters)
     -   [Actions](./openbound-actions)
     -   [Dialog](./openbound-dialog)

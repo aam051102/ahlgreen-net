@@ -18,6 +18,7 @@ The Openbound games were built on what is now known as [the Sburb game engine](h
     -   [Dependencies](./openbound-dependencies)
     -   [Rooms](./openbound-rooms)
     -   [Sprites](./openbound-sprites)
+    -   [Animations](./openbound-animations)
     -   [Characters](./openbound-characters)
     -   [Actions](./openbound-actions)
     -   [Dialog](./openbound-dialog)
@@ -46,7 +47,7 @@ The Openbound games were built on what is now known as [the Sburb game engine](h
 
 ### Requirements
 
-Firstly, download the ZIP file for the Sburb engine and extract it somewhere on your computer. You may use any editor to edit the files, but I recommend Visual Studio Code, as it has an extension, which allows you to easily run the game locally, as you're working on it.
+Firstly, download [the ZIP file](https://github.com/WhatPumpkin/Sburb/archive/refs/heads/master.zip) for the Sburb engine and extract it somewhere on your computer. You may use any editor to edit the files, but I recommend Visual Studio Code, as it has an extension, which allows you to easily run the game locally, as you're working on it.
 
 ### Visual Code Extension (recommended, but optional)
 

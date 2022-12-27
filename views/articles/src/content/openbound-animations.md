@@ -1,12 +1,12 @@
 {{HEAD}}
-title=Openbound - Production
-description=An in-depth tutorial of the Openbound game engine, Sburb.
+title=Openbound - Animations
+description=An in-depth description of animations in the Openbound game engine.
 
 {{BODY}}
 
-# Openbound - Production
+# Openbound - Animations
 
-The production section of this tutorial covers building, minification, and embedding onto sites like MSPFA.
+An animation is, despite the name, not exclusively animations. An animation is simply an image, which **can** have more than 1 frame, making it an animation.
 
 ## Table Of Contents
 
@@ -28,6 +28,16 @@ The production section of this tutorial covers building, minification, and embed
 -   [Good practice](./openbound-good-practice)
 -   [Advanced](./openbound-advanced)
     -   [Text colours](./openbound-text-colours)
--   [**Production**](./openbound-production)
+-   [Production](./openbound-production)
     -   [Build](./openbound-build)
     -   [Release](openbound-release)
+
+## Structure
+
+Animations are widely used, though mainly in sprite definitions, like so:
+
+```xml
+<sprite name='eightBalls' x='906' y='3314'>
+    <animation sheet='eightBallsSheet' />
+</sprite>
+```

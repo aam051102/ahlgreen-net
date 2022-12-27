@@ -16,6 +16,7 @@ A path in Openbound is simply a series of X and Y coordinates, which can be used
     -   [Dependencies](./openbound-dependencies)
     -   [Rooms](./openbound-rooms)
     -   [Sprites](./openbound-sprites)
+    -   [Animations](./openbound-animations)
     -   [Characters](./openbound-characters)
     -   [Actions](./openbound-actions)
     -   [Dialog](./openbound-dialog)

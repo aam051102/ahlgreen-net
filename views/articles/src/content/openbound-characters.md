@@ -16,6 +16,7 @@ This article focuses on character creation in the Sburb game engine. A character
     -   [Dependencies](./openbound-dependencies)
     -   [Rooms](./openbound-rooms)
     -   [Sprites](./openbound-sprites)
+    -   [Animations](./openbound-animations)
     -   [**Characters**](./openbound-characters)
     -   [Actions](./openbound-actions)
     -   [Dialog](./openbound-dialog)
@@ -53,7 +54,7 @@ A character file commonly contains both the character definition, dialogue sprit
 
 ## Sprite sheet
 
-If you have read the [assets](./openbound-assets) section, you will already know how the asset definition works. This asset, however, is sheet containing several sprites, rather than a single illustration. Meenah's sprite sheet looks like this:
+If you have read the [assets](./openbound-assets) section, you will already know how the asset definition works. This asset, however, is a sheet containing several sprites, rather than a single illustration. Meenah's sprite sheet looks like this:
 
 ![Meenah's sprite sheet](./images/meenah.png "Meenah's sprite sheet")
 
