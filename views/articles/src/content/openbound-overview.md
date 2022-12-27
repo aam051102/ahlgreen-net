@@ -24,6 +24,7 @@ The Openbound games were built on what is now known as [the Sburb game engine](h
     -   [Triggers](/openbound-triggers)
     -   [Paths](/openbound-paths)
     -   [Templates](/openbound-templates)
+    -   [Game State](/openbound-gamestate)
 -   [Good practice](/openbound-good-practice)
 -   [Advanced](/openbound-advanced)
     -   [Text colours](/openbound-text-colours)

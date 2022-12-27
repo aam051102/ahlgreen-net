@@ -22,6 +22,7 @@ The basics section of this tutorial covers everything that you can do by modifyi
     -   [Triggers](/openbound-triggers)
     -   [Paths](/openbound-paths)
     -   [Templates](/openbound-templates)
+    -   [Game State](/openbound-gamestate)
 -   [Good practice](/openbound-good-practice)
 -   [Advanced](/openbound-advanced)
     -   [Text colours](/openbound-text-colours)

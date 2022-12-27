@@ -22,6 +22,7 @@ This article focuses on the creation of rooms in the Sburb game engine.
     -   [Triggers](/openbound-triggers)
     -   [Paths](/openbound-paths)
     -   [Templates](/openbound-templates)
+    -   [Game State](/openbound-gamestate)
 -   [Good practice](/openbound-good-practice)
 -   [Advanced](/openbound-advanced)
     -   [Text colours](/openbound-text-colours)

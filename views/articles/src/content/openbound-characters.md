@@ -22,6 +22,7 @@ This article focuses on character creation in the Sburb game engine. A character
     -   [Triggers](/openbound-triggers)
     -   [Paths](/openbound-paths)
     -   [Templates](/openbound-templates)
+    -   [Game State](/openbound-gamestate)
 -   [Good practice](/openbound-good-practice)
 -   [Advanced](/openbound-advanced)
     -   [Text colours](/openbound-text-colours)

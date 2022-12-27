@@ -1,12 +1,12 @@
 {{HEAD}}
-title=Openbound - Advanced
+title=Openbound - Production
 description=An in-depth tutorial of the Openbound game engine, Sburb.
 
 {{BODY}}
 
-# Openbound - Advanced
+# Openbound - Production
 
-The advanced section of this tutorial covers things like modifying the engine code to achieve certain effects, which are not possible otherwise. Coding knowledge is not required, since I cover everything in detail, but please take care when editing the files in `src`.
+The production section of this tutorial covers building, minification, and embedding onto sites like MSPFA.
 
 ## Table Of Contents
 
@@ -24,8 +24,8 @@ The advanced section of this tutorial covers things like modifying the engine co
     -   [Templates](/openbound-templates)
     -   [Game State](/openbound-gamestate)
 -   [Good practice](/openbound-good-practice)
--   [**Advanced**](/openbound-advanced)
+-   [Advanced](/openbound-advanced)
     -   [Text colours](/openbound-text-colours)
--   [Production](/openbound-production)
+-   [**Production**](/openbound-production)
     -   [Build](/openbound-build)
     -   [Release](openbound-release)
