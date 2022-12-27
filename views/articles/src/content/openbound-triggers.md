@@ -15,10 +15,11 @@ The official wiki describes triggers as event listeners. They are essentially ch
     -   [Assets](./openbound-assets)
     -   [Dependencies](./openbound-dependencies)
     -   [Rooms](./openbound-rooms)
+    -   [Sprites](./openbound-sprites)
     -   [Characters](./openbound-characters)
-    -   [Actions/interactions](./openbound-actions)
-    -   [Dialog sprites](./openbound-dialog-sprites)
+    -   [Actions](./openbound-actions)
     -   [Dialog](./openbound-dialog)
+    -   [Dialog sprites](./openbound-dialog-sprites)
     -   [**Triggers**](./openbound-triggers)
     -   [Paths](./openbound-paths)
     -   [Templates](./openbound-templates)
@@ -57,7 +58,7 @@ Triggers follow a very simple structure:
 </triggers>
 ```
 
-Here, `[EVENT]` is one of the event names followed by their arguments, as described in the [events](#events) section. `[ACTION]` is simply any action, as seen in the [actions](./openbound-actions) section.
+Here, `[EVENT]` is one of the event names followed by their arguments, as described in the [events](#events) section. `[ACTION]` is simply any action, as seen in the [Actions](./openbound-actions) section.
 
 Here is a complete example of a trigger:
 
