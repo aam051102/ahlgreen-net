@@ -111,57 +111,57 @@ If your spritesheet is the same size as the sample, and your character sprites a
 
 Additionally, unless you want your character to be facing a diffferent location on start, you will not need to change `state` and `facing`.
 
-# Attributes
+## Attributes
 
-## class
+### class
 
 The `class` attribute is not because of the `<character>` element, but rather because of the `<classes>` element. You can read more about it in the [templates](/openbound-templates) section. For now, I recommend using the value as the `name` attribute, as they do in the sample.
 
-## name
+### name
 
 The `name` attribute is, as with assets and everywhere else, a simple way to refer to the character element from other places in SBURML. Simply naming it the character name should do. Here, it is `meenah`.
 
-## sx
+### sx
 
 `sx` is the offset from the left of each sprite in the spritesheet to their center of the collision box. Here, `-50` is used to indicate that each the collision box is roughly centered 50 pixels from the left, as the width of each sprite area here is 100.
 
-## sy
+### sy
 
 `sy` is the offset from the top of each sprite in the spritesheet to the location of their collision box. Here, `-115` is used to indicate that each the collision box for the character is placed near their feet. This allows them to walk closely in front of objects without walking into objects in front of them.
 
-## sWidth
+### sWidth
 
 `sWidth` is the width of each sprite area on the sheet. This should be clear if you have read the [spritesheet](#sprite-sheet) section above.
 
-## sHeight
+### sHeight
 
 `sHeight` is the height of each sprite area on the sheet. Generally just the height of the sheet. This should be clear if you have read the [spritesheet](#sprite-sheet) section above.
 
-## width
+### width
 
 `width` is the width of the collision box on the character.
 
-## height
+### height
 
 `height` is the height of the collision box on the character.
 
-## state
+### state
 
 `state` is the initial state of the character. The most common default is `walkFront`. This default state is mainly used for the NPC characters, which "walk in place" instead of simply idling with a static sprite. This makes them seem more alive.
 
 Options are `idleFront`, `idleBack`, `idleLeft`, `idleRight`, `walkFront`, `walkBack`, `walkLeft`, and `walkRight`.
 
-## facing
+### facing
 
 `facing`, as the name entails, is the direction that the character is facing.
 
 Options are `Front`, `Back`, `Left`, and `Right`.
 
-## sheet
+### sheet
 
 `sheet` is the name of the spritesheet asset. In the sample, the name of the spritesheet is defined as `meenahSheet`. I recommend this structure of `[CHARACTER]Sheet`, where `[CHARACTER]` is the name of the `<character>` element.
 
-# Usage
+## Usage
 
 Once a character has been defined in a `<classes>` section, they can be used by like so:
 

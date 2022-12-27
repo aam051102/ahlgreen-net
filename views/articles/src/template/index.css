@@ -101,6 +101,15 @@ body {
     font: inherit;
 }
 
+.page-section_inner :not(pre) > code {
+    background: #000000;
+    padding: 2px 5px;
+    border-radius: 2px;
+    font-family: "Source Code Pro", monospace;
+    color: #eeeeee;
+    font-size: 0.9rem;
+}
+
 .page-section_inner a {
     color: #229df5;
     text-decoration: none;

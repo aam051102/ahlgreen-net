@@ -70,33 +70,33 @@ Note the additional attribute `name`. This defines the name shown to the user in
 
 ![A chooser with the options "open" and "cancel"](./images/chooser.png "A chooser with the options 'open' and 'cancel'")
 
-# Commands
+## Commands
 
-## talk
-
-Activates a [dialog](/openbound-dialog). It takes one parameter that is a series of dialogs.
-
-The syntax for this is specified on the [dialog](/openbound-dialog) page.
-
-## randomTalk
+### talk
 
 Activates a [dialog](/openbound-dialog). It takes one parameter that is a series of dialogs.
 
 The syntax for this is specified on the [dialog](/openbound-dialog) page.
 
-## changeRoom
+### randomTalk
+
+Activates a [dialog](/openbound-dialog). It takes one parameter that is a series of dialogs.
+
+The syntax for this is specified on the [dialog](/openbound-dialog) page.
+
+### changeRoom
 
 Changes the current [room](/openbound-rooms) to the specified room, and moves the [character](/openbound-characters) to it.
 
 Syntax: "newRoom,newX,newY"
 
-## changeRoomRemote
+### changeRoomRemote
 
 Changes the current [room](/openbound-rooms), to the specified room, and moves the [character](/openbound-characters) to it. If the specified SburbML file, which presumably contains the room being referenced, is not loaded yet, loads it first.
 
 Syntax: "file,newRoom,newX,newY"
 
-## playAnimation / startAnimation
+### playAnimation / startAnimation
 
 Have the target [sprite](/openbound-sprites) play the specified [animation](/openbound-animations).
 
@@ -104,55 +104,55 @@ Syntax: sprite, animation
 
 This command also supports "char" in place of "sprite" to play this animation on the player.
 
-## changeChar
+### changeChar
 
 Change the player's character to the one specified. Also changes the room to the one in which the new character is standing.
 
 Syntax: sprite
 
-## changeFocus
+### changeFocus
 
 Change the sprite the camera is focusing on.
 
 Syntax: sprite
 
-## playSong
+### playSong
 
 Make the specified audio [asset](/openbound-assets) play as the background music.
 
 Syntax: song
 
-## playSound
+### playSound
 
 Make the specified audio [asset](/openbound-assets) play as a sound effect.
 
 Syntax: sound
 
-## teleport
+### teleport
 
 Calls the [changeRoom](#changeroom) command, and applies transportalizer effects.
 
 Syntax: [changeRoom](#changeroom)'s syntax.
 
-## teleportRemote
+### teleportRemote
 
 Calls the [changeRoomRemote](#changeroomremote) command, and applies transportalizer effects.
 
 Syntax: [changeRoomRemote](#changeroomremote)'s syntax.
 
-## playEffect
+### playEffect
 
 Play the specified [effect](/openbound-effects) at the specified location.
 
 Syntax: effect, x, y
 
-## openChest
+### openChest
 
 Open the specified chest, display the specified sprite as its contents, and a message.
 
 Syntax: chest, sprite, message
 
-## waitFor
+### waitFor
 
 **_DEPRECATED; DO NOT USE_**
 
@@ -160,50 +160,50 @@ Take away player control, and wait for the specified trigger.
 
 Syntax: see [trigger](/openbound-triggers) syntax
 
-## macro
+### macro
 
 Execute an action and wait for all followups to finish.
 
 Syntax: action tag
 
-## deltaSprite
+### deltaSprite
 
 Move the sprite from it's current position by the specified amount in pixels.
 
 Syntax: sprite, dx, dy
 
-## moveSprite
+### moveSprite
 
 Move the sprite to the specified location in pixels.
 
 Sytnax: sprite, x, y
 
-## addSprite
+### addSprite
 
 Add the specified sprite to the specified room.
 Warning: if this sprite is in another room, it will now be in both!
 
 Syntax: sprite, room
 
-## removeSprite
+### removeSprite
 
 Remove the specified sprite from the specified room. Even if a sprite isn't physically present anywhere, it can still be referenced by name.
 
 Syntax: spriteName, roomName
 
-## cloneSprite
+### cloneSprite
 
 Clone the specified sprite with a new name
 
 Syntax: spriteName, newName
 
-## playMovie
+### playMovie
 
 Play the specified movie [asset](/openbound-assets).
 
 Syntax: movieName
 
-## removeMovie
+### removeMovie
 
 Stops the specified movie [asset](/openbound-assets).
 
@@ -211,59 +211,59 @@ Stops the specified movie [asset](/openbound-assets).
 
 Syntax: movieName
 
-## toggleVolume
+### toggleVolume
 
 Toggle the volume level (100->0->33->66->100). Used by the volume button.
 
 Sytnax: takes no parameters
 
-## addAction / addActions
+### addAction / addActions
 
 Add the given [action](/openbound-actions)s to a sprite.
 
 Syntax: SBURBML Action Syntax
 
-## removeAction / removeActions
+### removeAction / removeActions
 
 Remove the given [action](/openbound-actions)s from a sprite
 
 Syntax: spriteName, actionName, actionName, actionName, ...
 Note: Non-determinism may arise if multiple actions have the same name!
 
-## presentAction / presentActions
+### presentAction / presentActions
 
 Present the given [action](/openbound-actions)s to the user as a set of choices. Note that unlike normal, is not assumed to be a choice.
 
 Syntax: SBURBML Action Syntax
 
-## addWalkable
+### addWalkable
 
 Add the specified path as a walkable to the specified room
 
 Syntax: pathName, roomName
 
-## addUnwalkable
+### addUnwalkable
 
 Add the specified path as an unwalkable to the specified room
 
 Syntax: pathName, roomName
 
-## addMotionPath
+### addMotionPath
 
 Add the specified path as a motionpath to the specified room
 Syntax: pathName, xtox, xtoy, ytox, ytoy, dx, dy, roomName
 
-## removeWalkable
+### removeWalkable
 
 Remove the specified walkable from the specified room
 Syntax: pathName, roomName
 
-## removeUnwalkable
+### removeUnwalkable
 
 Remove the specified unwalkable from the specified room
 Syntax: pathName, roomName
 
-## walk
+### walk
 
 Make the character walk in the specified direction
 
@@ -271,67 +271,67 @@ Syntax: charName, direction
 
 Valid directions are "Up", "Down", "Left", "Right", and "None".
 
-## openLink
+### openLink
 
 Opens an external link in a new tab
 
 Syntax: url, displayText
 
-## openDirect
+### openDirect
 
 Opens an external link in a new window
 
 Syntax: url, displayText
 
-## save
+### save
 
 Save state to client storage
 
 Syntax: isAuto, useLocal
 
-## load
+### load
 
 Load state from client storage
 
 Syntax: isAuto, useLocal
 
-## saveOrLoad
+### saveOrLoad
 
 Display save/load options
 
 Syntax: useLocal
 
-## loadStateFile
+### loadStateFile
 
 Load in an additional SBURBML file
 
 Syntax: path, keepOld
 
-## setGameState
+### setGameState
 
 Change global game state
 
 Syntax: gameState, value
 
-## goBack
+### goBack
 
 Move the character backwards
 
 Syntax: charName
 
-## fadeOut
+### fadeOut
 
 Fade out to black
 
 Syntax: none
 
-## setButtonState
+### setButtonState
 
 Change the state of the specified button
 
 Syntax: buttonName, state
 
-## changeMode
+### changeMode
 
 Change the engine mode
 
@@ -339,92 +339,92 @@ Syntax: modeName
 
 Valid mode names are "wander" and "strife".
 
-## try
+### try
 
 Try to trigger the given triggers in order, if one succeeds, don't do the rest (they are like an else-if chain)
 
 Syntax: SBURBML Trigger Syntax
 
-## skipDialog
+### skipDialog
 
 Skip the current conversation
 
 Syntax: none
 
-## follow
+### follow
 
 Set a character to follow another character
 
 Syntax: followerName, leaderName
 
-## unfollow
+### unfollow
 
 Set a character to stop following another character
 
 Syntax: followerName
 
-## addOverlay
+### addOverlay
 
 Overlay a sprite over the game area (below the HUD)
 
 Syntax: spriteName
 
-## removeOverlay
+### removeOverlay
 
 Remove an overlay
 
 Syntax: spriteName
 
-## disableControl
+### disableControl
 
 Disables player control
 
-## enableControl
+### enableControl
 
 Enables player control
 
-## sleep
+### sleep
 
 Wait for the specified event before continuing
 
 Syntax: See trigger syntax
 
-## pauseActionQueue / pauseActionQueues
+### pauseActionQueue / pauseActionQueues
 
 Pauses one or more action queues.
 
 Syntax: comma-separated action queue IDs
 
-## resumeActionQueue / resumeActionQueues
+### resumeActionQueue / resumeActionQueues
 
 Resumes one or more previously paused action queues.
 
 Syntax: comma-separated action queue IDs
 
-## cancelActionQueue / cancelActionQueues
+### cancelActionQueue / cancelActionQueues
 
 Cancels one or more action queues.
 
 Syntax: comma-separated action queue IDs
 
-## pauseActionQueueGroup / pauseActionQueueGroups
+### pauseActionQueueGroup / pauseActionQueueGroups
 
 Pauses one or more groups of action queues.
 
 Syntax: comma-separated group names
 
-## resumeActionQueueGroup / resumeActionQueueGroups
+### resumeActionQueueGroup / resumeActionQueueGroups
 
 Resumes one or more previously paused action queues.
 
 Syntax: comma-separated group names
 
-## cancelActionQueueGroup / cancelActionQueueGroups
+### cancelActionQueueGroup / cancelActionQueueGroups
 
 Cancels one or more action queue groups.
 
 Syntax: comma-separated group names
 
-## cancel
+### cancel
 
 Takes no parameters, does nothing.

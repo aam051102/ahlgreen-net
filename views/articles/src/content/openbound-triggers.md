@@ -181,27 +181,27 @@ It is also possible to have a trigger with multiple events/checks. The syntax fo
 
 When writing multiple events like this, it is also possible to define an `operator` attribute, which specifies how the trigger considers itself satisfied. See [operator](#operator) for synatx.
 
-# Attributes
+## Attributes
 
-## restart
+### restart
 
 Whether the trigger should reset itself when satisfied. Defaults to false if not specified.
 
 An example might be [time](#time), which is effectively disabled once completed, unless reset.
 
-## detonate
+### detonate
 
 Whether the trigger should be removed when satisfied. Defaults to false if not specified.
 
-## operator
+### operator
 
 The operator to use when checking for completion across a trigger with multiple events.
 
 Valid operators are `NOR`, `NAND`/`NOT`, `XOR`, `OR`, and `AND`. Defaults to `AND` if not specified.
 
-# Events
+## Events
 
-## spriteProperty
+### spriteProperty
 
 Check if the specified property of the specified sprite satisfies some condition. Currently the conditions that can be checked are <, >, !=, and =. Additionally, they can only be compared to integers at this point in time.
 
@@ -211,7 +211,7 @@ The sprite parameter may be specified as "char" if the player's character is the
 
 Example: spriteProperty,char,x>50
 
-## inBox
+### inBox
 
 Checks if the specified sprite is within certain bounds, as specified from a position and a size.
 
@@ -221,7 +221,7 @@ The sprite parameter may be specified as "char" if the player's character is the
 
 Example: inBox,char,20,20,50,50
 
-## inBox2
+### inBox2
 
 Checks if the specified sprite is within certain bounds, as specified by two positions.
 
@@ -233,7 +233,7 @@ Example: inBox2,char,20,20,70,70
 
 This example has the same function as the [inBox](#inbox) example, but done by manually specifying the second X and Y coordinates instead of having them calculated from the width and height.
 
-## gameState
+### gameState
 
 Checks if the game state meets a certain condition. Can check the conditions >, <, !=, and =.
 
@@ -241,7 +241,7 @@ Parameters: "state condition value"
 
 Example: gameState,doorOpened=true
 
-## nudge
+### nudge
 
 Check if the player is nudging the game forwards (space or mouse).
 
@@ -249,7 +249,7 @@ Parameters: none
 
 Example: nudge
 
-## noActions
+### noActions
 
 Check if there are no pending or active actions in the queue
 
@@ -257,7 +257,7 @@ Parameters: none
 
 Example: noActions
 
-## withinRange
+### withinRange
 
 Check if two sprites are near eachother.
 
@@ -269,7 +269,7 @@ Example: withinRange,char,animToggle,10
 
 The above example checks if the player character is within 10 pixels of a sprite named "animToggle".
 
-## time
+### time
 
 Wait for the specified number of frames (at ~30 fps)
 
@@ -277,7 +277,7 @@ Parameters: "time"
 
 Example: time,30
 
-## played
+### played
 
 Wait for the specified sprite's current animation to be done (including no more loops left).
 
