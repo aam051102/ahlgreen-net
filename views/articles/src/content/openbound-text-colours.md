@@ -48,7 +48,7 @@ The name to the left of the `:`, which here is `aa`, is the name which can be us
 
 The `#a10000` is the hexadecimal colour code for Aradia's colour. That sounds a bit complicated, but it's just another way to write the red, green, and blue values for the maroon colour that Aradia speaks in. There are plenty of free "RGB to HEX" converters and colour pickers online, if you need to turn your specific colour into hexadecimal. Most art programs can also represent colour in HEX in their colour picker. Note that the `#` at the beginning is necessary.
 
-If you have the sample open, you may notice that there is a following definition for `aradia`, which is set to the exact same colour. This is simply so that, when writing dialogue, the writer can use either `aa` or `aradia` as the name, depending on the situation. They may use `aa` for chats and `aradia` when Aradia is actually present in person.
+If you have the sample open, you may notice that there is a following definition for `aradia`, which is set to the exact same colour. According to the official documentation, they used to use two character (i.e. `aa`), but they made too many characters, so they had to use full names to avoid conflicts.
 
 ## Adding a colour
 
