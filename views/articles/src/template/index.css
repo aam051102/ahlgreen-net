@@ -101,6 +101,10 @@ body {
     font: inherit;
 }
 
+.page-section_inner img {
+    max-width: 100%;
+}
+
 .page-section_inner :not(pre) > code {
     background: #000000;
     padding: 2px 5px;

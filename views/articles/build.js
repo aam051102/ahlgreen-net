@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 const marked = require("marked");
+const {
+    default: { highlight },
+} = require("highlight.js");
 
 // Read template
 const templateContent = fs.readFileSync("./src/template/index.html").toString();
@@ -55,6 +58,11 @@ for (const p of contentPaths) {
         const parsedContent = marked.marked(markdownContent, {
             headerIds: true,
             baseUrl: `/articles/`,
+            highlight: function (code, lang) {
+                if (!lang) return undefined;
+                return highlight(code, { language: lang }).value;
+            },
+            smartLists: true,
         });
 
         let outputContent = templateContent;
