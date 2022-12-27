@@ -90,11 +90,11 @@ Animations are widely used, though mainly in sprite definitions, like so:
 
 ### flipX
 
-`flipX` is a boolean (true/false) value determining whether or not the animation (images) should be flipped. Optional.
+`flipX` is a boolean (true/false) value determining whether or not the images should be flipped. Optional.
 
 ### flipY
 
-`flipX` is a boolean (true/false) value determining whether or not the animation (images) should be flipped. Optional.
+`flipX` is a boolean (true/false) value determining whether or not the images should be flipped. Optional.
 
 ### sliced
 
