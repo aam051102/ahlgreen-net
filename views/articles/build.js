@@ -54,7 +54,7 @@ for (const p of contentPaths) {
 
         const parsedContent = marked.marked(markdownContent, {
             headerIds: true,
-            baseUrl: `/articles`,
+            baseUrl: `/articles/`,
         });
 
         let outputContent = templateContent;
