@@ -152,15 +152,52 @@ The action `moveSprite` is then executed. This command simply moves the `firstRo
 
 It then continues on to the actual action, which is irrelevant for this example.
 
+## Multiple events
+
+It is also possible to have a trigger with multiple events/checks. The syntax for this is as simple as listing more `<args>` elements.
+
+```xml
+<sburb description='first room'>
+    <sprite name='firstRoomToggle' y='0'>
+        <animation sheet='aradiaSheet'/>
+    </sprite>
+
+    <rooms>
+        <room>
+            <triggers>
+                <trigger>
+                    <args>inBox,char,1439,1730,60,110</args>
+                    <args>spriteProperty,firstRoomToggle,y=0</args>
+                    <action command='moveSprite'>
+                        <args>firstRoomToggle,0,50</args>
+                        <action class='aradiaTalk2'/>
+                    </action>
+                </trigger>
+            </triggers>
+        </room>
+    </rooms>
+</sburb>
+```
+
+When writing multiple events like this, it is also possible to define an `operator` attribute, which specifies how the trigger considers itself satisfied. See [operator](#operator) for synatx.
+
 # Attributes
 
 ## restart
 
 Whether the trigger should reset itself when satisfied. Defaults to false if not specified.
 
+An example might be [time](#time), which is effectively disabled once completed, unless reset.
+
 ## detonate
 
 Whether the trigger should be removed when satisfied. Defaults to false if not specified.
+
+## operator
+
+The operator to use when checking for completion across a trigger with multiple events.
+
+Valid operators are `NOR`, `NAND`/`NOT`, `XOR`, `OR`, and `AND`. Defaults to `AND` if not specified.
 
 # Events
 
