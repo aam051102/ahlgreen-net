@@ -69,6 +69,10 @@ for (const p of contentPaths) {
             outputContent
         );
     } else {
+        if (!fs.existsSync(path.resolve("./build/", p))) {
+            fs.mkdirSync(path.resolve("./build/", p), { recursive: true });
+        }
+
         fs.copyFileSync(p, path.resolve("./build/", p));
     }
 }
