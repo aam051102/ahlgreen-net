@@ -10,29 +10,29 @@ A path in Openbound is simply a series of X and Y coordinates, which can be used
 
 ## Table Of Contents
 
--   [Overview](/openbound-overview)
--   [Basics](/openbound-basics)
-    -   [Assets](/openbound-assets)
-    -   [Dependencies](/openbound-dependencies)
-    -   [Rooms](/openbound-rooms)
-    -   [Characters](/openbound-characters)
-    -   [Actions/interactions](/openbound-actions)
-    -   [Dialog sprites](/openbound-dialog-sprites)
-    -   [Dialog](/openbound-dialog)
-    -   [Triggers](/openbound-triggers)
-    -   [**Paths**](/openbound-paths)
-    -   [Templates](/openbound-templates)
-    -   [Game State](/openbound-gamestate)
--   [Good practice](/openbound-good-practice)
--   [Advanced](/openbound-advanced)
-    -   [Text colours](/openbound-text-colours)
--   [Production](/openbound-production)
-    -   [Build](/openbound-build)
+-   [Overview](./openbound-overview)
+-   [Basics](./openbound-basics)
+    -   [Assets](./openbound-assets)
+    -   [Dependencies](./openbound-dependencies)
+    -   [Rooms](./openbound-rooms)
+    -   [Characters](./openbound-characters)
+    -   [Actions/interactions](./openbound-actions)
+    -   [Dialog sprites](./openbound-dialog-sprites)
+    -   [Dialog](./openbound-dialog)
+    -   [Triggers](./openbound-triggers)
+    -   [**Paths**](./openbound-paths)
+    -   [Templates](./openbound-templates)
+    -   [Game State](./openbound-gamestate)
+-   [Good practice](./openbound-good-practice)
+-   [Advanced](./openbound-advanced)
+    -   [Text colours](./openbound-text-colours)
+-   [Production](./openbound-production)
+    -   [Build](./openbound-build)
     -   [Release](openbound-release)
 
 ## Structure
 
-The first thing to note about paths is that they must be defined as assets first. You can see how in the [path](/openbound-assets#path) section of the assets tutorial.
+The first thing to note about paths is that they must be defined as assets first. You can see how in the [path](./openbound-assets#path) section of the assets tutorial.
 
 The `<paths>` section is usually seen in a room like this:
 

@@ -10,24 +10,24 @@ The official wiki describes triggers as event listeners. They are essentially ch
 
 ## Table Of Contents
 
--   [Overview](/openbound-overview)
--   [Basics](/openbound-basics)
-    -   [Assets](/openbound-assets)
-    -   [Dependencies](/openbound-dependencies)
-    -   [Rooms](/openbound-rooms)
-    -   [Characters](/openbound-characters)
-    -   [Actions/interactions](/openbound-actions)
-    -   [Dialog sprites](/openbound-dialog-sprites)
-    -   [Dialog](/openbound-dialog)
-    -   [**Triggers**](/openbound-triggers)
-    -   [Paths](/openbound-paths)
-    -   [Templates](/openbound-templates)
-    -   [Game State](/openbound-gamestate)
--   [Good practice](/openbound-good-practice)
--   [Advanced](/openbound-advanced)
-    -   [Text colours](/openbound-text-colours)
--   [Production](/openbound-production)
-    -   [Build](/openbound-build)
+-   [Overview](./openbound-overview)
+-   [Basics](./openbound-basics)
+    -   [Assets](./openbound-assets)
+    -   [Dependencies](./openbound-dependencies)
+    -   [Rooms](./openbound-rooms)
+    -   [Characters](./openbound-characters)
+    -   [Actions/interactions](./openbound-actions)
+    -   [Dialog sprites](./openbound-dialog-sprites)
+    -   [Dialog](./openbound-dialog)
+    -   [**Triggers**](./openbound-triggers)
+    -   [Paths](./openbound-paths)
+    -   [Templates](./openbound-templates)
+    -   [Game State](./openbound-gamestate)
+-   [Good practice](./openbound-good-practice)
+-   [Advanced](./openbound-advanced)
+    -   [Text colours](./openbound-text-colours)
+-   [Production](./openbound-production)
+    -   [Build](./openbound-build)
     -   [Release](openbound-release)
 
 ## Structure
@@ -57,7 +57,7 @@ Triggers follow a very simple structure:
 </triggers>
 ```
 
-Here, `[EVENT]` is one of the event names followed by their arguments, as described in the [events](#events) section. `[ACTION]` is simply any action, as seen in the [actions](/openbound-actions) section.
+Here, `[EVENT]` is one of the event names followed by their arguments, as described in the [events](#events) section. `[ACTION]` is simply any action, as seen in the [actions](./openbound-actions) section.
 
 Here is a complete example of a trigger:
 
@@ -113,7 +113,7 @@ Now, that solves this particular problem, but it might not work for everything. 
 
 ## Guards
 
-**NOTE: Always consider using [gameState](/openbound-gamestate) first.**
+**NOTE: Always consider using [gameState](./openbound-gamestate) first.**
 
 What is a guard? Well, it's a simple way to enable or disable triggers.
 

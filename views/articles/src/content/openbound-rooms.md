@@ -10,24 +10,24 @@ This article focuses on the creation of rooms in the Sburb game engine.
 
 ## Table Of Contents
 
--   [Overview](/openbound-overview)
--   [Basics](/openbound-basics)
-    -   [Assets](/openbound-assets)
-    -   [Dependencies](/openbound-dependencies)
-    -   [**Rooms**](/openbound-rooms)
-    -   [Characters](/openbound-characters)
-    -   [Actions/interactions](/openbound-actions)
-    -   [Dialog sprites](/openbound-dialog-sprites)
-    -   [Dialog](/openbound-dialog)
-    -   [Triggers](/openbound-triggers)
-    -   [Paths](/openbound-paths)
-    -   [Templates](/openbound-templates)
-    -   [Game State](/openbound-gamestate)
--   [Good practice](/openbound-good-practice)
--   [Advanced](/openbound-advanced)
-    -   [Text colours](/openbound-text-colours)
--   [Production](/openbound-production)
-    -   [Build](/openbound-build)
+-   [Overview](./openbound-overview)
+-   [Basics](./openbound-basics)
+    -   [Assets](./openbound-assets)
+    -   [Dependencies](./openbound-dependencies)
+    -   [**Rooms**](./openbound-rooms)
+    -   [Characters](./openbound-characters)
+    -   [Actions/interactions](./openbound-actions)
+    -   [Dialog sprites](./openbound-dialog-sprites)
+    -   [Dialog](./openbound-dialog)
+    -   [Triggers](./openbound-triggers)
+    -   [Paths](./openbound-paths)
+    -   [Templates](./openbound-templates)
+    -   [Game State](./openbound-gamestate)
+-   [Good practice](./openbound-good-practice)
+-   [Advanced](./openbound-advanced)
+    -   [Text colours](./openbound-text-colours)
+-   [Production](./openbound-production)
+    -   [Build](./openbound-build)
     -   [Release](openbound-release)
 
 ## Structure
@@ -58,9 +58,9 @@ The general structure for an individual room file is as follows:
 </sburb>
 ```
 
-For an explanation of the `<dependencies>` section, please see [dependencies](/openbound-dependencies).
+For an explanation of the `<dependencies>` section, please see [dependencies](./openbound-dependencies).
 
-For an explanation of the `<assets>` section, please see [assets](/openbound-assets).
+For an explanation of the `<assets>` section, please see [assets](./openbound-assets).
 
 ## Room outline
 
@@ -94,7 +94,7 @@ The `name` attribute, here set as `name='firstRoom'` determines the name used by
 
 ### walkableMap
 
-The `walkableMap` attribute, here set as `walkableMap='firstRoomMap'` determines which graphic asset (see [assets](/openbound-assets)) to use for the walkable map.
+The `walkableMap` attribute, here set as `walkableMap='firstRoomMap'` determines which graphic asset (see [assets](./openbound-assets)) to use for the walkable map.
 
 The walkable map is a black and white (by which I mean the colours black and white; not grayscale) image, which represents where the player character can and can't walk in the room. Note that the map itself is usually not the size of the room. To keep both accuracy and performance good, the Openbound developers commonly went at a map a 1/4 the size of the actual room map.
 

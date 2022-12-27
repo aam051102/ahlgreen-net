@@ -10,24 +10,24 @@ This article focuses on character creation in the Sburb game engine. A character
 
 ## Table Of Contents
 
--   [Overview](/openbound-overview)
--   [Basics](/openbound-basics)
-    -   [Assets](/openbound-assets)
-    -   [Dependencies](/openbound-dependencies)
-    -   [Rooms](/openbound-rooms)
-    -   [**Characters**](/openbound-characters)
-    -   [Actions/interactions](/openbound-actions)
-    -   [Dialog sprites](/openbound-dialog-sprites)
-    -   [Dialog](/openbound-dialog)
-    -   [Triggers](/openbound-triggers)
-    -   [Paths](/openbound-paths)
-    -   [Templates](/openbound-templates)
-    -   [Game State](/openbound-gamestate)
--   [Good practice](/openbound-good-practice)
--   [Advanced](/openbound-advanced)
-    -   [Text colours](/openbound-text-colours)
--   [Production](/openbound-production)
-    -   [Build](/openbound-build)
+-   [Overview](./openbound-overview)
+-   [Basics](./openbound-basics)
+    -   [Assets](./openbound-assets)
+    -   [Dependencies](./openbound-dependencies)
+    -   [Rooms](./openbound-rooms)
+    -   [**Characters**](./openbound-characters)
+    -   [Actions/interactions](./openbound-actions)
+    -   [Dialog sprites](./openbound-dialog-sprites)
+    -   [Dialog](./openbound-dialog)
+    -   [Triggers](./openbound-triggers)
+    -   [Paths](./openbound-paths)
+    -   [Templates](./openbound-templates)
+    -   [Game State](./openbound-gamestate)
+-   [Good practice](./openbound-good-practice)
+-   [Advanced](./openbound-advanced)
+    -   [Text colours](./openbound-text-colours)
+-   [Production](./openbound-production)
+    -   [Build](./openbound-build)
     -   [Release](openbound-release)
 
 ## Structure
@@ -52,7 +52,7 @@ A character file commonly contains both the character definition, dialogue sprit
 
 ## Sprite sheet
 
-If you have read the [assets](/openbound-assets) section, you will already know how the asset definition works. This asset, however, is sheet containing several sprites, rather than a single illustration. Meenah's sprite sheet looks like this:
+If you have read the [assets](./openbound-assets) section, you will already know how the asset definition works. This asset, however, is sheet containing several sprites, rather than a single illustration. Meenah's sprite sheet looks like this:
 
 ![Meenah's sprite sheet](./images/meenah.png "Meenah's sprite sheet")
 
@@ -99,7 +99,7 @@ Well, now that you have your 12 sprites placed in order of their animations with
 </sburb>
 ```
 
-Here, the `<character>` element is defined in the `<classes>` element, which has not yet been covered. It is a simple template system, which you can read more about [here](/openbound-templates). For now, just know that it allows easy reuse of the character.
+Here, the `<character>` element is defined in the `<classes>` element, which has not yet been covered. It is a simple template system, which you can read more about [here](./openbound-templates). For now, just know that it allows easy reuse of the character.
 
 The `<character>` element for Meenah is defined as such:
 
@@ -115,7 +115,7 @@ Additionally, unless you want your character to be facing a diffferent location 
 
 ### class
 
-The `class` attribute is not because of the `<character>` element, but rather because of the `<classes>` element. You can read more about it in the [templates](/openbound-templates) section. For now, I recommend using the value as the `name` attribute, as they do in the sample.
+The `class` attribute is not because of the `<character>` element, but rather because of the `<classes>` element. You can read more about it in the [templates](./openbound-templates) section. For now, I recommend using the value as the `name` attribute, as they do in the sample.
 
 ### name
 

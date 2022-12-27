@@ -10,24 +10,24 @@ This article focuses on actions in the Sburb game engine. An action is essential
 
 ## Table Of Contents
 
--   [Overview](/openbound-overview)
--   [Basics](/openbound-basics)
-    -   [Assets](/openbound-assets)
-    -   [Dependencies](/openbound-dependencies)
-    -   [Rooms](/openbound-rooms)
-    -   [Characters](/openbound-characters)
-    -   [**Actions**](/openbound-actions)
-    -   [Dialog sprites](/openbound-dialog-sprites)
-    -   [Dialog](/openbound-dialog)
-    -   [Triggers](/openbound-triggers)
-    -   [Paths](/openbound-paths)
-    -   [Templates](/openbound-templates)
-    -   [Game State](/openbound-gamestate)
--   [Good practice](/openbound-good-practice)
--   [Advanced](/openbound-advanced)
-    -   [Text colours](/openbound-text-colours)
--   [Production](/openbound-production)
-    -   [Build](/openbound-build)
+-   [Overview](./openbound-overview)
+-   [Basics](./openbound-basics)
+    -   [Assets](./openbound-assets)
+    -   [Dependencies](./openbound-dependencies)
+    -   [Rooms](./openbound-rooms)
+    -   [Characters](./openbound-characters)
+    -   [**Actions**](./openbound-actions)
+    -   [Dialog sprites](./openbound-dialog-sprites)
+    -   [Dialog](./openbound-dialog)
+    -   [Triggers](./openbound-triggers)
+    -   [Paths](./openbound-paths)
+    -   [Templates](./openbound-templates)
+    -   [Game State](./openbound-gamestate)
+-   [Good practice](./openbound-good-practice)
+-   [Advanced](./openbound-advanced)
+    -   [Text colours](./openbound-text-colours)
+-   [Production](./openbound-production)
+    -   [Build](./openbound-build)
     -   [Release](openbound-release)
 
 ## Structure
@@ -74,31 +74,31 @@ Note the additional attribute `name`. This defines the name shown to the user in
 
 ### talk
 
-Activates a [dialog](/openbound-dialog). It takes one parameter that is a series of dialogs.
+Activates a [dialog](./openbound-dialog). It takes one parameter that is a series of dialogs.
 
-The syntax for this is specified on the [dialog](/openbound-dialog) page.
+The syntax for this is specified on the [dialog](./openbound-dialog) page.
 
 ### randomTalk
 
-Activates a [dialog](/openbound-dialog). It takes one parameter that is a series of dialogs.
+Activates a [dialog](./openbound-dialog). It takes one parameter that is a series of dialogs.
 
-The syntax for this is specified on the [dialog](/openbound-dialog) page.
+The syntax for this is specified on the [dialog](./openbound-dialog) page.
 
 ### changeRoom
 
-Changes the current [room](/openbound-rooms) to the specified room, and moves the [character](/openbound-characters) to it.
+Changes the current [room](./openbound-rooms) to the specified room, and moves the [character](./openbound-characters) to it.
 
 Syntax: "newRoom,newX,newY"
 
 ### changeRoomRemote
 
-Changes the current [room](/openbound-rooms), to the specified room, and moves the [character](/openbound-characters) to it. If the specified SburbML file, which presumably contains the room being referenced, is not loaded yet, loads it first.
+Changes the current [room](./openbound-rooms), to the specified room, and moves the [character](./openbound-characters) to it. If the specified SburbML file, which presumably contains the room being referenced, is not loaded yet, loads it first.
 
 Syntax: "file,newRoom,newX,newY"
 
 ### playAnimation / startAnimation
 
-Have the target [sprite](/openbound-sprites) play the specified [animation](/openbound-animations).
+Have the target [sprite](./openbound-sprites) play the specified [animation](./openbound-animations).
 
 Syntax: sprite, animation
 
@@ -118,13 +118,13 @@ Syntax: sprite
 
 ### playSong
 
-Make the specified audio [asset](/openbound-assets) play as the background music.
+Make the specified audio [asset](./openbound-assets) play as the background music.
 
 Syntax: song
 
 ### playSound
 
-Make the specified audio [asset](/openbound-assets) play as a sound effect.
+Make the specified audio [asset](./openbound-assets) play as a sound effect.
 
 Syntax: sound
 
@@ -142,7 +142,7 @@ Syntax: [changeRoomRemote](#changeroomremote)'s syntax.
 
 ### playEffect
 
-Play the specified [effect](/openbound-effects) at the specified location.
+Play the specified [effect](./openbound-effects) at the specified location.
 
 Syntax: effect, x, y
 
@@ -158,7 +158,7 @@ Syntax: chest, sprite, message
 
 Take away player control, and wait for the specified trigger.
 
-Syntax: see [trigger](/openbound-triggers) syntax
+Syntax: see [trigger](./openbound-triggers) syntax
 
 ### macro
 
@@ -199,13 +199,13 @@ Syntax: spriteName, newName
 
 ### playMovie
 
-Play the specified movie [asset](/openbound-assets).
+Play the specified movie [asset](./openbound-assets).
 
 Syntax: movieName
 
 ### removeMovie
 
-Stops the specified movie [asset](/openbound-assets).
+Stops the specified movie [asset](./openbound-assets).
 
 (utility function used internally, not recommended for explicit use)
 
@@ -219,20 +219,20 @@ Sytnax: takes no parameters
 
 ### addAction / addActions
 
-Add the given [action](/openbound-actions)s to a sprite.
+Add the given [action](./openbound-actions)s to a sprite.
 
 Syntax: SBURBML Action Syntax
 
 ### removeAction / removeActions
 
-Remove the given [action](/openbound-actions)s from a sprite
+Remove the given [action](./openbound-actions)s from a sprite
 
 Syntax: spriteName, actionName, actionName, actionName, ...
 Note: Non-determinism may arise if multiple actions have the same name!
 
 ### presentAction / presentActions
 
-Present the given [action](/openbound-actions)s to the user as a set of choices. Note that unlike normal, is not assumed to be a choice.
+Present the given [action](./openbound-actions)s to the user as a set of choices. Note that unlike normal, is not assumed to be a choice.
 
 Syntax: SBURBML Action Syntax
 

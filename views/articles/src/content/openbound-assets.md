@@ -10,24 +10,24 @@ This article focuses on the creation of assets in the Sburb game engine.
 
 ## Table Of Contents
 
--   [Overview](/openbound-overview)
--   [Basics](/openbound-basics)
-    -   [**Assets**](/openbound-assets)
-    -   [Dependencies](/openbound-dependencies)
-    -   [Rooms](/openbound-rooms)
-    -   [Characters](/openbound-characters)
-    -   [Actions/interactions](/openbound-actions)
-    -   [Dialog sprites](/openbound-dialog-sprites)
-    -   [Dialog](/openbound-dialog)
-    -   [Triggers](/openbound-triggers)
-    -   [Paths](/openbound-paths)
-    -   [Templates](/openbound-templates)
-    -   [Game State](/openbound-gamestate)
--   [Good practice](/openbound-good-practice)
--   [Advanced](/openbound-advanced)
-    -   [Text colours](/openbound-text-colours)
--   [Production](/openbound-production)
-    -   [Build](/openbound-build)
+-   [Overview](./openbound-overview)
+-   [Basics](./openbound-basics)
+    -   [**Assets**](./openbound-assets)
+    -   [Dependencies](./openbound-dependencies)
+    -   [Rooms](./openbound-rooms)
+    -   [Characters](./openbound-characters)
+    -   [Actions/interactions](./openbound-actions)
+    -   [Dialog sprites](./openbound-dialog-sprites)
+    -   [Dialog](./openbound-dialog)
+    -   [Triggers](./openbound-triggers)
+    -   [Paths](./openbound-paths)
+    -   [Templates](./openbound-templates)
+    -   [Game State](./openbound-gamestate)
+-   [Good practice](./openbound-good-practice)
+-   [Advanced](./openbound-advanced)
+    -   [Text colours](./openbound-text-colours)
+-   [Production](./openbound-production)
+    -   [Build](./openbound-build)
     -   [Release](openbound-release)
 
 ## Structure
@@ -98,7 +98,7 @@ A flash movie (an SWF file). Flash is unsupported in modern browsers, so this is
 
 #### path
 
-A [path](/openbound-paths). It is a semicolon-separated list of X and Y coordinates. The X and Y coordinates are separated by a command, such that the structure is `x1,y1;x2,y2...`.
+A [path](./openbound-paths). It is a semicolon-separated list of X and Y coordinates. The X and Y coordinates are separated by a command, such that the structure is `x1,y1;x2,y2...`.
 
 The below example constructs a path along the following coordinates:
 

@@ -10,24 +10,24 @@ This articles covers dialog creation and syntax. It does not, however, cover cus
 
 ## Table Of Contents
 
--   [Overview](/openbound-overview)
--   [Basics](/openbound-basics)
-    -   [Assets](/openbound-assets)
-    -   [Dependencies](/openbound-dependencies)
-    -   [Rooms](/openbound-rooms)
-    -   [Characters](/openbound-characters)
-    -   [Actions/interactions](/openbound-actions)
-    -   [Dialog sprites](/openbound-dialog-sprites)
-    -   [**Dialog**](/openbound-dialog)
-    -   [Triggers](/openbound-triggers)
-    -   [Paths](/openbound-paths)
-    -   [Templates](/openbound-templates)
-    -   [Game State](/openbound-gamestate)
--   [Good practice](/openbound-good-practice)
--   [Advanced](/openbound-advanced)
-    -   [Text colours](/openbound-text-colours)
--   [Production](/openbound-production)
-    -   [Build](/openbound-build)
+-   [Overview](./openbound-overview)
+-   [Basics](./openbound-basics)
+    -   [Assets](./openbound-assets)
+    -   [Dependencies](./openbound-dependencies)
+    -   [Rooms](./openbound-rooms)
+    -   [Characters](./openbound-characters)
+    -   [Actions/interactions](./openbound-actions)
+    -   [Dialog sprites](./openbound-dialog-sprites)
+    -   [**Dialog**](./openbound-dialog)
+    -   [Triggers](./openbound-triggers)
+    -   [Paths](./openbound-paths)
+    -   [Templates](./openbound-templates)
+    -   [Game State](./openbound-gamestate)
+-   [Good practice](./openbound-good-practice)
+-   [Advanced](./openbound-advanced)
+    -   [Text colours](./openbound-text-colours)
+-   [Production](./openbound-production)
+    -   [Build](./openbound-build)
     -   [Release](openbound-release)
 
 ## The dialoger element
@@ -71,7 +71,7 @@ For example:
 
 Notice the `@` at the beginning, followed by `meenah_talk`, which is the name of the dialog sprite. Then there's a space and then the actual line of text spoken by the character: `Hey what're you doing in my sample.`. Now, you might be wondering where the text colour comes from. Well, that has to do with the `meenah_talk`.
 
-You see, dialog sprites are one of the only assets where the name must follow a specific pattern to work. The pattern must be `[CHARACTER]_[WHATEVER]`. Technically speaking, `[CHARACTER]`, here, is a keyword. For some reason, the Openbound developers decided to predefine all the character names and their colours in the source code. To change them, see the [text colours](/openbound-text-colours) section.
+You see, dialog sprites are one of the only assets where the name must follow a specific pattern to work. The pattern must be `[CHARACTER]_[WHATEVER]`. Technically speaking, `[CHARACTER]`, here, is a keyword. For some reason, the Openbound developers decided to predefine all the character names and their colours in the source code. To change them, see the [text colours](./openbound-text-colours) section.
 
 [Here](#predefined-colours) is a list of the predefined colours.
 
