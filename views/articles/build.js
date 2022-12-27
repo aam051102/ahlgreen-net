@@ -8,6 +8,21 @@ const templateContent = fs.readFileSync("./src/template/index.html").toString();
 // Find all content
 const contentPaths = fs.readdirSync("./src/content");
 
+const copyDeepSync = (from, to) => {
+    if (fs.statSync(from).isDirectory()) {
+        const contentPaths = fs.readdirSync(from);
+
+        for (const p of contentPaths) {
+            copyDeepSync(
+                path.resolve(from, p),
+                path.join(to, path.basename(p))
+            );
+        }
+    } else {
+        fs.copyFileSync(from, to);
+    }
+};
+
 for (const p of contentPaths) {
     if (path.extname(p) === ".md") {
         const content = fs
@@ -70,10 +85,15 @@ for (const p of contentPaths) {
         );
     } else {
         if (!fs.existsSync(path.resolve("./build/", p))) {
-            fs.mkdirSync(path.resolve("./build/", p), { recursive: true });
+            fs.mkdirSync(path.resolve("./build/", p), {
+                recursive: true,
+            });
         }
 
-        fs.copyFileSync(p, path.resolve("./build/", p));
+        copyDeepSync(
+            path.resolve(path.join("./src/content", p)),
+            path.resolve("./build/", p)
+        );
     }
 }
 
