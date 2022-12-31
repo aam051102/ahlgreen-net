@@ -25,6 +25,7 @@ The official wiki describes triggers as event listeners. They are essentially ch
     -   [Paths](./openbound-paths)
     -   [Templates](./openbound-templates)
     -   [Game State](./openbound-gamestate)
+    -   [Effects](./openbound-effects)
 -   [Good practice](./openbound-good-practice)
 -   [Advanced](./openbound-advanced)
     -   [Text colours](./openbound-text-colours)

@@ -25,6 +25,7 @@ Game state in Openbound is basically attaching a value to a name. The value can 
     -   [Paths](./openbound-paths)
     -   [Templates](./openbound-templates)
     -   [**Game State**](./openbound-gamestate)
+    -   [Effects](./openbound-effects)
 -   [Good practice](./openbound-good-practice)
 -   [Advanced](./openbound-advanced)
     -   [Text colours](./openbound-text-colours)

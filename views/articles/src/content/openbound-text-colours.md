@@ -25,6 +25,7 @@ This article covers modifying the existing text colours used in dialogs or addin
     -   [Paths](./openbound-paths)
     -   [Templates](./openbound-templates)
     -   [Game State](./openbound-gamestate)
+    -   [Effects](./openbound-effects)
 -   [Good practice](./openbound-good-practice)
 -   [Advanced](./openbound-advanced)
     -   [**Text colours**](./openbound-text-colours)

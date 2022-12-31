@@ -25,6 +25,7 @@ The production section of this tutorial covers building, minification, and embed
     -   [Paths](./openbound-paths)
     -   [Templates](./openbound-templates)
     -   [Game State](./openbound-gamestate)
+    -   [Effects](./openbound-effects)
 -   [Good practice](./openbound-good-practice)
 -   [Advanced](./openbound-advanced)
     -   [Text colours](./openbound-text-colours)

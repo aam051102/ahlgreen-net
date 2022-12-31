@@ -25,6 +25,7 @@ Dialog sprites are the sprites rendered in the dialog system. They require some 
     -   [Paths](./openbound-paths)
     -   [Templates](./openbound-templates)
     -   [Game State](./openbound-gamestate)
+    -   [Effects](./openbound-effects)
 -   [Good practice](./openbound-good-practice)
 -   [Advanced](./openbound-advanced)
     -   [Text colours](./openbound-text-colours)

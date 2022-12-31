@@ -25,6 +25,7 @@ Templates in the Openbound game engine are a simple way to predefine commonly us
     -   [Paths](./openbound-paths)
     -   [**Templates**](./openbound-templates)
     -   [Game State](./openbound-gamestate)
+    -   [Effects](./openbound-effects)
 -   [Good practice](./openbound-good-practice)
 -   [Advanced](./openbound-advanced)
     -   [Text colours](./openbound-text-colours)
