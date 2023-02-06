@@ -182,6 +182,7 @@ app.use(express.static(path.join(__dirname, "build")));
 
 // Routes
 app.use("/api", require("./routes/api"));
+app.use("/joyfulldreams", require("./routes/joyfulldreams/index"));
 
 process.on("exit", () => {
     mongoClient.close();
