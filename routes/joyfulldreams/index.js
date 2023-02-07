@@ -56,27 +56,22 @@ router.post("/stripe-hook", async (req, res) => {
             });
         }
 
-        const lineItems = (
-            await stripe.checkout.sessions.listLineItems(body.id, { limit: 5 })
-        ).data;
+        const lineItems = sessionWithLineItems.line_items.data;
         if ((lineItems?.length ?? 0) === 0)
-            return res
-                .status(200)
-                .json({ message: "Line items not found.", data: lineItems });
-
-        /*const lineItems = sessionWithLineItems.line_items;
-        if ((lineItems?.length ?? 0) === 0)
-            return res.status(200).json({ message: "Line items not found." });*/
+            return res.status(200).json({ message: "Line items not found." });
 
         // Get auth
         const auth = await authorize();
         const sheets = google.sheets({ version: "v4", auth });
 
+        const isPhysical =
+            lineItems[0]?.price.product === process.env.PHYSICAL_PRODUCT_ID;
+
         // Find highest row
         const values = (
             await sheets.spreadsheets.values.get({
                 spreadsheetId: process.env.SPREADSHEET_ID,
-                range: `A:A`,
+                range: (isPhysical ? "Physical" : "Digital") + `!A:A`,
             })
         ).data.values;
 
@@ -89,27 +84,44 @@ router.post("/stripe-hook", async (req, res) => {
         // Update row
         await sheets.spreadsheets.values.update({
             spreadsheetId: process.env.SPREADSHEET_ID,
-            range: `A${currentRow}:L${currentRow}`,
+            range: isPhysical
+                ? `Physical!A${currentRow}:L${currentRow}`
+                : `Digital!A${currentRow}:E${currentRow}`,
             valueInputOption: "RAW",
             requestBody: {
                 values: [
-                    [
-                        sessionWithLineItems.id, // Transaction ID
-                        sessionWithLineItems.shipping_details.name ||
-                            sessionWithLineItems.customer_details.name, // Name
-                        lineItems[0]?.quantity, // Quantity
-                        sessionWithLineItems.amount_subtotal / 100, // Amount
-                        sessionWithLineItems.customer_details.email, // Email
-                        sessionWithLineItems.shipping_details.phone ||
-                            sessionWithLineItems.customer_details.phone, // Phone
-                        sessionWithLineItems.shipping_details.address.country, // Country
-                        sessionWithLineItems.shipping_details.address.line1, // Address 1
-                        sessionWithLineItems.shipping_details.address.line2, // Address 2
-                        sessionWithLineItems.shipping_details.address.city, // City
-                        sessionWithLineItems.shipping_details.address.state, // State
-                        sessionWithLineItems.shipping_details.address
-                            .postal_code, // Zipcode
-                    ],
+                    isPhysical
+                        ? [
+                              sessionWithLineItems.id, // Transaction ID
+                              sessionWithLineItems.shipping_details.name ||
+                                  sessionWithLineItems.customer_details.name, // Name
+                              lineItems[0]?.quantity, // Quantity
+                              sessionWithLineItems.amount_subtotal / 100, // Amount
+                              sessionWithLineItems.customer_details.email, // Email
+                              sessionWithLineItems.shipping_details.phone ||
+                                  sessionWithLineItems.customer_details.phone, // Phone
+                              sessionWithLineItems.shipping_details.address
+                                  .country, // Country
+                              sessionWithLineItems.shipping_details.address
+                                  .line1, // Address 1
+                              sessionWithLineItems.shipping_details.address
+                                  .line2, // Address 2
+                              sessionWithLineItems.shipping_details.address
+                                  .city, // City
+                              sessionWithLineItems.shipping_details.address
+                                  .state, // State
+                              sessionWithLineItems.shipping_details.address
+                                  .postal_code, // Zipcode
+                          ]
+                        : [
+                              sessionWithLineItems.id, // Transaction ID
+                              sessionWithLineItems.shipping_details.name ||
+                                  sessionWithLineItems.customer_details.name, // Name
+                              sessionWithLineItems.amount_subtotal / 100, // Amount
+                              sessionWithLineItems.customer_details.email, // Email
+                              sessionWithLineItems.shipping_details.phone ||
+                                  sessionWithLineItems.customer_details.phone, // Phone
+                          ],
                 ],
             },
         });
