@@ -5,7 +5,6 @@ require("dotenv").config({
     path: path.join(__dirname, `.env.${process.env.NODE_ENV}`),
 });
 
-const fs = require("fs");
 const { google, Auth } = require("googleapis");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -33,18 +32,30 @@ router.post("/stripe-hook", async (req, res) => {
             return res.status(200).json({ message: "Unauthorized" });
         }
 
-        if (req.body.type !== "payment_intent.succeeded") {
+        if (req.body.type !== "checkout.session.completed") {
             return res.status(200).json({
                 message: "Event not allowed",
-                error: `Event was ${req.body.type}. Only payment_intent.succeeded is allowed`,
+                error: `Event was ${req.body.type}. Only checkout.session.completed is allowed`,
             });
         }
 
-        const paymentIntent = req.body.data.object;
-        const invoice = await stripe.invoices.retrieve(paymentIntent.invoice);
-        const customer = await stripe.customers.retrieve(
-            paymentIntent.customer
+        const body = req.body.data.object;
+
+        if (body.payment.status !== "paid") {
+            return res.status(200).json({
+                message:
+                    "Order not paid. You may have enabled delayed payments.",
+            });
+        }
+
+        const sessionWithLineItems = await stripe.checkout.sessions.retrieve(
+            body.id,
+            {
+                expand: ["line_items", "customer"],
+            }
         );
+        const lineItems = sessionWithLineItems.line_items;
+        const customer = sessionWithLineItems.customer;
 
         // Get auth
         const auth = await authorize();
@@ -72,23 +83,23 @@ router.post("/stripe-hook", async (req, res) => {
             requestBody: {
                 values: [
                     [
-                        invoice.id, // Transaction ID
+                        sessionWithLineItems.id, // Transaction ID
                         customer.shipping.name || customer.name, // Name
-                        invoice.lines?.[0]?.quantity, // Quantity
-                        invoice.total, // Amount
+                        lineItems[0]?.quantity, // Quantity
+                        sessionWithLineItems.amount / 100, // Amount
                         customer.email, // Email
-                        paymentIntent.shipping?.phone || customer.phone, // Phone
-                        paymentIntent.shipping?.address.country ||
+                        sessionWithLineItems.shipping?.phone || customer.phone, // Phone
+                        sessionWithLineItems.shipping?.address.country ||
                             customer.shipping?.address.country, // Country
-                        paymentIntent.shipping?.address.line1 ||
+                        sessionWithLineItems.shipping?.address.line1 ||
                             customer.shipping?.address.line1, // Address 1
-                        paymentIntent.shipping?.address.line2 ||
+                        sessionWithLineItems.shipping?.address.line2 ||
                             customer.shipping?.address.line2, // Address 2
-                        paymentIntent.shipping?.address.city ||
+                        sessionWithLineItems.shipping?.address.city ||
                             customer.shipping?.address.city, // City
-                        paymentIntent.shipping?.address.state ||
+                        sessionWithLineItems.shipping?.address.state ||
                             customer.shipping?.address.state, // State
-                        paymentIntent.shipping?.address.postal_code ||
+                        sessionWithLineItems.shipping?.address.postal_code ||
                             customer.shipping?.address.postal_code, // Zipcode
                     ],
                 ],
