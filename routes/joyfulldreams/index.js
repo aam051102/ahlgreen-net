@@ -1,10 +1,13 @@
 const path = require("path");
 const process = require("process");
-const { google, Auth } = require("googleapis");
 
 require("dotenv").config({
     path: path.join(__dirname, `.env.${process.env.NODE_ENV}`),
 });
+
+const fs = require("fs");
+const { google, Auth } = require("googleapis");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const express = require("express");
 const router = express.Router();
@@ -37,17 +40,32 @@ router.post("/stripe-hook", async (req, res) => {
             });
         }
 
-        const paymentIntent = req.body.object;
-        const invoice = paymentIntent.invoice;
-        const customer = paymentIntent.customer;
+        const paymentIntent = req.body.data.object;
+        const invoice = await stripe.invoices.retrieve(paymentIntent.invoice);
+        const customer = await stripe.customers.retrieve(
+            paymentIntent.customer
+        );
 
         // Get auth
         const auth = await authorize();
         const sheets = google.sheets({ version: "v4", auth });
 
-        const currentRow = 2; // TODO: REPLACE
+        // Find highest row
+        const values = (
+            await sheets.spreadsheets.values.get({
+                spreadsheetId: process.env.SPREADSHEET_ID,
+                range: `A:A`,
+            })
+        ).data.values;
 
-        const updateRes = await sheets.spreadsheets.values.update({
+        let currentRow = 0;
+        while (values[currentRow] && values[currentRow][0] != "") {
+            currentRow++;
+        }
+        currentRow += 1;
+
+        // Update row
+        await sheets.spreadsheets.values.update({
             spreadsheetId: process.env.SPREADSHEET_ID,
             range: `A${currentRow}:L${currentRow}`,
             valueInputOption: "RAW",
@@ -59,13 +77,19 @@ router.post("/stripe-hook", async (req, res) => {
                         invoice.lines?.[0]?.quantity, // Quantity
                         invoice.total, // Amount
                         customer.email, // Email
-                        customer.shipping.phone || customer.phone, // Phone
-                        customer.shipping.address.country, // Country
-                        customer.shipping.address.line1, // Address 1
-                        customer.shipping.address.line2, // Address 2
-                        customer.shipping.address.city, // City
-                        customer.shipping.address.state, // State
-                        customer.shipping.address.postal_code, // Zipcode
+                        paymentIntent.shipping?.phone || customer.phone, // Phone
+                        paymentIntent.shipping?.address.country ||
+                            customer.shipping?.address.country, // Country
+                        paymentIntent.shipping?.address.line1 ||
+                            customer.shipping?.address.line1, // Address 1
+                        paymentIntent.shipping?.address.line2 ||
+                            customer.shipping?.address.line2, // Address 2
+                        paymentIntent.shipping?.address.city ||
+                            customer.shipping?.address.city, // City
+                        paymentIntent.shipping?.address.state ||
+                            customer.shipping?.address.state, // State
+                        paymentIntent.shipping?.address.postal_code ||
+                            customer.shipping?.address.postal_code, // Zipcode
                     ],
                 ],
             },
