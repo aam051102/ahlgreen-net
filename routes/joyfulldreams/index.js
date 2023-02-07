@@ -115,12 +115,10 @@ router.post("/stripe-hook", async (req, res) => {
                           ]
                         : [
                               sessionWithLineItems.id, // Transaction ID
-                              sessionWithLineItems.shipping_details.name ||
-                                  sessionWithLineItems.customer_details.name, // Name
+                              sessionWithLineItems.customer_details.name, // Name
                               sessionWithLineItems.amount_subtotal / 100, // Amount
                               sessionWithLineItems.customer_details.email, // Email
-                              sessionWithLineItems.shipping_details.phone ||
-                                  sessionWithLineItems.customer_details.phone, // Phone
+                              sessionWithLineItems.customer_details.phone, // Phone
                           ],
                 ],
             },
