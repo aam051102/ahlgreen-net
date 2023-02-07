@@ -55,6 +55,15 @@ router.post("/stripe-hook", async (req, res) => {
             });
         }
 
+        const lineItems = await stripe.checkout.sessions.listLineItems(
+            body.id,
+            { limit: 5 }
+        );
+        if ((lineItems?.length ?? 0) === 0)
+            return res
+                .status(200)
+                .json({ message: "Line items not found.", data: lineItems });
+
         /*const lineItems = sessionWithLineItems.line_items;
         if ((lineItems?.length ?? 0) === 0)
             return res.status(200).json({ message: "Line items not found." });*/
@@ -88,7 +97,7 @@ router.post("/stripe-hook", async (req, res) => {
                         sessionWithLineItems.id, // Transaction ID
                         sessionWithLineItems.shipping_details.name ||
                             sessionWithLineItems.customer_details.name, // Name
-                        /*lineItems[0]?.quantity*/ "1", // Quantity
+                        lineItems[0]?.quantity, // Quantity
                         sessionWithLineItems.amount_subtotal / 100, // Amount
                         sessionWithLineItems.customer_details.email, // Email
                         sessionWithLineItems.shipping_details.phone ||
