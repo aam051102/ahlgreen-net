@@ -44,7 +44,7 @@ router.post("/stripe-hook", async (req, res) => {
         const sessionWithLineItems = await stripe.checkout.sessions.retrieve(
             body.id,
             {
-                expand: ["line_items", "customer"],
+                expand: ["line_items"],
             }
         );
 
@@ -55,18 +55,9 @@ router.post("/stripe-hook", async (req, res) => {
             });
         }
 
-        const lineItems = sessionWithLineItems.line_items;
+        /*const lineItems = sessionWithLineItems.line_items;
         if ((lineItems?.length ?? 0) === 0)
-            return res.status(200).json({ message: "Line items not found." });
-
-        const customer = sessionWithLineItems.customer;
-        if (!customer)
-            return res
-                .status(200)
-                .json({
-                    message: "Customer not found.",
-                    customer_details: sessionWithLineItems.customer_details,
-                });
+            return res.status(200).json({ message: "Line items not found." });*/
 
         // Get auth
         const auth = await authorize();
@@ -95,23 +86,20 @@ router.post("/stripe-hook", async (req, res) => {
                 values: [
                     [
                         sessionWithLineItems.id, // Transaction ID
-                        customer.shipping.name || customer.name, // Name
-                        lineItems[0]?.quantity, // Quantity
-                        sessionWithLineItems.amount / 100, // Amount
-                        customer.email, // Email
-                        sessionWithLineItems.shipping?.phone || customer.phone, // Phone
-                        sessionWithLineItems.shipping?.address.country ||
-                            customer.shipping?.address.country, // Country
-                        sessionWithLineItems.shipping?.address.line1 ||
-                            customer.shipping?.address.line1, // Address 1
-                        sessionWithLineItems.shipping?.address.line2 ||
-                            customer.shipping?.address.line2, // Address 2
-                        sessionWithLineItems.shipping?.address.city ||
-                            customer.shipping?.address.city, // City
-                        sessionWithLineItems.shipping?.address.state ||
-                            customer.shipping?.address.state, // State
-                        sessionWithLineItems.shipping?.address.postal_code ||
-                            customer.shipping?.address.postal_code, // Zipcode
+                        sessionWithLineItems.shipping_details.name ||
+                            sessionWithLineItems.customer_details.name, // Name
+                        /*lineItems[0]?.quantity*/ "1", // Quantity
+                        sessionWithLineItems.amount_subtotal / 100, // Amount
+                        sessionWithLineItems.customer_details.email, // Email
+                        sessionWithLineItems.shipping_details.phone ||
+                            sessionWithLineItems.customer_details.phone, // Phone
+                        sessionWithLineItems.shipping_details.address.country, // Country
+                        sessionWithLineItems.shipping_details.address.line1, // Address 1
+                        sessionWithLineItems.shipping_details.address.line2, // Address 2
+                        sessionWithLineItems.shipping_details.address.city, // City
+                        sessionWithLineItems.shipping_details.address.state, // State
+                        sessionWithLineItems.shipping_details.address
+                            .postal_code, // Zipcode
                     ],
                 ],
             },
