@@ -56,7 +56,17 @@ router.post("/stripe-hook", async (req, res) => {
         }
 
         const lineItems = sessionWithLineItems.line_items;
+        if ((lineItems?.length ?? 0) === 0)
+            return res.status(200).json({ message: "Line items not found." });
+
         const customer = sessionWithLineItems.customer;
+        if (!customer)
+            return res
+                .status(200)
+                .json({
+                    message: "Customer not found.",
+                    customer_details: sessionWithLineItems.customer_details,
+                });
 
         // Get auth
         const auth = await authorize();
