@@ -41,19 +41,20 @@ router.post("/stripe-hook", async (req, res) => {
 
         const body = req.body.data.object;
 
-        if (body.payment.status !== "paid") {
-            return res.status(200).json({
-                message:
-                    "Order not paid. You may have enabled delayed payments.",
-            });
-        }
-
         const sessionWithLineItems = await stripe.checkout.sessions.retrieve(
             body.id,
             {
                 expand: ["line_items", "customer"],
             }
         );
+
+        if (sessionWithLineItems.payment_status !== "paid") {
+            return res.status(200).json({
+                message:
+                    "Order not paid. You may have enabled delayed payments.",
+            });
+        }
+
         const lineItems = sessionWithLineItems.line_items;
         const customer = sessionWithLineItems.customer;
 
