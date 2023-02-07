@@ -12,5 +12,8 @@
     "dependencies": {
         "googleapis": "^105.0.0",
         "stripe": "^11.9.1"
+    },
+    "devDependencies": {
+        "@types/stripe": "^8.0.417"
     }
 }

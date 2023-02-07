@@ -6,7 +6,8 @@ require("dotenv").config({
 });
 
 const { google, Auth } = require("googleapis");
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const { Stripe } = require("stripe");
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const express = require("express");
 const router = express.Router();
