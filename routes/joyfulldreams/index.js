@@ -55,10 +55,9 @@ router.post("/stripe-hook", async (req, res) => {
             });
         }
 
-        const lineItems = await stripe.checkout.sessions.listLineItems(
-            body.id,
-            { limit: 5 }
-        );
+        const lineItems = (
+            await stripe.checkout.sessions.listLineItems(body.id, { limit: 5 })
+        ).data;
         if ((lineItems?.length ?? 0) === 0)
             return res
                 .status(200)
