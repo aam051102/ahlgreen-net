@@ -63,7 +63,7 @@ body {
     text-align: left;
     margin-top: 0;
     font-weight: 800;
-    font-size: 4rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
     font-family: "Montserrat", monospace;
 }
@@ -197,6 +197,12 @@ body {
 .page-footer_socials a svg {
     width: 1.5rem;
     height: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 4rem;
+    }
 }
 
 @media screen and (max-width: 768px) {
