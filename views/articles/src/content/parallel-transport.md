@@ -6,7 +6,7 @@ description=An extremely simplified explanation of parallel transport put in pla
 
 # Parallel transport (extremely simplified)
 
-The purpose of this article is to explain the concept of "parallel tranport" in an easily understandable way. This may result in some oversimplification or slightly inaccurate details, so I encourage you to research further from more reliable sources afterwards.
+The purpose of this article is to explain the concept of "parallel transport" in an easily understandable way. This may result in some oversimplification or slightly inaccurate details, so I encourage you to research further from more reliable sources afterwards.
 
 This article will not include the underlying mathematical equations, but will instead focus on helping you understand the concept itself using plain language.
 
