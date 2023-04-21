@@ -1,10 +1,10 @@
 {{HEAD}}
-title=Paradise Garden
+title=Paradise Garden | Mini Stories
 description=The death of a beautiful princess culminates in the creation of a magnificent garden.
 
 {{BODY}}
 
-# Paradise Garden
+# Paradise Garden | Mini Stories
 
 In a far off kingdom, there once lived a princess, fairer and kinder than any other. One day, the princess fell sick. Her father, the king, brought men of medicine from all the lands, but none could heal her. After many moons, the princess succumbed to her illness.
 
