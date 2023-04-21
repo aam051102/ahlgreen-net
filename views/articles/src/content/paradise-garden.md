@@ -25,7 +25,3 @@ Though new and unique plants still blossomed, the growth of the flowers seemd to
 As he had requested, he was placed in the grave next to his daughter. Over the years, people have continued to visit the magnificent garden. New flowers still appear, placed by people from all walks of life, coming from all across the world to witness the impossible beauty of the garden.
 
 Now, every year, on the anniversary of their deaths, the people celebrate the girl and her loving father by gathering in the paradise gardens and placing the prettiest flowers from the garden on their graves.
-
----
-
-This extremely short story was written, in its entirety, on a 45-minute train ride by Alexander Ahlgreen Madsen. I hope you enjoyed it.
