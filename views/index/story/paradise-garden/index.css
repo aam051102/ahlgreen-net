@@ -97,12 +97,25 @@ body {
     color: #7a7a7a;
 }
 
+.page-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 50px;
+}
+
 .page-read-time {
     font-size: 0.75rem;
     color: #7a7a7a;
-    text-align: right;
     display: block;
-    padding: 10px 50px;
+    margin: 0;
+}
+
+.page-date {
+    font-size: 0.75rem;
+    color: #7a7a7a;
+    display: block;
+    margin: 0;
 }
 
 .page-header {

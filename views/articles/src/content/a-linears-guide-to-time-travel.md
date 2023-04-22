@@ -1,5 +1,6 @@
 {{HEAD}}
 title=A Linear's Guide To Time Travel
+date=2023-04-22
 description=If you skipped Time Travel 101 in school and are now traveling through time blindly, here's a quick summary for you.
 
 {{BODY}}
