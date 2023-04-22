@@ -69,7 +69,7 @@ for (const p of contentPaths) {
 
         outputContent = outputContent.replace(
             /\{\{\s*title\s*\}\}/g,
-            `${head["title"]} | Article by MadCreativity`
+            `${head["title"]} - Article | Alexander Ahlgreen Madsen`
         );
 
         outputContent = outputContent.replace(
