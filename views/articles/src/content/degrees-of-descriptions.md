@@ -26,7 +26,7 @@ While this relation-based description can work really well, especially for simpl
 You'll often also want to give some more personality to your character or to describe some key aspects about them. This might need a few more words, but you can still communicate a lot about a character in just one sentence (without having to resort to long lists of commas).
 
 ```
-The young king was said to be a genius prodigy, able to solve even the hardest mathematical equations, but nobody outside of the castles grounds had ever seen him.
+The young king was said to be a genius prodigy, able to solve even the hardest mathematical equations, but nobody outside of the castle grounds had ever seen him.
 ```
 
 My favorite part about describing things like this, is that you can embed immense amounts of information into just one sentence without having to make it so long or complex that you can't keep track of it.
@@ -39,7 +39,7 @@ The above description, for example, tells you 5 things about the king.
 -   He is reclusive.
 -   He is male.
 
-From there, your reader can start to imagine what the character looks and acts like without any in-deppth descriptions. It allows for a good amount of freedom for the imagination.
+From there, your reader can start to imagine what the character looks and acts like without any in-depth descriptions. It allows for a good amount of freedom for the imagination.
 
 But what if you really want your reader to get a clear picture of what your character looks like? Maybe it's important for some plot twist about two characters being related or maybe you just want your readers to imagine something particularly unique. Well, it might be time to add some more sentences.
 
