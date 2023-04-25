@@ -123,8 +123,10 @@ router.post("/app/1/edit/:id", authenticateToken, async (req, res) => {
                 { _id: Number(req.params.id) },
                 { $set: { tags: req.body.tags } }
             );
-            if (!updateRes)
+
+            if (!updateRes) {
                 return res.status(500).json({ error: "Failed to update." });
+            }
 
             const dataRes = await collection.findOne({
                 _id: Number(req.params.id),
