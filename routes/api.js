@@ -11,12 +11,12 @@ const authenticateToken = (req, res, next) => {
     const token = authHeader && authHeader.split(" ")[1];
 
     if (token == null) {
-        return res.sendStatus(401);
+        return res.status(401).json({ error: "Authentication is required" });
     }
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
         if (err) {
-            return res.sendStatus(403);
+            return res.status(403).json({ error: "Invalid auth token" });
         }
 
         req.user = user;
@@ -87,7 +87,7 @@ router.post("/app/1/search", async (req, res) => {
     }
 });
 
-router.post("/app/1/edit", authenticateToken, async (req, res) => {
+/*router.post("/app/1/edit", authenticateToken, async (req, res) => {
     try {
         if (req.body.edits) {
             const db = mongoClient.db("homestuck");
@@ -97,7 +97,7 @@ router.post("/app/1/edit", authenticateToken, async (req, res) => {
                 const tags = req.body.edits[id];
 
                 await collection.updateOne(
-                    { _id: new ObjectId(id) },
+                    { _id: id },
                     { $set: { tags: tags.map((tag) => tag[1]) } }
                 );
             }
@@ -111,27 +111,34 @@ router.post("/app/1/edit", authenticateToken, async (req, res) => {
     } catch (e) {
         res.status(500).json({ error: e });
     }
-});
+});*/
 
 router.post("/app/1/edit/:id", authenticateToken, async (req, res) => {
     try {
-        if (req.body.tags && req.body.tags.length > 0) {
+        if (req.body.tags && Array.isArray(req.body.tags)) {
             const db = mongoClient.db("homestuck");
             const collection = db.collection("asset");
 
-            res.status(200).json(
-                await collection.updateOne(
-                    { _id: new ObjectId(req.params.id) },
-                    { $set: { tags: req.body.tags } }
-                )
+            const updateRes = await collection.updateOne(
+                { _id: Number(req.params.id) },
+                { $set: { tags: req.body.tags } }
             );
+            if (!updateRes)
+                return res.status(500).json({ error: "Failed to update." });
+
+            const dataRes = await collection.findOne({
+                _id: Number(req.params.id),
+            });
+
+            res.status(200).json(dataRes);
         } else {
             res.status(400).json({
                 error: "Incorrect data format. Requires tags in the form of an array.",
             });
         }
     } catch (e) {
-        res.status(500).json({ error: e });
+        console.error(e);
+        res.status(500).json({ error: "Internal error" });
     }
 });
 
@@ -165,7 +172,7 @@ router.post("/app/1/login", (req, res) => {
 
 // Validation check
 router.post("/app/1/validate", authenticateToken, (_, res) => {
-    res.sendStatus(200);
+    res.status(200).json({ valid: true });
 });
 
 module.exports = router;
