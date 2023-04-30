@@ -51,6 +51,105 @@ router.get("/app/1/tags", async (_, res) => {
     }
 });
 
+router.post("/app/1/tags", async (req, res) => {
+    try {
+        /**
+         * @type {({ type: "create"; data: { id: number; parentId: number; name: string }; }| {type: "edit";  data: { id: number; name: string };}| { type: "delete"; data: { id: number; parentId: number; keepChildren?: boolean; })[]}
+         */
+        const actions = req.body.actions;
+
+        const db = mongoClient.db("homestuck");
+        const definitionsCollection = db.collection("tag_definition");
+
+        for (let i = 0; i < actions.length; i++) {
+            const action = actions[i];
+
+            if (action.type === "create") {
+                // TODO: Maybe check for same names and instead of inserting a new element, find the old one?
+
+                const createRes = await definitionsCollection.insertOne({
+                    _id: action.data.id,
+                    name: action.data.name,
+                });
+
+                if (!createRes.acknowledged) {
+                    return res.status(500).json({ error: "Failed to create" });
+                }
+
+                const updateParentRes = await definitionsCollection.updateOne(
+                    {
+                        _id: action.data.parentId,
+                    },
+                    {
+                        $push: { children: action.data.id },
+                    }
+                );
+
+                if (!updateParentRes.acknowledged) {
+                    return res
+                        .status(500)
+                        .json({ error: "Failed to add to parent" });
+                }
+            } else if (action.type === "edit") {
+                const updateRes = await definitionsCollection.updateOne(
+                    { _id: action.data.id },
+                    {
+                        $set: {
+                            name: action.data.name,
+                        },
+                    }
+                );
+
+                if (!updateRes.acknowledged) {
+                    return res.status(500).json({ error: "Failed to update" });
+                }
+            } else if (action.type === "delete") {
+                const parentDoc = await definitionsCollection.findOne({
+                    _id: action.data.parentId,
+                });
+                const childIndex = parentDoc.children.findIndex(
+                    (child) => child === action.data.id
+                );
+
+                if (action.data.keepChildren) {
+                    const tagDoc = await definitionsCollection.findOne({
+                        _id: action.data.id,
+                    });
+
+                    parentDoc.children.splice(
+                        childIndex,
+                        1,
+                        ...tagDoc.children
+                    );
+                } else {
+                    parentDoc.children.splice(childIndex, 1);
+                }
+
+                const removeFromParentRes =
+                    await definitionsCollection.updateOne(
+                        {
+                            _id: action.data.parentId,
+                        },
+                        {
+                            $set: { children: parentDoc.children },
+                        }
+                    );
+
+                if (!removeFromParentRes.acknowledged) {
+                    return res
+                        .status(500)
+                        .json({ error: "Failed to remove from parent" });
+                }
+            }
+        }
+
+        res.status(200).json({ success: true });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: "Internal error" });
+    }
+});
+
 router.post("/app/1/search", async (req, res) => {
     try {
         const db = mongoClient.db("homestuck");
@@ -86,32 +185,6 @@ router.post("/app/1/search", async (req, res) => {
         res.status(500).json({ error: e });
     }
 });
-
-/*router.post("/app/1/edit", authenticateToken, async (req, res) => {
-    try {
-        if (req.body.edits) {
-            const db = mongoClient.db("homestuck");
-            const collection = db.collection("asset");
-
-            for (const id in req.body.edits) {
-                const tags = req.body.edits[id];
-
-                await collection.updateOne(
-                    { _id: id },
-                    { $set: { tags: tags.map((tag) => tag[1]) } }
-                );
-            }
-
-            res.status(200).json({});
-        } else {
-            res.status(400).json({
-                error: "Incorrect data format. Requires tags in the form of an array.",
-            });
-        }
-    } catch (e) {
-        res.status(500).json({ error: e });
-    }
-});*/
 
 router.post("/app/1/edit/:id", authenticateToken, async (req, res) => {
     try {

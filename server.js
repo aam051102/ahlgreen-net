@@ -38,6 +38,16 @@ let { mongoClient } = require("./database");
 if (process.env.NODE_ENV == "production") app.set("trust proxy", true);
 
 // HSSE
+app.get(["/app/hsse/tags"], (req, res) => {
+    if (req.originalUrl.endsWith("/")) {
+        res.status(302).redirect(
+            req.originalUrl.substr(0, req.originalUrl.length - 1)
+        );
+    } else {
+        res.sendFile(path.join(__dirname, "views/app/hsse/build/index.html"));
+    }
+});
+
 app.get(["/app/hsse/login"], (req, res) => {
     if (req.originalUrl.endsWith("/")) {
         res.status(302).redirect(
