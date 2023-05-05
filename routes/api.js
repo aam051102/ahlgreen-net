@@ -54,7 +54,7 @@ router.get("/app/1/tags", async (_, res) => {
 router.post("/app/1/tags", authenticateToken, async (req, res) => {
     try {
         /**
-         * @type {({ type: "create"; data: { id: number; parentId: number; name: string }; } | {type:"move"; data: { childId: number; oldParentId: number; newParentId: number; }} | {type: "edit";  data: { id: number; name: string };}| { type: "delete"; data: { id: number; parentId: number; keepChildren?: boolean; })[]}
+         * @type {({ type: "create"; data: { id: number; parentId: number; name: string }; } | {type:"move"; data: { childId: number; oldParentId?: number; newParentId: number; placeBeforeTagId?:number; }} | {type: "edit";  data: { id: number; name: string };}| { type: "delete"; data: { id: number; parentId: number; keepChildren?: boolean; })[]}
          */
         const actions = req.body.actions;
 
@@ -65,7 +65,7 @@ router.post("/app/1/tags", authenticateToken, async (req, res) => {
             const action = actions[i];
 
             if (action.type === "create") {
-                // TODO: Maybe check for same names and instead of inserting a new element, find the old one?
+                // TODO: Create new synonym
 
                 const createRes = await definitionsCollection.insertOne({
                     _id: action.data.id,
@@ -91,14 +91,58 @@ router.post("/app/1/tags", authenticateToken, async (req, res) => {
                         .json({ error: "Failed to add to parent" });
                 }
             } else if (action.type === "move") {
+                // Old parent
+                if (action.data.oldParentId !== undefined) {
+                    const oldParentRes = await definitionsCollection.findOne({
+                        _id: action.data.oldParentId,
+                    });
+                    const childIndex = oldParentRes.children.findIndex(
+                        (child) => child === action.data.childId
+                    );
+                    oldParentRes.children.splice(childIndex, 1);
+
+                    const updateOldParentRes =
+                        await definitionsCollection.updateOne(
+                            {
+                                _id: action.data.oldParentId,
+                            },
+                            {
+                                $set: { children: oldParentRes.children },
+                            }
+                        );
+
+                    if (!updateOldParentRes.acknowledged) {
+                        return res
+                            .status(500)
+                            .json({ error: "Failed to move from parent" });
+                    }
+                }
+
                 // New parent
+                const newParentRes = await definitionsCollection.findOne({
+                    _id: action.data.newParentId,
+                });
+                if (placeBeforeTagId !== undefined) {
+                    const placeBeforeTagIndex =
+                        newParentRes.children?.findIndex(
+                            (child) => child === action.data.placeBeforeTagId
+                        ) ?? -1;
+                    newParentRes.children.splice(
+                        placeBeforeTagIndex,
+                        0,
+                        action.data.childId
+                    );
+                } else {
+                    newParentRes.children.push(action.data.childId);
+                }
+
                 const updateNewParentRes =
                     await definitionsCollection.updateOne(
                         {
                             _id: action.data.newParentId,
                         },
                         {
-                            $push: { children: action.data.childId },
+                            $set: { children: newParentRes.children },
                         }
                     );
 
@@ -106,31 +150,6 @@ router.post("/app/1/tags", authenticateToken, async (req, res) => {
                     return res
                         .status(500)
                         .json({ error: "Failed to move to parent" });
-                }
-
-                // Old parent
-                const oldParentRes = await definitionsCollection.findOne({
-                    _id: action.data.oldParentId,
-                });
-                const childIndex = oldParentRes.children.findIndex(
-                    (child) => child === action.data.childId
-                );
-                oldParentRes.children.splice(childIndex, 1);
-
-                const updateOldParentRes =
-                    await definitionsCollection.updateOne(
-                        {
-                            _id: action.data.oldParentId,
-                        },
-                        {
-                            $set: { children: oldParentRes.children },
-                        }
-                    );
-
-                if (!updateOldParentRes.acknowledged) {
-                    return res
-                        .status(500)
-                        .json({ error: "Failed to move from parent" });
                 }
             } else if (action.type === "edit") {
                 const updateRes = await definitionsCollection.updateOne(
