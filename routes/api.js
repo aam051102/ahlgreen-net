@@ -49,7 +49,7 @@ router.get("/app/1/tags", async (req, res) => {
         (await synonymsCollection.find({}).toArray()).forEach((item) => {
             synonyms[item._id] = item;
 
-            if (qInclude.includes("synonyms")) {
+            if (include.includes("synonyms")) {
                 if (!synonymMap[item.ref]) synonymMap[item.ref] = [];
                 synonymMap[item.ref].push(item._id);
             }
@@ -59,7 +59,7 @@ router.get("/app/1/tags", async (req, res) => {
 
         const definitions = {};
         (await definitionsCollection.find({}).toArray()).forEach((item) => {
-            if (qInclude.includes("synonyms")) {
+            if (include.includes("synonyms")) {
                 item.synonyms = synonymMap[item._id];
             }
 
