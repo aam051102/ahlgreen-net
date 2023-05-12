@@ -26,19 +26,43 @@ const authenticateToken = (req, res, next) => {
 
 /// Apps
 // 1 - Homestuck Search Engine
-router.get("/app/1/tags", async (_, res) => {
+
+/**
+ * path: /app/1/tags
+ * query:
+ *   include []
+ *     synonyms - adds a "synonyms" property on each tag, which is a string array of its synonyms
+ */
+router.get("/app/1/tags", async (req, res) => {
     try {
+        const qInclude = req.query?.include;
+        let include = [];
+        if (Array.isArray(qInclude)) include = qInclude;
+        else if (typeof include === "string") include = [qInclude];
+
         const db = mongoClient.db("homestuck");
         const definitionsCollection = db.collection("tag_definition");
         const synonymsCollection = db.collection("tag_synonym");
 
         const synonyms = {};
+        const synonymMap = {};
         (await synonymsCollection.find({}).toArray()).forEach((item) => {
             synonyms[item._id] = item;
+
+            if (qInclude.includes("synonyms")) {
+                if (!synonymMap[item.ref]) synonymMap[item.ref] = [];
+                synonymMap[item.ref].push(item._id);
+            }
         });
+
+        // TODO: Maybe restructure, so both synonym forms are optional?????
 
         const definitions = {};
         (await definitionsCollection.find({}).toArray()).forEach((item) => {
+            if (qInclude.includes("synonyms")) {
+                item.synonyms = synonymMap[item._id];
+            }
+
             definitions[item._id] = item;
         });
 
@@ -47,7 +71,8 @@ router.get("/app/1/tags", async (_, res) => {
             synonyms: synonyms,
         });
     } catch (e) {
-        res.status(500).json({ error: e });
+        console.error(e);
+        res.status(500).json({ error: "Internal error" });
     }
 });
 
@@ -65,7 +90,7 @@ router.post("/app/1/tags", authenticateToken, async (req, res) => {
             const action = actions[i];
 
             if (action.type === "create") {
-                // TODO: Create new synonym
+                // TODO: Create synonyms
 
                 const createRes = await definitionsCollection.insertOne({
                     _id: action.data.id,
@@ -152,6 +177,8 @@ router.post("/app/1/tags", authenticateToken, async (req, res) => {
                         .json({ error: "Failed to move to parent" });
                 }
             } else if (action.type === "edit") {
+                // TODO: Update synonyms
+
                 const updateRes = await definitionsCollection.updateOne(
                     { _id: action.data.id },
                     {
