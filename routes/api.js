@@ -38,7 +38,7 @@ router.get("/app/1/tags", async (req, res) => {
         const qInclude = req.query?.include;
         let include = [];
         if (Array.isArray(qInclude)) include = qInclude;
-        else if (typeof include === "string") include = [qInclude];
+        else if (typeof qInclude === "string") include = [qInclude];
 
         const db = mongoClient.db("homestuck");
         const definitionsCollection = db.collection("tag_definition");
@@ -207,9 +207,7 @@ router.post("/app/1/tags", authenticateToken, async (req, res) => {
 
                 // Delete old synonyms
                 const deleteSynonymsRes = await synonymsCollection.deleteMany({
-                    $where: {
-                        ref: action.data.id,
-                    },
+                    ref: action.data.id,
                 });
 
                 if (!deleteSynonymsRes.acknowledged) {
