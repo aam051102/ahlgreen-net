@@ -79,19 +79,19 @@ router.get("/app/1/tags", async (req, res) => {
 router.post("/app/1/tags", authenticateToken, async (req, res) => {
     try {
         /**
-         * @type {({ type: "create"; data: { id: number; parentId: number; name: string }; } | {type:"move"; data: { childId: number; oldParentId?: number; newParentId: number; placeBeforeTagId?:number; }} | {type: "edit";  data: { id: number; name: string };}| { type: "delete"; data: { id: number; parentId: number; keepChildren?: boolean; })[]}
+         * @type {({ type: "create"; data: { id: number; parentId: number; name: string; synonyms: string[]; }; } | {type:"move"; data: { childId: number; oldParentId?: number; newParentId: number; placeBeforeTagId?:number; }} | {type: "edit";  data: { id: number; name: string; synonyms: string[]; };}| { type: "delete"; data: { id: number; parentId: number; keepChildren?: boolean; })[]}
          */
         const actions = req.body.actions;
 
         const db = mongoClient.db("homestuck");
         const definitionsCollection = db.collection("tag_definition");
+        const synonymsCollection = db.collection("tag_synonym");
 
         for (let i = 0; i < actions.length; i++) {
             const action = actions[i];
 
             if (action.type === "create") {
-                // TODO: Create synonyms
-
+                // Create tag
                 const createRes = await definitionsCollection.insertOne({
                     _id: action.data.id,
                     name: action.data.name,
@@ -114,6 +114,20 @@ router.post("/app/1/tags", authenticateToken, async (req, res) => {
                     return res
                         .status(500)
                         .json({ error: "Failed to add to parent" });
+                }
+
+                // Create synonyms
+                const createSynonymsRes = await synonymsCollection.insertMany(
+                    action.data.synonyms.map((synonym) => ({
+                        _id: synonym,
+                        ref: action.data.id,
+                    }))
+                );
+
+                if (!createSynonymsRes.acknowledged) {
+                    return res
+                        .status(500)
+                        .json({ error: "Failed to create synonyms" });
                 }
             } else if (action.type === "move") {
                 // Old parent
@@ -177,8 +191,7 @@ router.post("/app/1/tags", authenticateToken, async (req, res) => {
                         .json({ error: "Failed to move to parent" });
                 }
             } else if (action.type === "edit") {
-                // TODO: Update synonyms
-
+                // Update tag
                 const updateRes = await definitionsCollection.updateOne(
                     { _id: action.data.id },
                     {
@@ -190,6 +203,33 @@ router.post("/app/1/tags", authenticateToken, async (req, res) => {
 
                 if (!updateRes.acknowledged) {
                     return res.status(500).json({ error: "Failed to update" });
+                }
+
+                // Delete old synonyms
+                const deleteSynonymsRes = await synonymsCollection.deleteMany({
+                    $where: {
+                        ref: action.data.id,
+                    },
+                });
+
+                if (!deleteSynonymsRes.acknowledged) {
+                    return res
+                        .status(500)
+                        .json({ error: "Failed to delete synonyms" });
+                }
+
+                // Create synonyms
+                const createSynonymsRes = await synonymsCollection.insertMany(
+                    action.data.synonyms.map((synonym) => ({
+                        _id: synonym,
+                        ref: action.data.id,
+                    }))
+                );
+
+                if (!createSynonymsRes.acknowledged) {
+                    return res
+                        .status(500)
+                        .json({ error: "Failed to create synonyms" });
                 }
             } else if (action.type === "delete") {
                 const parentDoc = await definitionsCollection.findOne({
