@@ -1,7 +1,7 @@
 body {
     font-family: "Source Code Pro", monospace;
     margin: 0;
-    background-color: rgba(15, 15, 15);
+    background-color: rgb(26, 25, 28);
     color: #ffffff;
 }
 
@@ -16,7 +16,7 @@ body {
 .page-content {
     flex-grow: 1;
     padding: 0 20px;
-    max-width: 1024px;
+    max-width: 960px;
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
@@ -40,7 +40,7 @@ h1 {
     text-align: left;
     margin-top: 0;
     font-weight: 800;
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-bottom: 2rem;
     font-family: "Montserrat", monospace;
 }
@@ -77,9 +77,10 @@ h2:first-of-type {
     gap: 10px;
     position: relative;
     color: #ffffff;
-    background: rgb(24, 24, 24);
+    background: rgb(46 44 50);
     border-radius: 5px;
     overflow: hidden;
+    border: 1px solid #39363e;
 }
 
 .page-buttons_button::before {
@@ -89,7 +90,7 @@ h2:first-of-type {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #202020;
+    background: #39363e;
     opacity: 0;
     pointer-events: none;
     z-index: 2;
@@ -160,7 +161,7 @@ h2:first-of-type {
 
 .page-buttons_button_tag {
     font-size: 0.75rem;
-    border: 1px solid #404040;
+    border: 1px solid #666666;
     border-radius: 2px;
     padding: 5px 10px;
     color: #aaaaaa;
@@ -189,7 +190,7 @@ h2:first-of-type {
     height: 20px;
     border-radius: 9999px;
     box-sizing: border-box;
-    border: 1px solid #202020;
+    border: 1px solid #404040;
 }
 
 .page-timeline_point:not(:last-of-type)::after {
@@ -200,7 +201,7 @@ h2:first-of-type {
     top: 0;
     left: 0;
     transform: translateX(10px) translateY(20px);
-    background: #202020;
+    background: #404040;
 }
 
 .page-timeline_point-header {
@@ -232,7 +233,7 @@ h2:first-of-type {
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
-    background: linear-gradient(to bottom, rgb(15, 15, 15), rgb(8, 8, 8));
+    background: transparent;
 }
 
 .page-footer_contact {
@@ -270,12 +271,12 @@ h2:first-of-type {
     height: 2.5rem;
     flex-direction: column;
     border-radius: 2px;
-    border: 1px solid #202020;
-    background: #000000;
+    border: 1px solid #39363e;
+    background: rgb(46 44 50);
 }
 
 .page-footer_socials a:hover {
-    background-color: #202020;
+    background-color: #39363e;
 }
 
 .page-footer_socials a svg {

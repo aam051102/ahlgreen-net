@@ -26,6 +26,10 @@ const copyDeepSync = (from, to) => {
     }
 };
 
+if (!fs.existsSync(path.resolve("./build"))) {
+    fs.mkdirSync(path.resolve("./build"));
+}
+
 for (const p of contentPaths) {
     if (path.extname(p) === ".md") {
         const content = fs
