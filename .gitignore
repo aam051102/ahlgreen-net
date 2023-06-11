@@ -11,3 +11,4 @@ sslcert/
 *.test
 package-lock.json
 views/articles/build/
+views/stories/build/

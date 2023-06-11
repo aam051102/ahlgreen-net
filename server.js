@@ -187,6 +187,17 @@ app.use("/articles", (req, res) => {
         res.sendFile(path.join(__dirname, "views/articles/build", req.path));
     }
 });
+app.use("/stories", (req, res) => {
+    const p = path.join(__dirname, "views/stories/build", req.path + ".html");
+
+    if (fs.existsSync(p)) {
+        res.sendFile(
+            path.join(__dirname, "views/stories/build", req.path + ".html")
+        );
+    } else {
+        res.sendFile(path.join(__dirname, "views/stories/build", req.path));
+    }
+});
 app.use("/", express.static(path.join(__dirname, "views/index")));
 app.use(express.static(path.join(__dirname, "build")));
 

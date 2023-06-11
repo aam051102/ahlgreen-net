@@ -1,0 +1,16 @@
+{
+    "name": "stories",
+    "version": "1.0.0",
+    "description": "",
+    "main": "build.js",
+    "scripts": {
+        "build": "node build.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "highlight.js": "^11.7.0",
+        "marked": "^4.1.1"
+    }
+}

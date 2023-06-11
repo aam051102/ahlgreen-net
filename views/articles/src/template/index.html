@@ -10,15 +10,18 @@
         />
         <meta content="origin" name="referrer" />
 
-        <meta property="author" content="Alexander Ahlgreen Madsen" />
+        <meta
+            property="author"
+            content="Alexander Ahlgreen Madsen / MadCreativity"
+        />
         <meta property="og:site_name" content="Ahlgreen.net" />
         <meta property="og:type" content="website" />
 
-        <meta name="title" content="{{ title }}" />
-        <meta property="og:title" content="{{ title }}" />
+        <meta name="title" content="{{title}}" />
+        <meta property="og:title" content="{{title}}" />
 
-        <meta name="description" content="{{ description }}" />
-        <meta property="og:description" content="{{ description }}" />
+        <meta name="description" content="{{description}}" />
+        <meta property="og:description" content="{{description}}" />
 
         <meta
             property="og:image"
@@ -59,19 +62,19 @@
         <link rel="stylesheet" href="./index.css" />
 
         <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css"
-        />
-
-        <link
             rel="shortcut icon"
             href="https://ahlgreen.net/assets/logo.jpg"
             type="image/png"
         />
 
-        <link rel="canonical" href="https://ahlgreen.net/{{ path }}" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/a11y-light.min.css"
+        />
 
-        <title>{{ title }}</title>
+        <link rel="canonical" href="https://ahlgreen.net/{{path}}" />
+
+        <title>{{title}}</title>
     </head>
     <body>
         <div class="page-wrapper">
@@ -93,7 +96,7 @@
 
             <main class="page-content">
                 <section class="page-section">
-                    <div class="page-section_inner">{{ content }}</div>
+                    <div class="page-section_inner">{{content}}</div>
                 </section>
             </main>
 
