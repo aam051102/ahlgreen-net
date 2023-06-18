@@ -1,5 +1,5 @@
 {{HEAD}}
-title=A Conversation With The Ferryman
+title=A Conversation
 description=
 tags=Extremely short
 date=2023-06-18
@@ -7,7 +7,7 @@ length=approx. 2 minutes
 
 {{BODY}}
 
-# A Conversation With The Ferryman
+# A Conversation
 
 The man stood up in the long wooden boat to greet the newcomer. His hooded and robed appearance seemed to disturb the pale old man.
 
