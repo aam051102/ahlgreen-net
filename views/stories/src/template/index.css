@@ -1,7 +1,7 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
-    background-color: #ffffff;
+    background-color: #eeeeee;
     color: rgb(26, 25, 28);
 }
 
@@ -20,10 +20,12 @@ body {
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
+    background: #ffffff;
+    border-radius: 5px;
+    margin-top: 40px;
 }
 
 .page-section {
-    padding: 40px 0;
     display: flex;
     align-items: center;
 }
@@ -34,14 +36,18 @@ body {
 
 .page-header {
     padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 h1 {
-    text-align: left;
+    text-align: center;
     margin-top: 0;
     font-weight: 800;
     font-size: 3.5rem;
     margin-bottom: 2rem;
+    margin-top: 2rem;
     font-family: "Montserrat", monospace;
 }
 
@@ -62,8 +68,8 @@ h2:first-of-type {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 .page-buttons_button {
@@ -76,35 +82,23 @@ h2:first-of-type {
     box-sizing: border-box;
     gap: 10px;
     position: relative;
-    color: #ffffff;
-    background: rgb(46 44 50);
-    border-radius: 5px;
+    color: rgb(26, 25, 28);
     overflow: hidden;
-    border: 1px solid #39363e;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
 }
 
-.page-buttons_button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #39363e;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 2;
-    transition: opacity 150ms ease-in-out;
-}
-
-.page-buttons_button:hover::before {
-    opacity: 1;
+.page-buttons_button:hover,
+.page-buttons_button:focus-visible {
+    outline: 0;
+    outline-offset: 0;
+    outline: 1px solid rgb(26, 25, 28);
 }
 
 .page-buttons_button_info {
     flex-grow: 1;
     text-align: left;
-    padding: 20px;
+    padding: 1.5rem 1.5rem;
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -121,34 +115,38 @@ h2:first-of-type {
 }
 
 .page-buttons_button_icon {
-    width: 10rem;
+    width: 5rem;
     border-radius: 0px;
     background: rgb(10, 10, 10);
     position: relative;
     z-index: 5;
-    min-height: 10rem;
+    height: 5rem;
     object-fit: cover;
     object-position: center;
+    margin-top: 1.5rem;
+    border-radius: 5px;
+    margin-right: 1.5rem;
 }
 
 .page-buttons_button_title {
     font-size: 1.25rem;
     font-weight: 700;
     margin: 0;
+    font-family: "Montserrat";
 }
 
 .page-buttons_button_date {
     font-size: 1rem;
     font-weight: 400;
     margin: 0;
-    color: #aaaaaa;
+    color: rgb(26, 25, 28);
 }
 
 .page-buttons_button_description {
     margin: 0;
     font-weight: 400;
     font-size: 1rem;
-    color: #aaaaaa;
+    color: rgb(26, 25, 28);
     margin-top: 10px;
 }
 
@@ -161,10 +159,10 @@ h2:first-of-type {
 
 .page-buttons_button_tag {
     font-size: 0.75rem;
-    border: 1px solid #666666;
+    background: #eeeeee;
     border-radius: 2px;
     padding: 5px 10px;
-    color: #aaaaaa;
+    color: rgb(26, 25, 28);
 }
 
 /* Timeline */
@@ -190,7 +188,7 @@ h2:first-of-type {
     height: 20px;
     border-radius: 9999px;
     box-sizing: border-box;
-    border: 1px solid #404040;
+    background: #eeeeee;
 }
 
 .page-timeline_point:not(:last-of-type)::after {
@@ -201,7 +199,7 @@ h2:first-of-type {
     top: 0;
     left: 0;
     transform: translateX(10px) translateY(20px);
-    background: #404040;
+    background: #dddddd;
 }
 
 .page-timeline_point-header {
@@ -216,11 +214,11 @@ h2:first-of-type {
 }
 
 .page-timeline_point-time {
-    color: #aaaaaa;
+    color: rgb(26, 25, 28);
 }
 
 .page-timeline_point-description {
-    color: #aaaaaa;
+    color: rgb(26, 25, 28);
 }
 
 /* Footer */
@@ -271,10 +269,9 @@ h2:first-of-type {
     height: 2.5rem;
     flex-direction: column;
     border-radius: 2px;
-    /*border: 1px solid #39363e;
-    background: rgb(46 44 50);*/
     border: 1px solid rgb(26, 25, 28);
     box-sizing: border-box;
+    background: #ffffff;
 }
 
 .page-footer_socials a:hover {
@@ -322,10 +319,11 @@ h2:first-of-type {
 
 /* Article-specific */
 .page-section_inner h1 {
-    text-align: left;
+    text-align: center;
     margin-top: 0;
     font-weight: 800;
     font-size: 4rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     font-family: "Montserrat", monospace;
 }
@@ -348,7 +346,7 @@ h2:first-of-type {
 
 .page-section_inner hr {
     border: 0;
-    border-top: 1px solid rgb(26, 25, 28);
+    border-top: 1px solid #cccccc;
 }
 
 .page-header svg {
@@ -371,13 +369,14 @@ h2:first-of-type {
     white-space: pre-wrap;
     word-wrap: break-word;
     box-sizing: border-box;
-    padding: 10px 15px;
-    background: rgb(26, 25, 28);
+    padding: 32px 32px;
+    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
     border-radius: 5px;
     font: inherit;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-family: "Source Code Pro", monospace;
-    color: #eeeeee;
+    color: #000000;
 }
 
 .page-section_inner code {
@@ -386,12 +385,13 @@ h2:first-of-type {
 }
 
 .page-section_inner :not(pre) > code {
-    background: rgb(26, 25, 28);
+    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
     padding: 2px 5px;
     border-radius: 2px;
     font-family: "Source Code Pro", monospace;
-    color: #eeeeee;
-    font-size: 0.9rem;
+    color: #000000;
+    font-size: 1rem;
 }
 
 .page-section_inner a {

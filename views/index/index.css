@@ -1,7 +1,7 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
-    background-color: #ffffff;
+    background-color: #eeeeee;
     color: rgb(26, 25, 28);
 }
 
@@ -20,6 +20,9 @@ body {
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
+    background: #ffffff;
+    border-radius: 5px;
+    margin-top: 40px;
 }
 
 .page-section {
@@ -36,7 +39,7 @@ body {
 }
 
 h1 {
-    text-align: left;
+    text-align: center;
     margin-top: 0;
     font-weight: 800;
     font-size: 3.5rem;
@@ -63,6 +66,7 @@ h2:first-of-type {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 .page-buttons_button {
@@ -77,6 +81,8 @@ h2:first-of-type {
     position: relative;
     color: rgb(26, 25, 28);
     overflow: hidden;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
 }
 
 .page-buttons_button:hover,
@@ -86,14 +92,10 @@ h2:first-of-type {
     outline: 1px solid rgb(26, 25, 28);
 }
 
-.page-buttons_button:not(:last-of-type) {
-    border-bottom: 1px solid #cccccc;
-}
-
 .page-buttons_button_info {
     flex-grow: 1;
     text-align: left;
-    padding: 3rem 1.5rem;
+    padding: 1.5rem 1.5rem;
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -118,7 +120,8 @@ h2:first-of-type {
     height: 5rem;
     object-fit: cover;
     object-position: center;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
+    border-radius: 5px;
     margin-right: 1.5rem;
 }
 
@@ -182,7 +185,7 @@ h2:first-of-type {
     height: 20px;
     border-radius: 9999px;
     box-sizing: border-box;
-    background: #cccccc;
+    background: #eeeeee;
 }
 
 .page-timeline_point:not(:last-of-type)::after {
@@ -193,7 +196,7 @@ h2:first-of-type {
     top: 0;
     left: 0;
     transform: translateX(10px) translateY(20px);
-    background: #ccc;
+    background: #dddddd;
 }
 
 .page-timeline_point-header {
@@ -263,10 +266,9 @@ h2:first-of-type {
     height: 2.5rem;
     flex-direction: column;
     border-radius: 2px;
-    /*border: 1px solid #39363e;
-    background: rgb(46 44 50);*/
     border: 1px solid rgb(26, 25, 28);
     box-sizing: border-box;
+    background: #ffffff;
 }
 
 .page-footer_socials a:hover {
