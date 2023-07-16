@@ -1,0 +1,205 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Shippori Mincho", serif;
+    margin: 0;
+    background-color: #ffffff;
+    color: #000000;
+    overflow: hidden;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-area {
+    display: flex;
+    flex-grow: 1;
+}
+
+.page-content {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    width: calc(70vw + 20px + 20px + 20px);
+    overflow: hidden;
+    padding: 20px 20px 40px 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.page-columns {
+    flex-grow: 1;
+    height: 0;
+    column-width: 35vw;
+    column-gap: 20px;
+    column-fill: auto;
+    text-indent: 20px;
+}
+
+.page-header {
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    gap: 20px;
+    width: calc(70vw + 20px + 20px + 20px);
+    padding: 0 20px;
+    padding-top: 10px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.page-header .page-column {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 35vw;
+}
+
+.page-header p {
+    margin: 0;
+    line-height: 1;
+}
+
+.page-header .page-header_page-number {
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.page-header .page-header_page-title {
+    font-family: "Shippori Mincho", sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+}
+
+.page-header .page-column:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    margin-top: 60px;
+    font-size: 2.25rem;
+}
+
+.page-content p {
+    font-family: "Shippori Mincho", serif;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    margin: 1em 0;
+}
+
+#page-back,
+#page-forward {
+    font-size: 2rem;
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 10;
+    padding: 0;
+    background: 0;
+    border: 0;
+    width: 100%;
+    transition: opacity 300ms ease-in-out;
+}
+
+#page-back div,
+#page-forward div {
+    border-radius: 99999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 4rem;
+    height: 4rem;
+    color: #ffffff;
+}
+
+#page-back:hover,
+#page-forward:hover {
+    opacity: 1;
+}
+
+/*
+TODO: Implement scroll by transforming .page-columns to translateX(calc((-35vw - 20px) * PAGE - 20px - 20px);
+*/
+
+@media screen and (max-width: 1280px) {
+    .page-columns {
+        column-width: calc(50vw - 20px - 10px);
+    }
+
+    .page-content {
+        width: 100vw;
+    }
+
+    .page-header {
+        width: 100vw;
+    }
+
+    .page-header .page-column {
+        width: calc(50vw - 20px - 10px);
+    }
+
+    #page-back,
+    #page-forward {
+        position: absolute;
+        width: 5rem;
+        top: 0;
+        bottom: 0;
+    }
+
+    #page-back {
+        left: 0;
+    }
+
+    #page-forward {
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .page-columns {
+        column-width: 100vw;
+    }
+
+    .page-content {
+        width: 100vw;
+    }
+
+    .page-header {
+        width: 100vw;
+    }
+
+    .page-header .page-column {
+        width: 100vw;
+    }
+}
