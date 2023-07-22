@@ -116,3 +116,8 @@ fs.copyFileSync(
     path.resolve("./src/template/index.css"),
     path.resolve("./build/index.css")
 );
+
+fs.copyFileSync(
+    path.resolve("./src/template/index.js"),
+    path.resolve("./build/index.js")
+);

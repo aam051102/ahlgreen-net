@@ -12,3 +12,4 @@ sslcert/
 package-lock.json
 views/articles/build/
 views/stories/build/
+views/novels/build/

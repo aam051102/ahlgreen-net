@@ -113,7 +113,7 @@ h2 {
 }
 
 #page-back,
-#page-forward {
+#page-next {
     font-size: 2rem;
     font-family: "Manrope", sans-serif;
     font-weight: 700;
@@ -132,7 +132,7 @@ h2 {
 }
 
 #page-back div,
-#page-forward div {
+#page-next div {
     border-radius: 99999px;
     display: flex;
     align-items: center;
@@ -144,7 +144,7 @@ h2 {
 }
 
 #page-back:hover,
-#page-forward:hover {
+#page-next:hover {
     opacity: 1;
 }
 
