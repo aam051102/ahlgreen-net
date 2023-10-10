@@ -111,18 +111,6 @@ h2:first-of-type {
     flex-wrap: wrap;
 }
 
-.page-buttons_button_icon {
-    width: 5rem;
-    background: rgb(10, 10, 10);
-    position: relative;
-    z-index: 5;
-    min-height: 5rem;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    flex-shrink: 0;
-}
-
 .page-buttons_button_title {
     font-size: 1.25rem;
     font-weight: 700;
@@ -303,11 +291,5 @@ h2:first-of-type {
     .page-buttons_button {
         width: 100%;
         flex-direction: column;
-    }
-
-    .page-buttons_button_icon {
-        width: 100%;
-        min-height: none;
-        height: 10rem;
     }
 }
