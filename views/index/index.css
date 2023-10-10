@@ -113,16 +113,14 @@ h2:first-of-type {
 
 .page-buttons_button_icon {
     width: 5rem;
-    border-radius: 0px;
     background: rgb(10, 10, 10);
     position: relative;
     z-index: 5;
-    height: 5rem;
-    object-fit: cover;
+    min-height: 5rem;
+    height: 100%;
+    object-fit: contain;
     object-position: center;
-    margin-top: 1.5rem;
-    border-radius: 5px;
-    margin-right: 1.5rem;
+    flex-shrink: 0;
 }
 
 .page-buttons_button_title {
