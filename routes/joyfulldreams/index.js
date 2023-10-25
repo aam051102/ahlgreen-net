@@ -45,7 +45,7 @@ router.post("/stripe-hook", async (req, res) => {
         const sessionWithLineItems = await stripe.checkout.sessions.retrieve(
             body.id,
             {
-                expand: ["line_items"],
+                expand: ["line_items", "shipping_cost.shipping_rate"],
             }
         );
 
@@ -67,11 +67,19 @@ router.post("/stripe-hook", async (req, res) => {
         const isPhysical =
             lineItems[0]?.price.product === process.env.PHYSICAL_PRODUCT_ID;
 
+        // Figure out the physical sheet to use
+        const physicalSheet =
+            isPhysical &&
+            sessionWithLineItems.shipping_cost?.shipping_rate?.id ===
+                process.env.SHIPPING_STANDARD_INTERNATIONAL
+                ? "International"
+                : "Physical";
+
         // Find highest row
         const values = (
             await sheets.spreadsheets.values.get({
                 spreadsheetId: process.env.SPREADSHEET_ID,
-                range: (isPhysical ? "Physical" : "Digital") + `!A:A`,
+                range: (isPhysical ? physicalSheet : "Digital") + `!A:A`,
             })
         ).data.values;
 
@@ -85,7 +93,7 @@ router.post("/stripe-hook", async (req, res) => {
         await sheets.spreadsheets.values.update({
             spreadsheetId: process.env.SPREADSHEET_ID,
             range: isPhysical
-                ? `Physical!A${currentRow}:L${currentRow}`
+                ? `${physicalSheet}!A${currentRow}:M${currentRow}`
                 : `Digital!A${currentRow}:E${currentRow}`,
             valueInputOption: "RAW",
             requestBody: {
@@ -96,12 +104,14 @@ router.post("/stripe-hook", async (req, res) => {
                               sessionWithLineItems.shipping_details.name ||
                                   sessionWithLineItems.customer_details.name, // Name
                               lineItems[0]?.quantity, // Quantity
-                              sessionWithLineItems.amount_subtotal / 100, // Amount
+                              sessionWithLineItems.amount_total / 100, // Amount
                               sessionWithLineItems.customer_details.email, // Email
                               sessionWithLineItems.shipping_details.phone ||
                                   sessionWithLineItems.customer_details.phone, // Phone
                               sessionWithLineItems.shipping_details.address
                                   .country, // Country
+                              sessionWithLineItems.shipping_cost.shipping_rate
+                                  .display_name, // Shipping
                               sessionWithLineItems.shipping_details.address
                                   .line1, // Address 1
                               sessionWithLineItems.shipping_details.address
@@ -116,7 +126,7 @@ router.post("/stripe-hook", async (req, res) => {
                         : [
                               sessionWithLineItems.id, // Transaction ID
                               sessionWithLineItems.customer_details.name, // Name
-                              sessionWithLineItems.amount_subtotal / 100, // Amount
+                              sessionWithLineItems.amount_total / 100, // Amount
                               sessionWithLineItems.customer_details.email, // Email
                               sessionWithLineItems.customer_details.phone, // Phone
                           ],
