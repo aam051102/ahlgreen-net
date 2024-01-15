@@ -58,6 +58,30 @@ Dialog is essentially always seen within actions with the `talk` command like so
 
 It may be a good idea to keep really long dialogue parts separate from the room definitions to avoid getting overly long files.
 
+### Character-specific dialogue
+
+Sometimes you'll want a character to say different things to the player, depending on which character the player is playing as.
+
+All this takes is setting one extra attribute, `sprite`, on the action, with its value set to [a character's name attribute](./openbound-characters#name).
+
+For example:
+
+```xml
+<!-- If you talk to Meenah as Karkat -->
+<action command="talk" sprite="karkat" name="Talk.">
+    <args>
+    @meenah_talk Nice to see you Vantas-looking boy.
+    </args>
+</action>
+
+<!-- If you talk to Meenah as Damara -->
+<action command="talk" sprite="damara" name="Talk.">
+    <args>
+    @meenah_talk Hey... Megido............
+    </args>
+</action>
+```
+
 ## Writing dialogue
 
 Writing dialogue is extremely simple. You simply start your line with `@`, followed by the name of the character sprite. You then add a space and begin writing the actual text.
