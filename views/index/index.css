@@ -1,7 +1,12 @@
+html,
+body {
+    font-size: 16px;
+}
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
-    background-color: #eeeeee;
+    background-color: #fefefe;
     color: rgb(26, 25, 28);
 }
 
@@ -15,14 +20,13 @@ body {
 
 .page-content {
     flex-grow: 1;
-    padding: 0 20px;
-    max-width: 960px;
+    padding: 0 32px;
+    max-width: 1024px;
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
-    background: #ffffff;
+    background: #fefefe;
     border-radius: 5px;
-    margin-top: 40px;
 }
 
 .page-section {
@@ -38,13 +42,25 @@ body {
     padding: 20px;
 }
 
+header {
+    padding: 64px 0;
+}
+
+header p {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+    color: rgb(26, 25, 28);
+    font-family: "Montserrat", monospace;
+}
+
 h1 {
     text-align: center;
-    margin-top: 0;
-    font-weight: 800;
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+    margin: 0;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 68px;
     font-family: "Montserrat", monospace;
 }
 
@@ -52,13 +68,14 @@ h2 {
     text-align: left;
     margin-top: 0;
     font-weight: 700;
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
+    font-size: 20px;
+    line-height: 34px;
+    margin: 0;
     font-family: "Montserrat", monospace;
 }
 
 h2:first-of-type {
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 .page-buttons {
@@ -66,7 +83,8 @@ h2:first-of-type {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 1px;
+    background: #f0f0f0;
 }
 
 .page-buttons_button {
@@ -80,22 +98,21 @@ h2:first-of-type {
     gap: 10px;
     position: relative;
     color: rgb(26, 25, 28);
+    background: #fefefe;
     overflow: hidden;
-    border: 1px solid #dddddd;
-    border-radius: 5px;
 }
 
 .page-buttons_button:hover,
 .page-buttons_button:focus-visible {
     outline: 0;
     outline-offset: 0;
-    outline: 1px solid rgb(26, 25, 28);
+    color: #095fcf;
 }
 
 .page-buttons_button_info {
     flex-grow: 1;
     text-align: left;
-    padding: 1.5rem 1.5rem;
+    padding: 1rem 0rem;
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -112,10 +129,11 @@ h2:first-of-type {
 }
 
 .page-buttons_button_title {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
     margin: 0;
-    font-family: "Montserrat";
+    font-family: "Verdana", monospace;
 }
 
 .page-buttons_button_date {
@@ -123,6 +141,7 @@ h2:first-of-type {
     font-weight: 400;
     margin: 0;
     color: rgb(26, 25, 28);
+    display: none;
 }
 
 .page-buttons_button_description {
@@ -142,7 +161,7 @@ h2:first-of-type {
 
 .page-buttons_button_tag {
     font-size: 0.75rem;
-    background: #eeeeee;
+    background: #f0f0f0;
     border-radius: 2px;
     padding: 5px 10px;
     color: rgb(26, 25, 28);
@@ -206,15 +225,16 @@ h2:first-of-type {
 
 /* Footer */
 .page-footer {
-    padding: 60px 20px 20px 20px;
+    padding: 32px 16px;
+    margin-top: 64px;
     box-sizing: border-box;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
-    background: transparent;
+    background: rgb(26, 25, 28);
 }
 
 .page-footer_contact {
@@ -224,14 +244,14 @@ h2:first-of-type {
 }
 
 .page-footer_contact a {
-    color: rgb(26, 25, 28);
+    color: #fefefe;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border 30ms ease-in-out;
 }
 
 .page-footer_contact a:hover {
-    border-bottom: 1px solid currentColor;
+    border-bottom: 1px solid #fefefe;
 }
 
 .page-footer_socials {
@@ -254,12 +274,12 @@ h2:first-of-type {
     border-radius: 2px;
     border: 1px solid rgb(26, 25, 28);
     box-sizing: border-box;
-    background: #ffffff;
+    background: #fefefe;
 }
 
 .page-footer_socials a:hover {
     background-color: rgb(26, 25, 28);
-    color: #ffffff;
+    color: #fefefe;
 }
 
 .page-footer_socials a svg {
