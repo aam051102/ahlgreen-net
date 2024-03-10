@@ -10,6 +10,22 @@ body {
     color: rgb(26, 25, 28);
 }
 
+#lilguy {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    z-index: 10;
+    height: 256px;
+    pointer-events: none;
+    user-select: none;
+}
+
+@media screen and (max-width: 768px) {
+    #lilguy {
+        display: none;
+    }
+}
+
 .page-wrapper {
     display: flex;
     flex-direction: column;
@@ -102,8 +118,8 @@ h2:first-of-type {
     overflow: hidden;
 }
 
-.page-buttons_button:hover,
-.page-buttons_button:focus-visible {
+a.page-buttons_button:hover,
+a.page-buttons_button:focus-visible {
     outline: 0;
     outline-offset: 0;
     color: #095fcf;
@@ -225,7 +241,7 @@ h2:first-of-type {
 
 /* Footer */
 .page-footer {
-    padding: 32px 16px;
+    padding: 64px 16px;
     margin-top: 64px;
     box-sizing: border-box;
     width: 100%;
@@ -234,7 +250,8 @@ h2:first-of-type {
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
-    background: rgb(26, 25, 28);
+    border-top: 1px solid #f0f0f0;
+    position: relative;
 }
 
 .page-footer_contact {
@@ -244,14 +261,14 @@ h2:first-of-type {
 }
 
 .page-footer_contact a {
-    color: #fefefe;
+    color: rgb(26, 25, 28);
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border 30ms ease-in-out;
 }
 
 .page-footer_contact a:hover {
-    border-bottom: 1px solid #fefefe;
+    border-bottom: 1px solid rgb(26, 25, 28);
 }
 
 .page-footer_socials {
