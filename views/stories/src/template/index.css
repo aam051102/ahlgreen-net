@@ -410,11 +410,11 @@ h2:first-of-type {
     padding-left: 20px;
 }
 
-.page-section_inner li {
+.page-section_inner ul li {
     padding: 5px 0;
 }
 
-.page-section_inner li::before {
+.page-section_inner ul li::before {
     content: "-";
     margin-right: 20px;
 }
