@@ -15,14 +15,13 @@ body {
 
 .page-content {
     flex-grow: 1;
-    padding: 0 20px;
-    max-width: 960px;
+    padding: 0 32px;
+    max-width: 1024px;
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
     background: #ffffff;
     border-radius: 5px;
-    margin-top: 40px;
 }
 
 .page-section {
@@ -43,11 +42,11 @@ body {
 
 h1 {
     text-align: center;
-    margin-top: 0;
-    font-weight: 800;
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 68px;
+    margin-bottom: 64px;
+    margin-top: 64px;
     font-family: "Montserrat", monospace;
 }
 
@@ -223,15 +222,17 @@ h2:first-of-type {
 
 /* Footer */
 .page-footer {
-    padding: 60px 20px 20px 20px;
+    padding: 64px 16px;
+    margin-top: 64px;
     box-sizing: border-box;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
-    background: transparent;
+    border-top: 1px solid #f0f0f0;
+    position: relative;
 }
 
 .page-footer_contact {
@@ -248,7 +249,7 @@ h2:first-of-type {
 }
 
 .page-footer_contact a:hover {
-    border-bottom: 1px solid currentColor;
+    border-bottom: 1px solid rgb(26, 25, 28);
 }
 
 .page-footer_socials {
@@ -271,12 +272,12 @@ h2:first-of-type {
     border-radius: 2px;
     border: 1px solid rgb(26, 25, 28);
     box-sizing: border-box;
-    background: #ffffff;
+    background: #fefefe;
 }
 
 .page-footer_socials a:hover {
     background-color: rgb(26, 25, 28);
-    color: #ffffff;
+    color: #fefefe;
 }
 
 .page-footer_socials a svg {
@@ -320,11 +321,6 @@ h2:first-of-type {
 /* Article-specific */
 .page-section_inner h1 {
     text-align: center;
-    margin-top: 0;
-    font-weight: 800;
-    font-size: 4rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
     font-family: "Montserrat", monospace;
 }
 
@@ -346,7 +342,7 @@ h2:first-of-type {
 
 .page-section_inner hr {
     border: 0;
-    border-top: 1px solid #cccccc;
+    border-top: 1px solid #f0f0f0;
 }
 
 .page-header svg {
