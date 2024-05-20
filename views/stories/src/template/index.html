@@ -33,14 +33,14 @@
 
         <link
             rel="preload"
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Source+Code+Pro:wght@400;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700;800&family=Shadows+Into+Light+Two:wght@400&display=swap"
             as="style"
             onload="this.onload=null; this.rel='stylesheet';"
         />
         <noscript
             ><link
                 rel="stylesheet"
-                href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Source+Code+Pro:wght@400;700&display=swap"
+                href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700;800&family=Shadows+Into+Light+Two:wght@400&display=swap"
         /></noscript>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -74,39 +74,57 @@
 
         <link rel="canonical" href="https://ahlgreen.net/{{path}}" />
 
+        <!-- Simplebar -->
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
+        />
+        <noscript>
+            <style>
+                /**
+              * Reinstate scrolling for non-JS clients
+              */
+                .simplebar-content-wrapper {
+                    scrollbar-width: auto;
+                    -ms-overflow-style: auto;
+                }
+
+                .simplebar-content-wrapper::-webkit-scrollbar,
+                .simplebar-hide-scrollbar::-webkit-scrollbar {
+                    display: initial;
+                    width: initial;
+                    height: initial;
+                }
+            </style>
+        </noscript>
+
         <title>{{title}}</title>
     </head>
     <body>
-        <div class="page-wrapper">
-            <header class="page-header">
-                <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 16 16"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        fill-rule="evenodd"
-                        d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-                    ></path>
-                </svg>
-                <a href="/" class="page-header_back-button">Homepage</a>
-            </header>
-
+        <div class="page-wrapper" data-simplebar>
             <main class="page-content">
                 <section class="page-section">
                     <div class="page-section_inner">{{content}}</div>
                 </section>
-            </main>
 
-            <footer class="page-footer">
-                <section class="page-footer_contact">
-                    <a href="mailto:ahlgreenmadsen@gmail.com"
-                        >ahlgreenmadsen@gmail.com
-                    </a>
-                </section>
-            </footer>
+                <footer>
+                    <p>
+                        Background image by
+                        <a
+                            href="https://unsplash.com/@olga_o?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+                            >Olga Thelavart</a
+                        >
+                        on
+                        <a
+                            href="https://unsplash.com/photos/white-painted-wall-with-black-line-vS3idIiYxX0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+                            >Unsplash</a
+                        >
+                    </p>
+                </footer>
+            </main>
         </div>
+
+        <!-- Simplebar -->
+        <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     </body>
 </html>
