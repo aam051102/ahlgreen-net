@@ -9,6 +9,8 @@ length=approx. 10 minutes
 
 # The Moon Lake
 
+<button onClick="javascript:new Audio('/assets/story-audio/the-moon-lake_afterglow_immersive.mp3').play()" type="button" id="listen"><img src="/assets/icon_listen.svg" /> <span>(Read by Afterglow)</span></button>
+
 A long, long time ago, there existed a place called
 Nowhere. As far as the eye could see, there was nothing
 but grass, and day reigned eternal. Somewhere, in the

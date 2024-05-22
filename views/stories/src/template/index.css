@@ -113,6 +113,22 @@ footer {
     font-family: "Crimson Text", serif;
 }
 
+#listen {
+    position: absolute;
+    top: calc(64px + 59.72px + 28px);
+    border: none;
+    color: #0d0101;
+    background: none;
+    font-family: "Crimson Text", serif;
+    font-size: 16px;
+    line-height: 1.15;
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    align-items: center;
+}
+
 @media screen and (max-width: calc(700px + 16px * 2)) {
     .page-content {
         padding-left: 16px;
