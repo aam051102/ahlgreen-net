@@ -12,7 +12,7 @@ const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const http = require("http");
-const request = require("request");
+//const request = require("request");
 const dayjs = require("dayjs");
 const fs = require("fs");
 
@@ -33,12 +33,12 @@ app.use(cookieParser());
 app.use(cors());
 
 // Express-Session
-let { mongoClient } = require("./database");
+//let { mongoClient } = require("./database");
 
 if (process.env.NODE_ENV == "production") app.set("trust proxy", true);
 
 // HSSE
-app.get(["/app/hsse/tags"], (req, res) => {
+/*app.get(["/app/hsse/tags"], (req, res) => {
     if (req.originalUrl.endsWith("/")) {
         res.status(302).redirect(
             req.originalUrl.substr(0, req.originalUrl.length - 1)
@@ -61,10 +61,10 @@ app.get(["/app/hsse/login"], (req, res) => {
 app.use(
     "/app/hsse",
     express.static(path.join(__dirname, "views/app/hsse/build"))
-);
+);*/
 
 // MUSE
-var generateRandomString = function (length) {
+/*var generateRandomString = function (length) {
     var text = "";
     var possible =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -81,9 +81,9 @@ const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const SELF_URL =
     process.env.NODE_ENV === "production"
         ? "https://ahlgreen.net"
-        : "http://localhost:4000";
+        : "http://localhost:4000";*/
 
-app.get("/app/muse/auth/login", (req, res) => {
+/*app.get("/app/muse/auth/login", (req, res) => {
     const state = generateRandomString(16);
     const scope = "user-read-private user-read-email";
 
@@ -172,7 +172,7 @@ app.use(["/app/muse", "/app/muse/*"], (req, res) => {
     } else {
         res.sendFile(path.join(__dirname, "views/app/muse/build", req.path));
     }
-});
+});*/
 
 // Set static folders
 app.use("/public", express.static(path.join(__dirname, "public")));
@@ -214,11 +214,11 @@ app.use(express.static(path.join(__dirname, "build")));
 
 // Routes
 app.use("/api", require("./routes/api"));
-app.use("/joyfulldreams", require("./routes/joyfulldreams/index"));
+//app.use("/joyfulldreams", require("./routes/joyfulldreams/index"));
 
-process.on("exit", () => {
+/*process.on("exit", () => {
     mongoClient.close();
-});
+});*/
 
 // Listen on port
 http.createServer(app).listen(process.env.PORT, () => {
