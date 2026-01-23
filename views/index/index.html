@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -41,7 +41,10 @@
             rel="preload"
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Source+Code+Pro:wght@400;700&display=swap"
             as="style"
-            onload="this.onload=null; this.rel='stylesheet';"
+            onload="
+                this.onload = null;
+                this.rel = 'stylesheet';
+            "
         />
         <noscript
             ><link
@@ -80,14 +83,38 @@
     <body>
         <header>
             <h1>Alexander Ahlgreen Madsen</h1>
-            <p>Full-Stack Developer & Amateur Writer/Artist/Musician/Etc.</p>
+            <p>Game Developer & Full-Stack Programmer</p>
         </header>
 
         <div class="page-wrapper">
             <main class="page-content">
+                <section class="page-section" id="games">
+                    <div class="page-section_inner">
+                        <h2>Games I've Developed</h2>
+
+                        <div class="page-buttons">
+                            <a
+                                href="https://store.steampowered.com/app/4210630/Goob_Wants_an_Android_Girlfriend/"
+                                rel="noreferrer noopener"
+                                class="page-buttons_button"
+                            >
+                                <div class="page-buttons_button_info">
+                                    <div
+                                        class="page-buttons_button_info_header"
+                                    >
+                                        <p class="page-buttons_button_title">
+                                            Goob Wants an Android Girlfriend
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="page-section" id="articles">
                     <div class="page-section_inner">
-                        <h2>Articles</h2>
+                        <h2>Articles I've Written</h2>
 
                         <div class="page-buttons">
                             <a
@@ -265,7 +292,7 @@
 
                 <section class="page-section" id="stories">
                     <div class="page-section_inner">
-                        <h2>Stories</h2>
+                        <h2>Stories I've Written</h2>
 
                         <div class="page-buttons">
                             <a
@@ -506,7 +533,7 @@
 
                 <section class="page-section" id="music">
                     <div class="page-section_inner">
-                        <h2>Music</h2>
+                        <h2>Music I've Composed</h2>
 
                         <div class="page-buttons">
                             <div class="page-buttons_button">
@@ -652,7 +679,7 @@
 
                 <section class="page-section" id="novels">
                     <div class="page-section_inner">
-                        <h2>Other</h2>
+                        <h2>Other Things I've Made</h2>
 
                         <div class="page-buttons">
                             <a
